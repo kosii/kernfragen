@@ -1,0 +1,163 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{}
+
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+
+\setlength{\topmargin}{-.5in} \setlength{\textheight}{9.25in}
+\setlength{\oddsidemargin}{0in} \setlength{\textwidth}{6.8in}
+
+
+\begin{document}
+
+\Large
+
+
+\noindent{\bf Kernfragen - Stetigkeit\hfill WS21-22 Analysis I.}
+
+
+\medskip\hrule
+\begin{enumerate}
+
+\item Wann heißt eine Funktion $f$ in einem Punkt $x_0$ stetig? Welche äquivalente Definitionen der Stetigkeit gibt es (wenigstens drei verschiedene)?
+
+$f$ is continuous in $x_0$ whenever one of the following equivalent conditions holds
+\begin{itemize}
+    \item $\forall (x_n) \in D\colon \lim_{n\to\infty}{x_n} = x \Rightarrow f(\lim_{n\to\infty}{x_n}) = f(x) = \lim_{n\to\infty}{f(x_n)}$
+    \item $\forall \epsilon > 0\colon \exists \delta > 0\colon \forall x \in D, | x - x_0| < \delta\colon |f(x) - f(x_0)| < \epsilon$
+    \item for any neighbourhood $V$ of $f(x_0)$ there is a neighbourhood $U$ of $x_0$ in $D$ such that $f(U) \subset V$
+\end{itemize}
+
+\item Wann heißt eine Funktion $f$ auf einer Menge $D \subseteq \mathbb{R}$ bzw. $D \subseteq \mathbb{C}$ stetig?
+
+$f$ is continuous on the set $D$ whenever $f$ is continuous at all points $a \in D$
+
+\item \textbf{TODO} Sei $U = \{a_1, a_2, \dots, a_N \} \subset \mathbb{R}$ eine endliche Menge reeller Zahlen. Gib eine Funktion
+$f\colon \mathbb{R} \to \mathbb{R}$ an, die auf $D = \mathbb{R} \setminus U$ stetig, auf $U$ aber unstetig ist.
+
+$f(x) = \begin{cases}
+    1& x \in U\\
+    0&\text{otherwise}
+\end{cases}$
+
+Since any convergent $(x_n) \in \mathbb{R}$ will only contain at most finitely many element from $U$, and consequently if $x = \lim_{n \to \infty} x_n$, then $\lim_{n \to \infty} x_n$
+
+\item Gib eine Fuktion $f\colon \mathbb{R} \to \mathbb{R}$ an, die nirgends stetig ist.
+
+$f(x) = \begin{cases}
+    1&x\in \mathbb{Q}\\
+    0&\text{otherwise}
+\end{cases}$
+
+\item Wie lautet der Zwischenwertsatz?
+
+Consider any $D = [a, b] \subset R$ interval, and let $f\colon D \to \mathbb{R}$ be continuous. Then $f$ takes on any value in $[f(a), f(b)] \cup [f(b), f(a)]$
+
+\item \textbf{TODO} Warum hat jede durch eine stetige Funktion $g\colon [0,1] \to [0,1]$ gegebene Iteration $x_{n+1} = g(x_n)$ (mindestens) einen Fixpunkt?
+
+
+
+
+\item Wie lässt sich unter Benutzung des Zwischenwertsatzes zeigen, dass die Gleichung $\exp(x) = -x$ eine reelle Lösung besitzt?
+
+\textbf{Answer:} Consider the $g(x) = e^x - x$ function on the $[1/e, 1]$ interval. $g(1/e) = e^{1/e} - e < e^1 - e = 0$ and $g(1) = e^1 - 1 > 2 - 1 > 0$, thus from the intermediate value theorem there must be some $c \in [1/e, 1]\colon g(c) = 0$.
+
+\item Wann heißt eine Funktion $f\colon D \to \mathbb{R}, D \subseteq \mathbb{R}$, gleichmäßig stetig? Unter welcher (hinreichenden) Bedingung sind stetige Funktionen gleichmäßig stetig?
+
+\textbf{Answer:} $f$ is uniformly continuous if $\forall \epsilon > 0\colon \exists \delta > 0\colon \forall x, y \in D\colon | x - y| < \delta \Rightarrow |f(x) - f(y) | < \epsilon$
+
+If $D$ is closed and bounded, and $f$ is continuous on $D$, then $f$ is also uniformly continuous on $D$.
+
+\item \textbf{TODO}  Welche dieser Funktionen $f\colon \mathbb{R} \to \mathbb{R}$ sind stetig, welche gleichmäßig stetig?
+ \begin{center}
+    $|x|$,   $\operatorname{exp}(x)$, $x^2$, $\sin(x)$, $\frac{x^3+1}{x^4-1}$, $\lceil x \rceil - x$
+\end{center}
+Hierbei bezeichnet die Gauß-Klammer, $\lceil x \rceil$, die größte ganze Zahl, die kleiner oder gleich $x$ ist.
+
+\textbf{Answer:} 
+\begin{enumerate}
+    \item $|x|$ is continuous and furthermore is absolute continuous: consider $\epsilon > 0$ and some $x, y \in \mathbb{R}\colon |x - y| < \epsilon$ then $\epsilon > |x - y| > |x| - |y|$ and $\epsilon > |y - x| > |y| - |x|$ and thus $||x| - |y|| < \epsilon$. So $|f(x) - f(y)| = ||x| - |y|| < \epsilon$ and consequently it's absolute continuous.
+    \item $\operatorname{exp}(x)$ is continuous, since it's defined by a powerseries with convergence radius $\rho = \infty$. A powerseries is continuous at every point inside it's convergence radius. It's not absolutely continuous: consider some $\epsilon > 0$ and any point $a \in \mathbb{R}$. $\exp(a+h) \in (e^a-\epsilon, e^a + \epsilon)$
+    
+    \item $x^2$ is continuous, since $x$ is continuous, and since the multiple of two continuous function is continuous, thus so is $x^2$. On the other hand it's not 
+\end{enumerate}
+
+\item Gib stetige Funktionen $f\colon D \to \mathbb{R}, D \subseteq \mathbb{R}$ an, die ihr Supremum annehmen, und solche, die ihr Supremum nicht annehmen. Unter welcher (hinreichenden) Bedingung nimmt eine stetige Funktion ihr Supremum an?
+
+\textbf{Answer:} Let $D = [0, 1)$ and $f\colon D \to \mathbb{R}, f(x) = x^2$. $sup f = 1$, but $f$ does not take on it's supremum (because $f(x) = 1 \Leftrightarrow x = \pm1 \notin D$).
+
+Let $D = [0, 1]$ and $f\colon D \to \mathbb{R}, f(x) = x^2$. $\sup{f} = \max{f} = 1$, thus $f$ takes on it's supremum.
+
+If $D$ is bounded and closed, then $f\colon D \to \mathbb{R}$ takes on its supremum.
+
+\item \textbf{Answer:} Sind die Bilder von Intervallen unter stetigen Abbildungen $f\colon \mathbb{R} \to \mathbb{R}$ wieder Intervalle? Sind stetige Bilder offener Intervalle wieder offene Intervalle?
+
+\textbf{Answer:} Yes (\textbf{Why?}). The image of $f\colon (0, 1) \to \mathbb{}R$ with $f(x) = 1$ is a closed inteval $[1, 1]$.
+
+\item Wo sind Potenzreihen stetig? Wo sind sie gleichmäßig stetig?
+
+\textbf{Answer:} Consider $p(x)$ powerseries centered at $0$ with convergence radius of $\rho \in [0, \infty)$, and circle of convergence $C = \left\{x\colon |x| < \rho\right\}$. $p$ is continuous at each point of $C$. Consider any $D \subset C$ that is closed and bounded. Then $f$ is uniformly continuous on $D$. Contrary to the normal continuity, uniform continuity cannot be extended to the whole $C$ by considering a closed circle of radius $0 \le r < \rho$ inside $C$, and taking the limit $r \to \rho$.
+
+\item Wann existiert die Inverse $f^{-1}$ einer stetigen Funktion $f\colon [a, b] \to \mathbb{R}$? Wann ist die Inverse stetig?
+
+\textbf{Answer:} $f^{-1}$ exists exactly when $f$ is strictly monotonous. Whenever the inverse of a continuous function exists, it's always continuous.
+
+\item Was ist ein normierter Vektorraum über $\mathbb{R}$ bzw. $\mathbb{C}$ ? Was ist ein Banachraum?
+
+\textbf{Answer:} Consider $V$ vectorspace over $\mathbb{K}$. Then the $\norm{.}\colon V \to \mathbb{R}$ function is a norm, if it satisfies the following conditions ($\forall x, y \in V, \lambda \in \mathbb{K}$):
+\begin{itemize}
+    \item $\norm{x} \ge 0$ and $\norm{x} = 0 \Leftrightarrow x = 0$
+    \item $\norm{\lambda x} = \abs{\lambda}\norm{x}$
+    \item $\norm{x + y} \le \norm{x} + \norm{y}$
+\end{itemize}
+
+A normed vectorspace is complete, if every Cauchy-sequence is convergent (both property considered under the norm). A Banach-space is a complete normed vectorspace.
+
+\item Was bedeutet Konvergenz in einem normierten Vektorraum?
+
+\textbf{Answer:} Let $V$ is a vectorspace with norm $\norm{.}\colon V \to \mathbb{R}$. We say that $(x_n) \in V$ converges if $\exists v \in V\colon \lim_{n\to \infty}\norm{v_n - v} = 0$
+
+\item Wie ist die Supremums-Norm für beschränkte, stetige Funktionen $f\colon D \to \mathbb{R}, D \subseteq \mathbb{R}$, definiert? Warum ist sie tatsächlich eine Norm?
+
+\textbf{Answer:} $\norm{f}_{sup} = \sup\left\{|f(x)|\colon x \in D\right\}$. 
+
+The above defined $\norm{.}_{sup}$ function satisfies the norm properties: 
+
+$\forall f, g: D \to \mathbb{R}, \forall \lambda\in\mathbb{R}$:
+\begin{itemize}
+    \item $\norm{f} \ge 0$, $\norm{f} = 0 \Leftrightarrow f = 0$
+    \item $\norm{\lambda f} = \sup\left\{|\lambda f(x)|\colon x \in D\right\} =  \sup\left\{|\lambda||f(x)|\colon x \in D\right\} \\=  |\lambda| \sup\left\{|f(x)|\colon x \in D\right\} = |\lambda| \norm{f}$
+    \item $\norm{f + g} = \sup\left\{|f(x) + g(x)|\colon x \in D\right\} \le \sup\left\{|f(x)| + |g(x)|\colon x \in D\right\}\le \sup\left\{|f(x)| + \sup\{|g(y)|\colon y \in D \}\colon x \in D\right\} = \sup\left\{|f(x)| + \norm{g}\colon x \in D\right\} = \sup\left\{|f(x)| \colon x \in D\right\} + \norm{g} = \norm{f} + \norm{g}$
+\end{itemize}
+
+\item \textbf{TODO}Warum ist der Raum der beschränkten, stetigen Funktionen, $\mathcal{BC}(D,\mathbb{R})$, mit der Supremums-Norm ein Banachraum?
+
+\textbf{Answer:}
+
+\item Gib ein Beispiel einer Funktionenfolge $f_n\colon [0,1] \to [0,1]$ an, die punktweise aber nicht gleichmäßig konvergiert.
+
+\textbf{Answer:} $f_n(x) = x^n$
+\item Auf welchen (möglichst großen) Intervallen konvergieren folgende Funktionenfolgen gleichmäßig?
+
+\begin{center}
+    $f_n(x) = \frac{1}{1 + n^2 x^2}$, $f_n(x) = \exp(-nx^2)$, $f_n(x) = \sum_{k=0}^n{(-1)^k x^k}$
+\end{center}
+
+\textbf{Answer:}
+\item Was ist die Umkehrfunktion von $\exp(x)$. Welche Funktionalgleichung erfüllt sie? Wo
+ist sie definiert? Wo ist sie stetig?
+
+\textbf{Answer:} Since $\exp$ is strictly monotonous and continuous, it's inverse exists and it's also continuous at its respective domain of definition: $$\log\colon \mathbb{R}^+ \to \mathbb{R}, \log := \exp^{-1}$$
+Since it's the inverse of a continuous function, it's continuous everywhere.
+\item Wie ist die allgemeine Potenz $x^\alpha$ für $\alpha \in \mathbb{C}$ und $x \in \mathbb{R}^+$ definiert?
+
+\textbf{Answer:} $x^\alpha = e^{\log{x} \alpha}$
+
+\end{enumerate}
+
+\end{document} 
