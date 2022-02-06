@@ -3,6 +3,6 @@ Feel free to make a [pull request](https://github.com/kosii/kernfragen/pulls) fo
 # Zahlen
 # Folgen
 # Reihen
-[reihen.pdf](2-Reihen/reihen.pdf)
+[reihen.pdf](2-Reihen/reihen.pdf) (work in progress)
 # Stetigkeit
-[stetigkeit.pdf](3-Stetigkeit/stetigkeit.pdf)
+[stetigkeit.pdf](3-Stetigkeit/stetigkeit.pdf) (done)

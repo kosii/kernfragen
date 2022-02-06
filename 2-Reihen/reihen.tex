@@ -8,6 +8,7 @@
 
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sumn}[4]{\sum_{#1=#2}^{#3}{#4}}
 
 \setlength{\topmargin}{-.5in} \setlength{\textheight}{9.25in}
 \setlength{\oddsidemargin}{0in} \setlength{\textwidth}{6.8in}
@@ -24,28 +25,96 @@
 \medskip\hrule
 \begin{enumerate}
     \item Wann heißt eine Reihe konvergent, wann absolut konvergent?
-    \item  Für welche komplexen $q$ existiert $\sum_{n=0}^\infty {n^n}$? Welchen Wert hat die Summe?
+    
+    \textbf{Answer:} The series $\sumn{n}{0}{\infty}{a_n}$ converges when the sequence of partial sums $s_n = \sumn{k}{0}{n}{a_k}$ converges. The series $\sumn{n}{0}{\infty}{a_n}$ converges absolutely, when the series $\sumn{n}{0}{\infty}{\abs{a_n}}$ converges.
+
+    \item  Für welche komplexen $q$ existiert $\sum_{n=0}^\infty {q^n}$? Welchen Wert hat die Summe?
+    
+    \textbf{Answer:} It exists for $\abs{q} < 1$, and $\sum_{n=0}^\infty {q^n} = \frac{1}{1-q}$. 
+    
+    $$s_n = s_{n-1} + 1, s_{n-1} = s_n - q^n \Rightarrow s_n = q(s_n - q^n)+1$$
+    thus $s_n = \frac{1-q^{n+1}}{1-q}$. $s_n$ converges exactly when $\abs{q} < q$.
+
     \item  Warum divergiert die harmonische Reihe?
+    
+    \textbf{Answer:} For a similar argument that is used in the proof of the Verdichtungs-Kriterium: $\sumn{k}{1}{2^n}{\frac{1}{k}} > \sumn{k}{0}{n}{2^n \frac{1}{2^n}} = n$ (note: indexes might be off-by-one, but this is the main idea).
+
     \item  Wann konvergiert eine Reihe positiver Summanden?
-    \item  Wie lauten Cauchy-,Majoranten-,Verdichtungs- und Leibniz-Kriteriumfür die Konvergenz unendlicher Reihen?
+    
+    \textbf{Answer:} When sequence of partial sums is bounded.
+
+    \item  Wie lauten Cauchy-, Majoranten-, Verdichtungs- und Leibniz-Kriterium für die Konvergenz unendlicher Reihen?
+    
+    \textbf{TODO: only from the top of my head, compare it against the lecture notes}
+    \textbf{Answer:} \begin{itemize}
+        \item Cauchy-criterium: $\sumn{n}{0}{\infty}{a_n}$ converges exactly if $\forall \epsilon > 0\colon  \exists N \in \mathbb{N}\colon \forall m,n > N\colon \abs{\sumn{k}{0}{n}{a_k} - \sumn{k}{m}{m}{a_k}} = \abs{\sumn{k}{m+1}{n}{a_k}} < \epsilon$
+        \item Majorant: consider two nonnegative series $\sumn{n}{0}{\infty}{a_n}$ and $\sumn{n}{0}{\infty}{b_n}$. If $0 \ge a_n \le b_n$ for almost all $n\in \mathbb{N}$ and $\sumn{n}{0}{\infty}{b_n}$ converges, then so is $\sumn{n}{0}{\infty}{a_n}$.
+        \item Verdichtungs: Consider $(a_n) \ge 0$ monoton decreasing terms. Then $\sumn{n}{0}{\infty}{a_n}$ converges exactly when $\sumn{n}{0}{\infty}{2^n a_{2^n}}$
+        \item Leibniz: Consider $(a_n) \ge 0$ monoton decreasing. Then $\sumn{n}{0}{\infty}{(-1)^n a_n}$ converges.
+    \end{itemize}
+
+    \textbf{TODO: only from the top of my head, compare it against the lecture notes}
     \item  Wie lauten Wurzel- und Quotientenkriterium für die Konvergenz unendlicher Reihen?
+    
+    \textbf{Answer:}
+    \begin{itemize}
+        \item Root-test: if $\limsup_{n\to\infty}\abs{a_n}^{\frac{1}{n}} < 1$ then $\sumn{n}{0}{\infty}{a_n}$ converges.
+        \item Ratio-test: if $a_n = 0$ for at most finitely many $n\in\mathbb{N}$ and $\limsup_{n\to\infty}\abs{\frac{a_{n+1}}{a_n}} < 1$ then $\sumn{n}{0}{\infty}{a_n}$ converges.
+    \end{itemize}
+
     \item  Bei welchen der folgenden Reihen gibt das Quotientenkriterium Aufschluss über Konvergenz oder Divergenz?
     \begin{center}
         $\sum_{n=0}^\infty \frac{n!}{n^n}$, $\sum_{n=0}^\infty \frac{1}{n^2}$, $\sum_{n=0}^\infty \frac{1}{(3+(-1)^n)^n}$
     \end{center}
+
+    \textbf{Answer:}
+    \begin{itemize}
+        \item $\limsup_{n\to\infty}\abs{\frac{(n+1)!}{(n+1)^{n+1}}/\frac{n!}{n^n}} = \limsup_{n\to\infty}\abs{\frac{n}{n+1}}^n = 1/e < 1 \Rightarrow$ converges
+        \item $\limsup_{n\to\infty}\abs{\frac{1/(n+1)^2}{1/n^2}} = 1 \Rightarrow$ inconclusive
+        \item $\limsup_{n\to\infty}\abs{\frac{(3+(-1)^n)^n}{(3+(-1)^{n+1})^{n+1}}} = \limsup_{n\to\infty}\abs{\frac{4^n}{2^{n+1}}} = 1 \Rightarrow$ inconclusive
+    \end{itemize}
+
     \item  Wie lautet der kleine Umordnungssatz absolut konvergenter Reihen?
+    
+   
+    \textbf{Answer:} Consider any $\sumn{n}{0}{\infty}{a_n}$ absolut convergent series and $\tau\colon \mathbb{N} \to \mathbb{N}$ permutation. Then $\sumn{n}{0}{\infty}{a_{\tau^{-1}(n)}}$ is also absolutely convergent and $\sumn{n}{0}{\infty}{a_n} = \sumn{n}{0}{\infty}{a_{\tau^{-1}(n)}}$ \textbf{TODO: only from the top of my head, compare it against the lecture notes}
+
     \item  Wie lautet der große Umordnungssatz absolut konvergenter Reihen?
+    
+    \textbf{Answer:}\textbf{TODO}
+
     \item  Welche der folgenden Reihen konvergieren, welche konvergieren absolut?
     \begin{center}
         $\sum_{n=0}^\infty {\frac{1}{n}}$, $\sum_{n=0}^\infty \frac{(-1)^n}{n}$, $\sum_{n=0}^\infty \frac{(-1)^n}{n^2}$, $\sum_{n=0}^\infty \frac{x^n}{n!} \in \mathbb{C}$
     \end{center}
+
+    \textbf{Answer:}
+    \begin{itemize}
+        \item $\sum_{n=1}^\infty {\frac{1}{n}}$ diverges (Verdichtungs-Kriterium)
+        \item $\sum_{n=1}^\infty \frac{(-1)^n}{n}$ converges (Leibniz), but not absolutely, see previous point
+        \item $\sum_{n=1}^\infty \frac{(-1)^n}{n^2}$ converges absolutely, since $\sum_{n=0}^\infty \frac{1}{n^2}$ converges (Verdichtungs-Kriterium)
+        \item if $x\neq0$ then $\limsup_{n\to\infty}\abs{\frac{x^{n+1}/(n+1)!}{x^{n}/(n)!}} = \limsup_{n\to\infty}\abs{\frac{x}{n+1}} = 0 \Rightarrow$ converges (from Quotientenkriterium). If $x=0$ then it's converges trivially
+    \end{itemize}
     \item  Für welche reellen/komplexen $s$ konvergiert die Reihe $\sum_{n=0}^\infty n^{-s}$ der Riemannschen
     $\zeta$-Funktion?
+
+    \textbf{Answer:} $\sumn{n}{1}{\infty}{\frac{1}{n^q}} \Leftrightarrow \sumn{n}{0}{\infty}{\frac{2^n}{(2^n)^q}} = \sumn{n}{0}{\infty}{(2^n)^{1-q}} = \sumn{n}{0}{\infty}{(2^{1-q})^n}$ which converges for $1 < q \in \mathbb{R}$ (from geometric series), and we don't know for $q\in\mathbb{C}$ 
+
     \item  Was ist eine Potenzreihe? Was ist ihr Konvergenzradius? Wie berechnet er sich?
+    
+    \textbf{Answer:}
+
     \item  Wann ist das Produkt zweier Potenzreihen wieder eine Potenzreihe? Wie lautet sie? Wie hängen die Konvergenzradien der Potenzreihen und ihres Produktes zusammen?
+    
+    \textbf{Answer:}
+
     \item  Wie lauten die Dastellungen von $\exp(x), \sin(x), \cos(x), \sinh(x), \cosh(x)$ als Potenzreihen?
+    
+    \textbf{Answer:}
+
     \item  Wie hängen $e^z, \sin(z), \cos(z), \sinh(z), \cosh(z)$ im Komplexen zusammen?
 
+    \textbf{Answer:}
 \end{enumerate}
 
 \end{document} 
