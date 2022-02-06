@@ -61,8 +61,10 @@ Consider any $D = [a, b] \subset R$ interval, and let $f\colon D \to \mathbb{R}$
 % question 6
 \item Warum hat jede durch eine stetige Funktion $g\colon [0,1] \to [0,1]$ gegebene Iteration $x_{n+1} = g(x_n)$ (mindestens) einen Fixpunkt?
 
-Consider $f(x) = g(x) - x$, $f(0) = g(0) - 0 \ge 0, f(1) = f(1) - 1 \le 0$. Thus from the intermediate value theorem $\exists c\in[0, 1]\colon f(c) = g(c) - c = 0 \Leftrightarrow g(c) = c$
+Consider $f(x) = g(x) - x$, $f(0) = g(0) - 0 \ge 0, f(1) = f(1) - 1 \le 0$. Thus from the intermediate value theorem $\exists c\in[0, 1]\colon f(c) = g(c) - c = 0 \Leftrightarrow g(c) = c$. If a so defined $(x_n) \in [0,1]$ converges, then it'll converge to the fixpoint:
+$$f(\lim_{n\to\infty} x_n) = \lim_{n\to\infty} f(x_n) = \lim_{n\to\infty} x_{n+1}$$
 
+But the convergence is not guaranteed, consider $g(x) = 1-x$ and $x_0 = 0$, which is divergent.
 
 
 \item Wie lässt sich unter Benutzung des Zwischenwertsatzes zeigen, dass die Gleichung $\exp(x) = -x$ eine reelle Lösung besitzt?

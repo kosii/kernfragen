@@ -9,6 +9,12 @@
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand{\abs}[1]{\left|#1\right|}
 \newcommand{\sumn}[4]{\sum_{#1=#2}^{#3}{#4}}
+\newcommand{\RR}[0]{\mathbb{R}}
+\newcommand{\CC}[0]{\mathbb{C}}
+\newcommand{\QQ}[0]{\mathbb{Q}}
+\newcommand{\ZZ}[0]{\mathbb{Z}}
+\newcommand{\NN}[0]{\mathbb{N}}
+\newcommand{\KK}[0]{\mathbb{K}}
 
 \setlength{\topmargin}{-.5in} \setlength{\textheight}{9.25in}
 \setlength{\oddsidemargin}{0in} \setlength{\textwidth}{6.8in}
@@ -77,11 +83,12 @@
     \item  Wie lautet der kleine Umordnungssatz absolut konvergenter Reihen?
     
    
-    \textbf{Answer:} Consider any $\sumn{n}{0}{\infty}{a_n}$ absolut convergent series and $\tau\colon \mathbb{N} \to \mathbb{N}$ permutation. Then $\sumn{n}{0}{\infty}{a_{\tau^{-1}(n)}}$ is also absolutely convergent and $\sumn{n}{0}{\infty}{a_n} = \sumn{n}{0}{\infty}{a_{\tau^{-1}(n)}}$ \textbf{TODO: only from the top of my head, compare it against the lecture notes}
+    \textbf{Answer:} Consider any $\sumn{n}{0}{\infty}{a_n}$ absolut convergent series, $\tau\colon \mathbb{N} \to \mathbb{N}$ permutation and define $b_n = a_{\tau^{-1}(n)}$. Then $\sumn{n}{0}{\infty}{b_n}$ is also absolutely convergent and $\sumn{n}{0}{\infty}{a_n} = \sumn{n}{0}{\infty}{b_n}$
 
+    %Question 9
     \item  Wie lautet der große Umordnungssatz absolut konvergenter Reihen?
     
-    \textbf{Answer:}\textbf{TODO}
+    \textbf{Answer:} Consider $a_{ij}:\NN^2 \to \KK$, $\tau:\NN^2 \to \NN$ bijection and let $b_n = a_{ij}$ for corresponding $i, j$ such that $n = \tau(i, j)$. Suppose furthermore that $\sumn{n}{0}{\infty}{b_n}$ converges absolutely. Then the series $\sigma_i = \sumn{j}{0}{\infty}{a_{ij}}~(\forall i\in\NN)$ and $s = \sumn{i}{0}{\infty}{\sigma_i} = \sumn{i}{0}{\infty}{\sumn{j}{0}{\infty}{a_{ij}}}$ converge, moreover they converge absolutely, and furthermore $\sumn{i}{0}{\infty}{\sigma_i} = s = \sumn{n}{0}{\infty}{b_n}$
 
     \item  Welche der folgenden Reihen konvergieren, welche konvergieren absolut?
     \begin{center}
@@ -98,23 +105,48 @@
     \item  Für welche reellen/komplexen $s$ konvergiert die Reihe $\sum_{n=0}^\infty n^{-s}$ der Riemannschen
     $\zeta$-Funktion?
 
-    \textbf{Answer:} $\sumn{n}{1}{\infty}{\frac{1}{n^q}} \Leftrightarrow \sumn{n}{0}{\infty}{\frac{2^n}{(2^n)^q}} = \sumn{n}{0}{\infty}{(2^n)^{1-q}} = \sumn{n}{0}{\infty}{(2^{1-q})^n}$ which converges for $1 < q \in \mathbb{R}$ (from geometric series), and we don't know for $q\in\mathbb{C}$ 
+    \textbf{Answer:} Consider first $q\in \mathbb{R}: \sumn{n}{1}{\infty}{\frac{1}{n^q}} \Leftrightarrow \sumn{n}{0}{\infty}{\frac{2^n}{(2^n)^q}} = \sumn{n}{0}{\infty}{(2^n)^{1-q}} = \sumn{n}{0}{\infty}{(2^{1-q})^n}$ which converges for $1 < q \in \mathbb{R}$ (from geometric series) and diverges for $1 \le q \in \mathbb{R}$.
+
+    Now for $q\in\CC, q = a + ib~(a, b\in\RR)\colon \abs{n^{-q}} =\abs{n^{-a}} \abs{(e^{-ib})^{\log{n}}} = \abs{n^{-a}}$, thus $\zeta(q)$ converges absolutely for $\Re(q) > 1$, and consequently it'll also converge conditionally.
 
     \item  Was ist eine Potenzreihe? Was ist ihr Konvergenzradius? Wie berechnet er sich?
     
-    \textbf{Answer:}
+    \textbf{Answer:} The formal powerseries centered in $c\in\CC$ with coefficients $(a_n) \in \CC$ is defined as the $p(x) = \sumn{n}{0}{\infty}{a_n(x-c)^n}$ series. The radius of convergence $\rho \in [0, +\infty)$ is defined as 
+
+    $$\rho = 1/\limsup_{n\to\infty}\abs{a_n}^{1/n}$$
+
+    If $\rho >0$ then we talk about power series. A $p(x)$ power series converges absolutely $\forall x\in\CC\colon \abs{x - c} < \rho$
 
     \item  Wann ist das Produkt zweier Potenzreihen wieder eine Potenzreihe? Wie lautet sie? Wie hängen die Konvergenzradien der Potenzreihen und ihres Produktes zusammen?
     
-    \textbf{Answer:}
+    \textbf{Answer: TODO}
+
+    From the product theorem for absolutely convergent series we know that whenever two series are absolutely convergent, then so is their product where their product is such a $c_n$ sequence 
+
+
 
     \item  Wie lauten die Dastellungen von $\exp(x), \sin(x), \cos(x), \sinh(x), \cosh(x)$ als Potenzreihen?
     
     \textbf{Answer:}
+    \begin{itemize}
+        \item $\exp{z} = \sumn{n}{0}{\infty}{\frac{z^n}{n!}}$
+        \item $\sin{z} = \sumn{k}{0}{\infty}{(-1)^k\frac{z^{2k+1}}{(2k+1)!}}$
+        \item $\cos{z} = \sumn{k}{0}{\infty}{(-1)^k\frac{z^{2k}}{(2k)!}}$
+        \item $\sinh{z} = \sumn{k}{0}{\infty}{\frac{x^{2k+1}}{(2k+1)!}}$
+        \item $\cosh{z} = \sumn{k}{0}{\infty}{\frac{x^{2k}}{(2k)!}}$
+    \end{itemize}
 
     \item  Wie hängen $e^z, \sin(z), \cos(z), \sinh(z), \cosh(z)$ im Komplexen zusammen?
 
-    \textbf{Answer:}
+    \begin{itemize}
+        \item $e^{iz} = \cos{z} + i \sin{z}$
+        \item $\sin{z} = \frac{e^{iz} - e^{-iz}}{2i}$
+        \item $\cos{z} = \frac{e^{iz} + e^{-iz}}{2}$
+        \item $\sinh{z} = \frac{e^{z} - e^{-z}}{2}$
+        \item $\cosh{z} = \frac{e^{z} + e^{-z}}{2}$
+        \item $\cosh{z} = \cos{iz}$
+        \item $\sinh{z} = -i\sin{iz}$
+    \end{itemize}
 \end{enumerate}
 
 \end{document} 
