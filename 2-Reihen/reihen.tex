@@ -39,7 +39,7 @@
     \textbf{Answer:} It exists for $\abs{q} < 1$, and $\sum_{n=0}^\infty {q^n} = \frac{1}{1-q}$. 
     
     $$s_n = s_{n-1} + 1, s_{n-1} = s_n - q^n \Rightarrow s_n = q(s_n - q^n)+1$$
-    thus $s_n = \frac{1-q^{n+1}}{1-q}$. $s_n$ converges exactly when $\abs{q} < q$.
+    thus $s_n = \frac{1-q^{n+1}}{1-q}$. $s_n$ converges exactly when $\abs{q} < 1$.
 
     \item  Warum divergiert die harmonische Reihe?
     
@@ -47,25 +47,23 @@
 
     \item  Wann konvergiert eine Reihe positiver Summanden?
     
-    \textbf{Answer:} When sequence of partial sums is bounded.
+    \textbf{Answer:} When the sequence of its partial sums is bounded.
 
     \item  Wie lauten Cauchy-, Majoranten-, Verdichtungs- und Leibniz-Kriterium für die Konvergenz unendlicher Reihen?
     
-    \textbf{TODO: only from the top of my head, compare it against the lecture notes}
     \textbf{Answer:} \begin{itemize}
         \item Cauchy-criterium: $\sumn{n}{0}{\infty}{a_n}$ converges exactly if $\forall \epsilon > 0\colon  \exists N \in \mathbb{N}\colon \forall m,n > N\colon \abs{\sumn{k}{0}{n}{a_k} - \sumn{k}{m}{m}{a_k}} = \abs{\sumn{k}{m+1}{n}{a_k}} < \epsilon$
-        \item Majorant: consider two nonnegative series $\sumn{n}{0}{\infty}{a_n}$ and $\sumn{n}{0}{\infty}{b_n}$. If $0 \ge a_n \le b_n$ for almost all $n\in \mathbb{N}$ and $\sumn{n}{0}{\infty}{b_n}$ converges, then so is $\sumn{n}{0}{\infty}{a_n}$.
-        \item Verdichtungs: Consider $(a_n) \ge 0$ monoton decreasing terms. Then $\sumn{n}{0}{\infty}{a_n}$ converges exactly when $\sumn{n}{0}{\infty}{2^n a_{2^n}}$
-        \item Leibniz: Consider $(a_n) \ge 0$ monoton decreasing. Then $\sumn{n}{0}{\infty}{(-1)^n a_n}$ converges.
+        \item Majorant: consider two series $\sumn{n}{0}{\infty}{a_n}$ and $\sumn{n}{0}{\infty}{b_n}$. If $\abs{a_n} \le b_n$ for almost all $n\in \mathbb{N}$ and $\sumn{n}{0}{\infty}{b_n}$ converges, then so is $\sumn{n}{0}{\infty}{a_n}$, and furthermore it converges absolutely.
+        \item Verdichtungs: Consider $(a_n) \ge 0$ monoton decreasing sequence that converges to $0$. Then $\sumn{n}{0}{\infty}{a_n}$ converges exactly when $\sumn{n}{0}{\infty}{2^n a_{2^n}}$
+        \item Leibniz: Consider $(a_n) \ge 0$ monoton decreasing sequence that converges to $0$. Then $\sumn{n}{0}{\infty}{(-1)^n a_n}$ converges.
     \end{itemize}
 
-    \textbf{TODO: only from the top of my head, compare it against the lecture notes}
     \item  Wie lauten Wurzel- und Quotientenkriterium für die Konvergenz unendlicher Reihen?
     
     \textbf{Answer:}
     \begin{itemize}
-        \item Root-test: if $\limsup_{n\to\infty}\abs{a_n}^{\frac{1}{n}} < 1$ then $\sumn{n}{0}{\infty}{a_n}$ converges.
-        \item Ratio-test: if $a_n = 0$ for at most finitely many $n\in\mathbb{N}$ and $\limsup_{n\to\infty}\abs{\frac{a_{n+1}}{a_n}} < 1$ then $\sumn{n}{0}{\infty}{a_n}$ converges.
+        \item Root-test: if $\limsup_{n\to\infty}\abs{a_n}^{\frac{1}{n}} < 1$ then $\sumn{n}{0}{\infty}{a_n}$ converges absolutely.
+        \item Ratio-test: if $a_n = 0$ for at most finitely many $n\in\mathbb{N}$ and $\limsup_{n\to\infty}\abs{\frac{a_{n+1}}{a_n}} < 1$ then $\sumn{n}{0}{\infty}{a_n}$ converges absolutely.
     \end{itemize}
 
     \item  Bei welchen der folgenden Reihen gibt das Quotientenkriterium Aufschluss über Konvergenz oder Divergenz?
@@ -119,9 +117,9 @@
 
     \item  Wann ist das Produkt zweier Potenzreihen wieder eine Potenzreihe? Wie lautet sie? Wie hängen die Konvergenzradien der Potenzreihen und ihres Produktes zusammen?
     
-    \textbf{Answer: TODO}
+    \textbf{Answer:}
 
-    From the product theorem for absolutely convergent series we know that whenever two series are absolutely convergent, then so is their product where their product is such a $c_n$ sequence 
+    From the product theorem for absolutely convergent series we know that whenever two series are absolutely convergent, then so is their product. Their product is given by such a $c_n = a_i b_j$ sequence, that contains every $(i, j) \in \NN^2$ exactly once, and since absolutely convergent series can be rearranged arbitrarily, the value of $\sumn{n}{0}{\infty}{c_n}$ does not depend on the order of $a_j b_j$. One such sequence is defined by the Cauchy product with $c_n = \sumn{k}{0}{n}{a_k b_{n-k}}$, which in case of power series will look like $c_k = \sumn{k}{0}{n}{a_k x^k b_{n-k} x^{n-k}} = x^n \sumn{k}{0}{n}{a_k b_{n-k}}$, thus the product of two power series is again a power series. In order the product of two power series to be well defined, both of them should only be considered inside their convergence radiuses, thus $\abs{x} < \min(\rho_1, \rho_2)$ must hold, where $\rho_1, \rho_2$ are the convergence radiuses of the first and second power series respectively, and for such $x$ the product will again be abslutely convergent.
 
 
 
