@@ -1,0 +1,190 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{}
+
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sumn}[4]{\sum_{#1=#2}^{#3}{#4}}
+\newcommand{\RR}[0]{\mathbb{R}}
+\newcommand{\CC}[0]{\mathbb{C}}
+\newcommand{\QQ}[0]{\mathbb{Q}}
+\newcommand{\ZZ}[0]{\mathbb{Z}}
+\newcommand{\NN}[0]{\mathbb{N}}
+\newcommand{\KK}[0]{\mathbb{K}}
+\newcommand{\smallo}[0]{{\scriptstyle \mathcal{O}}}
+
+\setlength{\topmargin}{-.5in} \setlength{\textheight}{9.25in}
+\setlength{\oddsidemargin}{0in} \setlength{\textwidth}{6.8in}
+
+
+\begin{document}
+
+\noindent{\bf Kernfragen - Differentiation\hfill Balázs Kossovics \hfill WS21-22 Analysis I.}
+
+
+\medskip\hrule
+\begin{enumerate}
+    \item Wann heißt eine Funktion $f\colon \RR\to\RR$ in einem Punkt $x_0$ differenzierbar? Wie lässt sich die Ableitung geometisch interpretieren?
+    
+    \textbf{Answer:}
+    If the $\lim_{x\to x_0}\frac{f(x_0 + h) - f(x_0)}{h}$ exists, then we call the function $f$ differentiable in the $x_0$ point. We call the value of $\lim_{x\to x_0}\frac{f(x_0 + h) - f(x_0)}{h}$ the derivative of the function $f$ in point $x_0$ and we denote it with $f^\prime(x_0)$. Whenever the derivative of a function exists, it's unique.
+
+    The value of the $f^\prime(x_0)$ is the coefficient of $x$ in the best linear approximation of $f$ at point $x_0$, and it's the slope of the tangent line drawn to the function at the point $(x_0, f(x_0))$.
+
+    \item  Gib Beispiele für Funtionen $f\colon \RR\to\RR$ an, die
+    \begin{enumerate}
+        \item stetig, aber in $x_0 = 0$ nicht differenzierbar;
+        \item differenzierbar, aber nicht gleichmäßig stetig;
+        \item differenzierbar, aber in $x_0 = 0$ nicht stetig differenzierbar sind
+    \end{enumerate}
+
+    \textbf{Answer:}
+
+    \begin{enumerate}
+        \item $f(x) = \abs{x}$
+        \item $f(x) = x^2$
+        \item $f(x) = \begin{cases}
+            x^2&x\ge0\\
+            -x^2&x<0
+        \end{cases}$
+    \end{enumerate}
+
+    % Question 3
+    \item Was bedeuten die Landau-Symbole $\smallo(h)$, $\mathcal{O}(h^2)$ und ${ \scriptstyle \mathcal{O}}(1)$? Wie lassen sich Stetigkeit und Differenzierbarkeit mit ihrer Hilfe ausdrücken?
+    
+    \textbf{Answer:}
+    \begin{enumerate}
+        \item $f(h) = \smallo(h) \Leftrightarrow \lim_{h\to0}\frac{f(h)}{h} = 0$
+        \item $f(h) = \mathcal{O}(h^2) \Leftrightarrow \limsup_{h\to0}\abs{\frac{f(h)}{h^2}} < \infty$
+        \item $f(h) = \smallo(1) \Leftrightarrow \lim_{h\to0} f(h) = 0$
+    \end{enumerate}
+
+    If there is a number $\alpha \in \RR$ such that $f(x_0+h) = f(x_0) + \alpha h + \smallo(h)$, then we say that the function $f$ is differentiable in the $x_0$ point.
+
+    We say that $f$ is continuous in $x_0$ if $f(x_0 + h) = f(x_0) + \smallo(1)$
+
+    % Question 4
+    \item Für welche reellen $\alpha$ ist $\abs{x}^\alpha$ in $x = 0$ reell differenzierbar?
+    
+    \textbf{Answer:}
+    % Question 5
+    \item Wie lautet die Produktregel für Ableitungen? Warum gilt sie (Beweis)?
+    
+    \textbf{Answer:}
+
+    Consider two functions $f$ and $g$ that are both differentiable in some $x_0$ point of their domain. Then the $f g$ function is also differentiable in $x_0$ and $(f g)^\prime(x_0) = f^\prime(x_0) g(x_0) + f(x_0) g^\prime(x_0)$
+    
+    \textit{Proof:}
+    $$\begin{aligned}
+        &\lim_{h\to0}\frac{f(x_0 + h)g(x_0 + h) - f(x_0)g(x_0)}{h} \\
+        =&\lim_{h\to0}\frac{f(x_0 + h)g(x_0 + h) - f(x)g(x_0 + h) + f(x)g(x_0 + h)- f(x_0)g(x_0)}{h}\\
+        =&\lim_{h\to0}\frac{(f(x_0 + h)- f(x))g(x_0 + h) + f(x)(g(x_0 + h)- g(x_0))}{h}
+    \end{aligned}$$
+
+    Since $g$ is continuous in $x_0$ and the $\lim_{h\to0}\frac{f(x_0 + h)- f(x)}{h}$ and $\lim_{h\to0}\frac{g(x_0 + h)- g(x)}{h}$ exist, thus the above limit also exists and 
+    $$\begin{aligned}&= \lim_{h\to0}\frac{f(x_0 + h)- f(x)}{h} g(x_0 + h) + f(x)\frac{g(x_0 + h)- g(x)}{h} \\&=f^\prime(x_0) g(x_0) + f(x_0) g^\prime(x_0)\end{aligned}$$
+
+    \item Wie lauten Quotienten- und Kettenregel für Ableitungen?
+    
+    \textbf{Answer:}
+
+    \textit{Division:} Suppose that both $f$ and $g$ functions are differentiable in $x_0$ and furthermore suppose that $g(x_0) \neq 0$. Then the function $\frac{f}{g}$ is also differentiable in $x_0$ and $\left(\frac{f}{g}\right)^\prime(x_0) = \frac{f^\prime(x_0)g(x_0)-f(x_0)g^\prime(x_0)}{g^2(x_0)}$
+    
+    \textit{Chain rule:} Suppose that $g$ is differentiable in some $x_0$ point and $f$ is differentiable in $y_0 = f(x_0)$. Then $f \circ g$ is also differentiable in $x_0$ and $(f \circ g)^\prime(x_0) = f^\prime(g(x_0))g^\prime(x_0)$
+
+    \item Was sind die Ableitungen folgender Funktionen nach $x$?
+    
+    \hspace*{\fill}
+    $e^x \sin{x} \hfill \frac{\sin{x}}{\cos{x}}\hfill \exp(-x^2)\hfill \log{\frac{1+x}{1-x}}\hfill x^x$
+    \hspace*{\fill}
+
+    \textbf{Answer:}
+    \begin{enumerate}
+        \item $(e^x \sin{x})^\prime = e^x \sin{x} + e^x \cos{x}$ from the product rule because $\exp^\prime = \exp$ and $\sin^\prime = \cos$
+        \item Suppose that $x \neq k\pi~(k \in \ZZ)$. Then $\frac{\sin{x}}{\cos{x}} = \frac{\cos^2{x} + \sin^2{x}}{\cos^2{x}} = \frac{1}{\cos^2{x}}$ from the rule of division
+        \item $(\exp(-x^2))^\prime = -2x\exp(-x^2)$ from the chain rule
+        \item For $x > 1\colon (\log\frac{1+x}{1-x})^\prime = \frac{1}{\frac{1+x}{1-x}} (\frac{1+x}{1-x})^\prime = \frac{1-x}{1+x} \frac{(1-x) + (1+x)}{(1-x)^2}=\frac{2}{1-x^2}$
+        \item For $x > 0\colon (x^x)^\prime = (\exp(x \log{x}))^\prime = x^x (\log{x} + x\frac{1}{x}) = x^x (\log{x} + 1)$
+    \end{enumerate}
+
+    %Question 8
+    \item Wann besitzt eine Funktion $f\colon \RR\to\RR$ eine differenzierbare Umkehrfunktion $f^{-1}$?
+    
+    \textbf{Answer: (VERIFY)} Suppose that $f$ is differentiable everywhere and either strict monotone increasing or decreasing on $\RR$. Then $f$ is continuous (from the differentiability) and its inverse exists (because it's continuous and strict monotone increasing).
+
+    The inverse function $f^{-1}$ will be differentiable in some $y_0 = f(x_0)$ point if $f^\prime(x_0) \neq 0$ and in this case $(f^{-1})^\prime(y_0) = \frac{1}{f^\prime(f^{-1}(y_0))}$
+    \item Wie lautet der Mittelwertsatz (der Differentialrechnung)? Wie lautet der Satz von
+    Rolle?
+
+    \textbf{Answer:}
+
+    \textit{Mean Value Theorem:} Consider some continuous function $f\colon [a, b] \to \RR$ which is differentiable on $(a, b)$. Then $\exists c \in (a, b)\colon \frac{f(b) - f(a)}{b - a} = f^\prime(c)$
+
+    \textit{Rolle:} Consider some continuous function $f\colon [a, b] \to \RR$ which is differentiable on $(a, b)$, and suppose that $f(a) = f(b)$. Then $\exists c\in(a, b)\colon f^\prime(c) = 0$
+
+    \item Warum gilt der Satz von Rolle (Beweisskizze)?
+    
+    \textbf{Answer: TODO} 
+
+    \item Wie lauten die Regeln von de l'Hôpital?
+    
+    \textbf{Answer: CHECK} Consider two functions $f, g$ that are differentiable in some $x_0$ point. If $f(x_0) = g(x_0) = 0$ and $\lim_{x \to x_0}\frac{f^\prime(x)}{g^\prime(x)}$ exists, then $\lim_{x \to x_0}\frac{f(x)}{g^(x)}$ exists as well and $\lim_{x \to x_0}\frac{f(x)}{g^(x)} = \lim_{x \to x_0}\frac{f^\prime(x)}{g^\prime(x)}$
+    \item Welche Werte haben die stetigen Fortsetzungen folgender Funktionen in $x = 0$?
+    
+    \hspace*{\fill}
+    $\frac{\sin{x}}{x} \hfill \frac{\cos{x} - 1}{x^2} \hfill \frac{\log(1+x)}{x} \hfill \frac{x}{e^x -1}$
+    \hspace*{\fill}
+
+    \textbf{Answer:}
+
+    % Question 13
+    \item Berechne
+    $$\lim_{x \to +\infty}\frac{e^x - e^{-x}}{e^x + e^{-x}}$$
+
+    \textbf{Answer:}
+    % Question 14
+    \item Wie lauten die Ungleichungen von Young und Hölder?
+    
+    \textbf{Answer:}
+    \item Skizziere die Funktionen $\sin{x}$ und $\cos{x}$, beschreibe ihre Nullstellen, Ableitungen, Monotonie, Konvexität und Konkavität, und erläutere unsere Definition von $\pi$.
+
+    \textbf{Answer:}
+    \item Sei $f\colon \RR\to\RR$ eine zweimal differenzierbare Funktion. Welche (notwendige) Bedingung ist erfüllt, wenn $f$ an der Stelle $x_0$ ein lokales Maximum besitzt? Unter welcher (hinreichenden) Bedingung besitzt $f$ an der Stelle $x_0$ ein lokales Maximum?
+    
+    \textbf{Answer:}
+    % Question 17
+    \item Wann heißt eine Funktion $f\colon (a, b)\to\RR$ konvex? Wann heißt sie strikt konvex?
+    
+    \textbf{Answer:}
+    \item Die Funktion $f\colon (a, b)\to\RR$ sei zweimal diferenzierbar. Wie lassen sich Konvexität
+    und strikte Konvexität durch Bedingungen an die zweite Ableitung ausdrücken?
+
+    \textbf{Answer:}
+    \item Wieviele Minima bzw. Maxima kann eine strikt konvexe Funktion $f\colon [a,b]\to\RR$ haben? (Gib alle möglichen Zahlen an.)
+    
+    \textbf{Answer:}
+    \item Wo sind (reelle) Potenzreihen differenzierbar? Wie lautet die Ableitung?
+    
+    \textbf{Answer:}
+    \item Wie ist der Raum $\mathcal{BC}^1(\RR,\RR)$ definiert? Was bedeutet seine Vollständigkeit für die Vertauschbarkeit von Differentiation und Grenzwertbildung einer Funktionenfolge $f_n\colon \RR\to\RR$?
+    
+    \textbf{Answer:}
+    \item Wie lautet das $n$-te Taylor-Polynom? Wie kann das Restglied ausgedrückt werden?
+    
+    \textbf{Answer:}
+    \item Wann (und wo) wird eine reelle Funktion durch ihre Taylor-Reihe dargestellt? Gib ein Beispiel und ein Gegenbeispiel.
+    
+    \textbf{Answer:}
+    \item Wie lauten die Taylor-Reihen folgender Funktionen in $x_0 = 0$?
+    \begin{center}
+        $e^x$, $\sin{x}$, $\arctan{x}$, $(1+x)^\alpha$, $\log(1+x)$
+    \end{center}
+
+    \textbf{Answer:}
+\end{enumerate}
+
+\end{document} 
