@@ -70,7 +70,8 @@
     % Question 4
     \item Für welche reellen $\alpha$ ist $\abs{x}^\alpha$ in $x = 0$ reell differenzierbar?
     
-    \textbf{Answer:}
+    \textbf{Answer: TODO}
+
     % Question 5
     \item Wie lautet die Produktregel für Ableitungen? Warum gilt sie (Beweis)?
     
@@ -105,7 +106,7 @@
     \textbf{Answer:}
     \begin{enumerate}
         \item $(e^x \sin{x})^\prime = e^x \sin{x} + e^x \cos{x}$ from the product rule because $\exp^\prime = \exp$ and $\sin^\prime = \cos$
-        \item Suppose that $x \neq k\pi~(k \in \ZZ)$. Then $\frac{\sin{x}}{\cos{x}} = \frac{\cos^2{x} + \sin^2{x}}{\cos^2{x}} = \frac{1}{\cos^2{x}}$ from the rule of division
+        \item Suppose that $x \neq \frac{\pi}{2} + k\pi~(k \in \ZZ)$. Then $\frac{\sin{x}}{\cos{x}} = \frac{\cos^2{x} + \sin^2{x}}{\cos^2{x}} = \frac{1}{\cos^2{x}}$ from the rule of division
         \item $(\exp(-x^2))^\prime = -2x\exp(-x^2)$ from the chain rule
         \item For $x > 1\colon (\log\frac{1+x}{1-x})^\prime = \frac{1}{\frac{1+x}{1-x}} (\frac{1+x}{1-x})^\prime = \frac{1-x}{1+x} \frac{(1-x) + (1+x)}{(1-x)^2}=\frac{2}{1-x^2}$
         \item For $x > 0\colon (x^x)^\prime = (\exp(x \log{x}))^\prime = x^x (\log{x} + x\frac{1}{x}) = x^x (\log{x} + 1)$
@@ -114,9 +115,8 @@
     %Question 8
     \item Wann besitzt eine Funktion $f\colon \RR\to\RR$ eine differenzierbare Umkehrfunktion $f^{-1}$?
     
-    \textbf{Answer: (VERIFY)} Suppose that $f$ is differentiable everywhere and either strict monotone increasing or decreasing on $\RR$. Then $f$ is continuous (from the differentiability) and its inverse exists (because it's continuous and strict monotone increasing).
+    \textbf{Answer:} Suppose that $f$ is continuous, injective and differentiable in some $x_0 \in \RR$ point with $f^\prime(x_0) \neq 0$. Then the inverse function  $f^{-1}\colon J \to \RR~(J = f(\RR))$ exists, also injective and continuous, and furthermore differentiable in $y_0 = f(x_0)$ with $(f^{-1})^\prime(y_0) = \frac{1}{f^\prime(f^{-1}(y_0))} = \frac{1}{f^\prime(x_0)}$
 
-    The inverse function $f^{-1}$ will be differentiable in some $y_0 = f(x_0)$ point if $f^\prime(x_0) \neq 0$ and in this case $(f^{-1})^\prime(y_0) = \frac{1}{f^\prime(f^{-1}(y_0))}$
     \item Wie lautet der Mittelwertsatz (der Differentialrechnung)? Wie lautet der Satz von
     Rolle?
 
@@ -126,65 +126,113 @@
 
     \textit{Rolle:} Consider some continuous function $f\colon [a, b] \to \RR$ which is differentiable on $(a, b)$, and suppose that $f(a) = f(b)$. Then $\exists c\in(a, b)\colon f^\prime(c) = 0$
 
+    % Question 10
     \item Warum gilt der Satz von Rolle (Beweisskizze)?
     
-    \textbf{Answer: TODO} 
+    \textbf{Answer:} Since $f$ is continuous on $[a, b]$, it'll take on its extrema $m = \min_{x \in [a, b]}{f(x)}$ and $M = \max_{x \in [a, b]}{f(x)}$. If $m = M$, then the function is constant, and thus $f^\prime(x) = 0~(\forall x\in(a, b))$. If $m \neq M$, then at least one of the place of extrema is an inner point of $[a, b]$. Without loss of generality, suppose that $m = f(c)$ for some $c \in (a, b)$ (otherwise consider $-f$). If $c$ is a minimum point, then it's also a local minima, and we know that for inner local minimum and maximum, if the function is differentiable at that point, then the derivative is $0$. Since we assumed $f$ to be differentiable on $(a, b)$, thus $f^\prime(c) = 0$.
 
     \item Wie lauten die Regeln von de l'Hôpital?
     
-    \textbf{Answer: CHECK} Consider two functions $f, g$ that are differentiable in some $x_0$ point. If $f(x_0) = g(x_0) = 0$ and $\lim_{x \to x_0}\frac{f^\prime(x)}{g^\prime(x)}$ exists, then $\lim_{x \to x_0}\frac{f(x)}{g^(x)}$ exists as well and $\lim_{x \to x_0}\frac{f(x)}{g^(x)} = \lim_{x \to x_0}\frac{f^\prime(x)}{g^\prime(x)}$
+    \textbf{Answer:} Consider two functions $f, g$ that are differentiable on an open interval containing some $x_0$ point (except maybe at this point) and suppose that $\lim_{x \to x_0}f(x) = \lim_{x \to x_0} g(x) = 0$ and that $\lim_{x \to x_0}\frac{f^\prime(x)}{g^\prime(x)}$ exists. Then $\lim_{x \to x_0}\frac{f(x)}{g^(x)}$ also exists and $\lim_{x \to x_0}\frac{f(x)}{g^(x)} = \lim_{x \to x_0}\frac{f^\prime(x)}{g^\prime(x)}$
+
+    \textit{Variants}
+    \begin{itemize}
+        \item If $\lim_{x \to x_0}f(x) = \lim_{x \to x_0} g(x) = \pm \infty$ and $\lim_{x \to x_0}\frac{f^\prime(x)}{g^\prime(x)}$ exists (and finite!), then $\lim_{x \to x_0}\frac{f(x)}{g^(x)}$ also exists and $\lim_{x \to x_0}\frac{f(x)}{g^(x)} = \lim_{x \to x_0}\frac{f^\prime(x)}{g^\prime(x)}$
+        \item Instead of a fix $x_0$ point we can consider the limits in $\pm \infty$
+        \item We can use the theorem repeatedly as long as we have $0/0$ or $\pm\frac{\infty}{\infty}$ and the functions are sufficiently many times differentiable
+    \end{itemize}
+
+    % Question 12
     \item Welche Werte haben die stetigen Fortsetzungen folgender Funktionen in $x = 0$?
     
     \hspace*{\fill}
-    $\frac{\sin{x}}{x} \hfill \frac{\cos{x} - 1}{x^2} \hfill \frac{\log(1+x)}{x} \hfill \frac{x}{e^x -1}$
+    $f(x) = \frac{\sin{x}}{x} \hfill g(x) = \frac{\cos{x} - 1}{x^2} \hfill h(x) = \frac{\log(1+x)}{x} \hfill r(x) = \frac{x}{e^x -1}$
     \hspace*{\fill}
 
     \textbf{Answer:}
+
+    \begin{enumerate}
+        \item \label{itm:first} yes, with $f(x) = 0$ because $\lim_{x\to0}\frac{\sin{x}}{x} = \lim_{x\to0} \frac{\cos{x}}{1} = 1$ (from l'Hôpital)
+        \item yes, with $g(x) = -\frac{1}{2}$ because $\lim_{x \to 0}\frac{\cos{x} - 1}{x^2} = \lim_{x \to 0}\frac{-\sin{x}}{2x} = -\frac{1}{2}$ (from l'Hôpital and \ref{itm:first})
+        \item yes, with $h(x) = 1$ because $\lim_{x \to 0}\frac{\log(1+x)}{x} = \lim_{x \to 0}\frac{\frac{1}{1+x}}{1} = 1$ (from l'Hôpital)
+        \item yes, with $r(x) = 1$ because $\lim_{x \to 0}\frac{x}{e^x -1} = \lim_{x \to 0}\frac{1}{e^x} = 1$ (from l'Hôpital)
+    \end{enumerate}
 
     % Question 13
     \item Berechne
     $$\lim_{x \to +\infty}\frac{e^x - e^{-x}}{e^x + e^{-x}}$$
 
     \textbf{Answer:}
+    $\lim_{x \to +\infty}\frac{e^x - e^{-x}}{e^x + e^{-x}} = \lim_{x \to +\infty}\frac{e^x(1 - e^{-2x})}{e^x(1 + e^{-2x})} = \lim_{x \to +\infty}\frac{1 - e^{-2x}}{1 + e^{-2x}} = 1$
     % Question 14
     \item Wie lauten die Ungleichungen von Young und Hölder?
     
     \textbf{Answer:}
+
+    \textit{Young's inequality:} Consider $x, y \ge 0$ and $p, q > 1$ with $\frac{1}{p} + \frac{1}{q} = 1$. It holds that $x^{1/p} + y^{1/q} \le \frac{x}{p} + \frac{y}{q}$.
+
+    \textit{Hölder's inequality:} For $x, y \in \CC^n$ and $p, q > 1$ with $\frac{1}{p} + \frac{1}{q} = 1$ it holds that $\sumn{k}{1}{n}{\abs{x_k} \abs{y_k}} \le \norm{x}_p \norm{y}_q$ where $\norm{x}_p = \left(\sumn{k}{1}{n}{\abs{x_k}^p}\right)^{1/p}$ (that is: the $p$-norm ($1 \le p \le \infty$))
+
+    
+    % Question 15
     \item Skizziere die Funktionen $\sin{x}$ und $\cos{x}$, beschreibe ihre Nullstellen, Ableitungen, Monotonie, Konvexität und Konkavität, und erläutere unsere Definition von $\pi$.
 
-    \textbf{Answer:}
+    \textbf{Answer:} \textit{(not relevant for the first exam)}
+    \begin{itemize}
+        \item $\sin(x) = 0 \Leftrightarrow x = k\pi~(k \in \ZZ)$
+        \item $\cos(x) = 0 \Leftrightarrow x = \frac{\pi}{2} + k\pi~(k \in \ZZ)$
+        \item $\sin^\prime = \cos, \cos^\prime = -\sin$
+    \end{itemize}
+    
+
+
     \item Sei $f\colon \RR\to\RR$ eine zweimal differenzierbare Funktion. Welche (notwendige) Bedingung ist erfüllt, wenn $f$ an der Stelle $x_0$ ein lokales Maximum besitzt? Unter welcher (hinreichenden) Bedingung besitzt $f$ an der Stelle $x_0$ ein lokales Maximum?
     
-    \textbf{Answer:}
+    \textbf{Answer:} (\textit{these conditions are related to strict local maxima})
+
+    Necessary condition: $f^\prime(x_0) = 0$
+
+    Sufficient condition: $f^\prime(x_0) = 0$ and $f^{\prime\prime}(x_0) < 0$
+
     % Question 17
     \item Wann heißt eine Funktion $f\colon (a, b)\to\RR$ konvex? Wann heißt sie strikt konvex?
     
-    \textbf{Answer:}
+    \textbf{Answer:} $f$ is convex if $\forall x, y \in (a, b)$ such that $x < y, \forall t \in (0, 1)\colon f(t y + (1-t) x) \le tf(y) + (t-1)f(x)$. For strictly convex this holds with $<$ instead of $\le$.
     \item Die Funktion $f\colon (a, b)\to\RR$ sei zweimal diferenzierbar. Wie lassen sich Konvexität
     und strikte Konvexität durch Bedingungen an die zweite Ableitung ausdrücken?
 
-    \textbf{Answer:}
+    \textbf{Answer:} 
+    \begin{enumerate}
+        \item $f$ is convex if and only if $f^{\prime\prime} \ge 0$
+        \item if $f^{\prime\prime} > 0$ then $f$ is strictly convex (it doesn't hold in the other direction: for example $x^4$ is strictly convex, but $(x^4)^{\prime\prime} = 12x^2 = 0$ for $x=0)$
+    \end{enumerate}
+
     \item Wieviele Minima bzw. Maxima kann eine strikt konvexe Funktion $f\colon [a,b]\to\RR$ haben? (Gib alle möglichen Zahlen an.)
     
-    \textbf{Answer:}
+    \textbf{Answer: TODO} A convex function is also continuous (see sheet 9. problem 34.). A continuous function on a bounded and closed interval takes on it's extremal values. Suppose that $m = \min_{x\in[a,b]} f(x) = f(p)$ and $M = \max_{x\in[a,b]} f(x) = f(q)$. 
     \item Wo sind (reelle) Potenzreihen differenzierbar? Wie lautet die Ableitung?
     
-    \textbf{Answer:}
+    \textbf{Answer:} A real power series $p(x) = \sumn{n}{0}{\infty}{a_n x^n}$ with convergence radius $\rho \in [0, \infty)$ is differentiable infinitely many times for any $\abs{x} < \rho$, and $p^\prime(x) = \sumn{n}{1}{\infty}{n a_n x^{n-1}} = \sumn{n}{0}{\infty}{(n+1)a_{n+1}x^n}$. We can define the $n^{\text{th}}~(n > 1)$ derivative recursively as $p^{(n)}(x) = (p^{(n-1)}(x))^\prime$ and with induction we get $p^{(n)}(x) = \sumn{k}{0}{\infty}{\frac{(k+n)!}{k!}a_{k+n}x^k}$
+
+
     \item Wie ist der Raum $\mathcal{BC}^1(\RR,\RR)$ definiert? Was bedeutet seine Vollständigkeit für die Vertauschbarkeit von Differentiation und Grenzwertbildung einer Funktionenfolge $f_n\colon \RR\to\RR$?
     
-    \textbf{Answer:}
+    \textbf{Answer} $\mathcal{BC}^1(\RR,\RR)$ is the vectorspace of continuously differentiable, bounded and continuous functions defined on $\RR$ with bounded derivative. $\mathcal{BC}^1(\RR,\RR)$ is a Banach-space (that is: normed and complete) with the $\norm{f}_{C^1} = \norm{f}_{C^0} + \norm{f^\prime}_{C^0}~(f \in \mathcal{BC}^1(\RR,\RR))$ norm (with $\norm{.}_{C^0}$ being the supremum-norm with which $\mathcal{BC}(\RR,\RR)$ is complete). 
+
+    Since $\mathcal{BC}^1(\RR,\RR)$ with the norm $\norm{.}_{C^1}$ is complete, any Cauchy sequence $(f_n) \in \mathcal{BC}^1(\RR,\RR)$ is also convergent (under the norm), thus $\exists f \in \mathcal{BC}^1(\RR,\RR)$ such that $\lim_{n\to\infty}\norm{f_n - f}_{C^1} = 0$, or equivalently: $\norm{f_n - f}_{C^0} \to 0 \text{ and } \norm{f^\prime_n - f^\prime}_{C^0} \to 0~(n\to\infty)$. If we consider the convergence under the norm this also means that $(\lim_{n\to\infty}f_n)^\prime = f^\prime = \lim_{n\to\infty}f^\prime_n$, or: the derivative of the limit is the limit of the derivatives, that is: for any convergent $(f_n) \in \mathcal{BC}^1(\RR,\RR)$ the order of differentiation and taking the limit can be exchanged with regards to the $\norm{.}_{C^1}$.
+
     \item Wie lautet das $n$-te Taylor-Polynom? Wie kann das Restglied ausgedrückt werden?
     
-    \textbf{Answer:}
+    \textbf{Answer:} \textit{(not relevant for the first exam)}
     \item Wann (und wo) wird eine reelle Funktion durch ihre Taylor-Reihe dargestellt? Gib ein Beispiel und ein Gegenbeispiel.
     
-    \textbf{Answer:}
+    \textbf{Answer:} \textit{(not relevant for the first exam)}
     \item Wie lauten die Taylor-Reihen folgender Funktionen in $x_0 = 0$?
     \begin{center}
         $e^x$, $\sin{x}$, $\arctan{x}$, $(1+x)^\alpha$, $\log(1+x)$
     \end{center}
 
-    \textbf{Answer:}
+    \textbf{Answer:} \textit{(not relevant for the first exam)}
 \end{enumerate}
 
 \end{document} 
