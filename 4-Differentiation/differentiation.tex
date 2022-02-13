@@ -70,7 +70,14 @@
     % Question 4
     \item Für welche reellen $\alpha$ ist $\abs{x}^\alpha$ in $x = 0$ reell differenzierbar?
     
-    \textbf{Answer: TODO}
+    \textbf{Answer:}
+    \begin{enumerate}
+        \item $\alpha = 0$: Besides the intuitive definition, it's reasonable to consider $\abs{0}^0 = \lim_{x\to0} x^0 = 1$ if we want the general exponentiation to be continuous as a function of its base. Since $\forall x \neq 0\colon \abs{x}^0 = 1$, $f$ is the constant $1$ function and thus it's differentiable everywhere, also in particular in $0$.
+        \item $\alpha < 0$: $\lim_{x\to0} = \infty$ and thus $f$ is not continuous in $0$ and thus its derivative does not exists
+        \item $0 < \alpha < 1$: $f(0) = 0$ and thus $\lim_{h\to0^-}\frac{f(h) - f(0)}{h} = \lim_{h\to0^-}\frac{\abs{h}^\alpha}{h} = -\infty \neq +\infty = \lim_{h\to0^+}\frac{f(h) - f(0)}{h}$, thus it's not differentiable
+        \item $\alpha = 1\colon \lim_{h\to0^+}\frac{f(h) - f(0)}{h} = \lim_{h\to0^+}\operatorname{sgn}(h)\abs{h}^{\alpha-1} = 1 \neq -1 = \lim_{h\to0^-}\operatorname{sgn}(h)\abs{h}^{\alpha-1}$, thus it's not differentiable in $0$
+        \item $\alpha > 0\colon \lim_{h\to0}\frac{f(h) - f(0)}{h} = \lim_{h\to0} \operatorname{sgn}(h)\abs{h}^{\alpha-1} = 0$ thus it's differentiable 
+    \end{enumerate}
 
     % Question 5
     \item Wie lautet die Produktregel für Ableitungen? Warum gilt sie (Beweis)?
@@ -209,7 +216,14 @@
 
     \item Wieviele Minima bzw. Maxima kann eine strikt konvexe Funktion $f\colon [a,b]\to\RR$ haben? (Gib alle möglichen Zahlen an.)
     
-    \textbf{Answer: TODO} A convex function is also continuous (see sheet 9. problem 34.). A continuous function on a bounded and closed interval takes on it's extremal values. Suppose that $m = \min_{x\in[a,b]} f(x) = f(p)$ and $M = \max_{x\in[a,b]} f(x) = f(q)$. 
+    \textbf{Answer:} A convex function is also continuous (see sheet 9. problem 34.). A continuous function on a bounded and closed interval takes on its extremal values. Suppose that $m = \min_{x\in[a,b]} f(x) = f(p)$ and $M = \max_{x\in[a,b]} f(x)$ (for some corresponding $p \in [a, b]$ value). $m \neq M$, otherwise the function would be constant, and thus it would not be strictly convex.
+
+    Now suppose that the function has two local minima with $m_1 = f(p_1)$ and $m_2 = f(p_2)$. If a function is strictly convex, then it's nowhere constant, and thus if $m_1$ and $m_2$ are local minima, then they are also strict local minima and thus $\exists q$ between $p_1$ and $p_2$ such that $f(q) > \max(m_1, m_2)$. But then $f(q) > f((1-t)p_1 + t p_2)~(\forall t\in(0, 1))$ and this would contradict the strict convexity criteria. Consequently the function cannot have more than one local minimum, and since a global minimum is also a local minimum, they are necessarily the same.
+
+    Since the function is nowhere constant, and cannot have other local minimum than the global minimum, it must be strictly monotone descreasing on $[a, p]$ and strictly monotone increasing on $[p, b]$. If $a \neq p$ then $f$ has a local maximum at $a$, and if $p \neq b$ then $f$ has a local maximum at $b$. If $f(a) = f(b)$ then they are both global maxima, otherwise the largest of them is the global maximum of $f$ on $[a, b]$.
+
+    Thus there is exactly one local minimum and it corresponds to the global minimum. If the global minimum is not at one of the endpoints, then the function will have two local maxima at the endpoints of the interval. If they are the same, then they are both global maxima, otherwise the largest of them will be the global maximum. If the global minimum is at one of the endpoints, then the global maxima will be at the other endpoint.
+
     \item Wo sind (reelle) Potenzreihen differenzierbar? Wie lautet die Ableitung?
     
     \textbf{Answer:} A real power series $p(x) = \sumn{n}{0}{\infty}{a_n x^n}$ with convergence radius $\rho \in [0, \infty)$ is differentiable infinitely many times for any $\abs{x} < \rho$, and $p^\prime(x) = \sumn{n}{1}{\infty}{n a_n x^{n-1}} = \sumn{n}{0}{\infty}{(n+1)a_{n+1}x^n}$. We can define the $n^{\text{th}}~(n > 1)$ derivative recursively as $p^{(n)}(x) = (p^{(n-1)}(x))^\prime$ and with induction we get $p^{(n)}(x) = \sumn{k}{0}{\infty}{\frac{(k+n)!}{k!}a_{k+n}x^k}$

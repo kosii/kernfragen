@@ -10,7 +10,7 @@ Feel free to make a [pull request](https://github.com/kosii/kernfragen/pulls) fo
 ## Stetigkeit
 [stetigkeit.pdf](3-Stetigkeit/stetigkeit.pdf) (done)
 ## Differentiation
-[differentiation.pdf](4-Differentiation/differentiation.pdf) (in progress)
+[differentiation.pdf](4-Differentiation/differentiation.pdf) (done)
 
 # Errata
 - Stetigkeit 8: my answer was bad (not completely bad, but I assumed unnecessarily strong conditions)
