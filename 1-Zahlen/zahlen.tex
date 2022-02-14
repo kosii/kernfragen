@@ -19,6 +19,8 @@
 \newcommand{\smallo}[0]{{\scriptstyle \mathcal{O}}}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 \newcommand{\slim}[2]{\lim_{#1\to\infty}{#2}}
+\renewcommand{\Re}[0]{\operatorname{Re}}
+\renewcommand{\Im}[0]{\operatorname{Im}}
 
 \setlength{\topmargin}{-.5in} \setlength{\textheight}{9.25in}
 \setlength{\oddsidemargin}{0in} \setlength{\textwidth}{6.8in}
@@ -97,63 +99,81 @@
 
     \item Was sind \textit{endliche}, \textit{abzählbare} bzw. \textit{überabzählbare} Mengen? Gib Beispiele an.
 
-    \textbf{Answer:}
+    \textbf{Answer:} A set $B$ has a cardinality of $n \in \NN$ when there is a bijection between $B$ and $\{1, 2, \dots, n\}$. We call a set $B$
+    \begin{enumerate}
+        \item \label{cardinality:finite} finite, whenever $\left(B\right) = n \in \NN$. Example: $B = \{42\}$
+        \item \label{cardinality:countable} countable, whenever there is a bijection $\phi: B \to \NN$. Example: $B = \QQ$
+        \item uncountably infinite, whenever neither \ref{cardinality:finite} or \ref{cardinality:countable} holds. Example: $B = [0, 1]$
+    \end{enumerate}
 
     \item Zeige, dass $\NN \times \NN$ abzählbar ist.
 
-    \textbf{Answer:}
+    \textbf{Answer: TODO from Lecture 05} 
 
+    % Question 11
     \item Sei $A \subseteq \RR$. Was ist eine \textit{obere Schranke} für $A$? Wann heißt $A$ nach oben beschränkt?
 
-    \textbf{Answer:}
+    \textbf{Answer:} $a \in \RR$ is an upper bound of $A$ if $\forall x\in A\colon x \le a$. $A$ is bounded above if it has an upper bound. Notation: $A \le a$
 
     \item Sei $A \subseteq \RR$. Wie sind \textit{Supremum} und \textit{Infimum} von $A$ definiert? Wann besitzt $A$ ein Supremum, wann ein Maximum?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Supremum is the lowest upper bound. $\alpha = \sup A$ if $\alpha$ is an upper bound and for any other $a$ upper bound of $\alpha \le a$. Every $A$ set that is bounded above has a lowest upper bound. $\exists \max A \Leftrightarrow \sup A \in A$ and whenever $\max A$ exists $\max A = \sup A$.
 
     \item Sei $B = \left\{1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \dots\right\}$. Bestimme $\inf B$ und $\sup B$.
 
-    \textbf{Answer:}
+    \textbf{Answer:} $\sup B = 1, \inf B = 0$
 
     \item Gib ein Beispiel einer Menge reeller Zahlen an, die ein Supremum aber kein Maximum besitzt.
 
-    \textbf{Answer:}
+    \textbf{Answer:} $[0, 1) \subset \RR$
 
     \item Was ist ein \textit{Dedekindscher Schnitt}?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $\emptyset \neq L, R \subset \RR$. $(L|R)$ is called a Dedekind-cut in $\RR$ whenever the following conditions are both satisfied:
+    \begin{itemize}
+        \item $L < R$
+        \item $L \cup R = \RR$
+    \end{itemize}
+
+    A $t\in\RR$ number is called \textit{Trennzahl} of $(L|R)$ if $L \le t \le R$ holds.
+
+    The above is also defined in $\QQ$.
 
     \item Wie lautet das \textit{Vollständigkeitsaxiom} der reellen Zahlen?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Every $(L|R)$ Dedekind-cut in $R$ has one and only one Trennzahl (in $\RR$). In comparison not every Dedekind-cut in $\QQ$ has a Trennzahl in $\QQ$.
 
     \item Definiere die \textit{komplexen Zahlen} als Paare reeller Zahlen mit geeigneten Additions- und Multiplikationsregeln.
 
-    \textbf{Answer:}
+    \textbf{Answer:} For $\CC = \RR^2$ we obtain a (commutative) field with the following addition and multiplication operations:
+    \begin{itemize}
+        \item $\forall (x_1, y_1), (x_2, y_2) \in \CC\colon (x_1, y_1) + (x_2, y_2) = (x_1 + x_2, y_1 + y_2)$
+        \item $\forall (x_1, y_1), (x_2, y_2) \in \CC\colon (x_1, y_1) \cdot (x_2, y_2) = (x_1\cdot x_2 - y_1\cdot y_2, x_1 \cdot y_2 + y_1 \cdot x_2)$
+    \end{itemize}
 
     \item Was ist der \textit{Betrag} einer komplexen Zahl $z \in \CC$?
 
-    \textbf{Answer:}
+    \textbf{Answer:} $\forall z \in \CC, z = a + ib~(a, b\in \RR)\colon \abs{z} = \sqrt{a^2 + b^2} = \sqrt{\Re(z)^2 + \Im(z)^2}$
 
     \item Was ist die zu $z$ \textit{komplex konjugierte} Zahl $\overline{z}$ ?
 
-    \textbf{Answer:}
+    \textbf{Answer:} $\forall z \in \CC\colon \overline{z} = \Re(z) - i\Im(z)$
 
     \item Wie hängen $z$ und $\overline{z}$ mit $\abs{z}$ zusammen?
 
-    \textbf{Answer:}
+    \textbf{Answer:} $\forall z \in \CC\colon \abs{z}^2 = z \overline{z}$
 
     \item Wie lautet der \textit{Fundamentalsatz der Algebra}?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Every polynomial of degree $n$ in one variable with complex coefficients has exactly $n$ (counted with multiplicities) complex roots. If $p(x) = \sumn{k}{0}{n}{a_k x^k}~(a_n \neq 0)$ and the roots are $z_1, z_2, \dots, z_n \in \CC$ then we get through polynomial division $p(x) = a_n \prod_{k=0}^n(z - z_k)~(\forall z\in \CC)$
 
     \item Wie hängen komplexe Zahlen $z = x + iy \in \CC$ mit Drehstreckungen in $\RR$ zusammen?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $C = \left\{\left(\begin{array}{cc}x&-y\\y&x\end{array}\right)\colon x,y \in \RR \right\}$, the set of rotation-dilation matrices, with the standard matrix operations (addition, multiplication). Then with $\phi\colon\CC \to C$ bijection where $\phi(z)~=~\left(\begin{array}{cc}\Re(z)&-\Im(z)\\\Im(z)&\Re(x)\end{array}\right)$ we get an isomorphism between $C$ and $\CC$.
 
     \item Was sind Quaternionen?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $Q = \left\{\left(\begin{array}{cc}a&-\overline{b}\\b&\overline{a}\end{array}\right)\colon a, b \in \CC \right\}$, the set of quaterions. Through the standard matrix operations on $Q$ we obtain a non-commutative field.
 
 
 \end{enumerate}
