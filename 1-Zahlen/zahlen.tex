@@ -1,0 +1,161 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{}
+
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sumn}[4]{\sum_{#1=#2}^{#3}{#4}}
+\newcommand{\RR}[0]{\mathbb{R}}
+\newcommand{\CC}[0]{\mathbb{C}}
+\newcommand{\QQ}[0]{\mathbb{Q}}
+\newcommand{\ZZ}[0]{\mathbb{Z}}
+\newcommand{\NN}[0]{\mathbb{N}}
+\newcommand{\KK}[0]{\mathbb{K}}
+\newcommand{\smallo}[0]{{\scriptstyle \mathcal{O}}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\newcommand{\slim}[2]{\lim_{#1\to\infty}{#2}}
+
+\setlength{\topmargin}{-.5in} \setlength{\textheight}{9.25in}
+\setlength{\oddsidemargin}{0in} \setlength{\textwidth}{6.8in}
+
+
+\begin{document}
+
+\noindent{\bf Kernfragen - Zahlen\hfill Balázs Kossovics \hfill WS21-22 Analysis I.}
+
+
+\medskip\hrule
+\begin{enumerate}
+    \item Wie lautet das \textit{Wohlordnungsprinzip}?
+
+    \textbf{Answer:} Any nonempty subset of the natural numbers has a unique smallest element, that is: $\forall M \subset \mathbb{N}~(\emptyset \neq M) \exists! m \in M\colon \forall n \in M\colon m \le n$
+
+
+    \item Was ist \textit{Vollständige Induktion}?
+
+    \textbf{Answer:} Consider a subset $A \subset \mathbb{N}$. If $1 \in A$ and $(n \in A) \Rightarrow (n+1) \in A\phantom{0}(\forall n \in \mathbb{N}, n > 0)$, then $A = \mathbb{N}$. This is the same theorem as in the lecture, applied to the truth set of a prediate.
+
+    \item Zeige mittels Vollständiger Induktion, dass für alle natürlichen Zahlen $n$ gilt:
+    $$\sumn{k}{1}{n}{k} = \frac{n(n+1)}{2}$$
+
+    \textbf{Answer:}
+    \begin{itemize}
+        \item $n = 1$:
+
+        $\sum_{k=1}^k{k} = 1 = \frac{1(1+1)}{2}$
+        \item $n \Rightarrow n + 1$:
+
+        $\sum_{k=1}^{n+1}{k} = \sum_{k=1}^n{k} + (n+1) = \frac{n(n+1)}{2} + (n+1) = \frac{(n+1)(n + 2)}{2}$
+    \end{itemize}
+
+    % Question 4
+    \item Was ist die \textit{Zifferndarstellung} einer natürlichen Zahl $n$ zur Basis $b$?
+
+    \textbf{Answer:} Let $n \in \mathbb{N}$ and $b \ge 2$. Then there are some unique numbers $k \in \mathbb{N}$ and $a_0, a_1, \dots, a_k \in \left\{0, \dots, b-1\right\}$ with $a_k \neq 0$   such that $\sum_{i=0}^k {a_i b^i} = n$
+
+
+    % Question 5
+    \item Seien $A$ und $B$ Mengen. Wann nennt man eine Funktion $f\colon A \to B$ \textit{injektiv}, wann
+    \textit{surjektiv}, wann \textit{bijektiv}?
+
+    \textbf{Answer:}
+    \begin{itemize}
+        \item \textit{injective}: $\forall a, b \in A\colon f(a) = f(b) \Rightarrow a = b$
+        \item \textit{surjective}: $\forall b\in B\colon \exists a\in A\colon f(a) = b$
+        \item \text{bijective}: whenever $f$ is injective and surjective
+    \end{itemize}
+
+    \item Was sind die \textit{Binomialkoeffizienten} $\binom{n}{k}$, und welche Rekursionsformel erfüllen sie? Wie lässt sich die Rekursionsformel \textit{kombinatorisch} (d.h. als Abzählung von Teilmengen) interpretieren?
+
+    \textbf{Answer:}
+    The binomial coefficients of $n$ are the coefficients that occur when raising two numbers $x, y \in \mathbb{R}$ to the $n^\text{th}\phantom{0}(n\in \mathbb{N})$ power:
+    $$(x+y)^n = \sum_{k=0}^n {\binom{n}{k}x^k y^{n-k}}$$
+
+    Combinatorically $\binom{n}{k}$ is the number of different subsets of size $k$ of a set of size $n$.
+
+    For $n \ge 0$, $0 \le k \le n$ holds $\binom{n+1}{k} = \binom{n}{k} + \binom{n}{k-1}$, where $\binom{n}{0} = 1$ and $\binom{n}{n} = 1$. The binomial coefficient furthermore fulfills the following: $\binom{n}{k} = \frac{n!}{(n-k)! k!}$
+
+
+    \item Wie lautet der \textit{Binomische Lehrsatz}? Wie folgt daraus, dass
+    $$\sumn{k}{0}{n}{\binom{n}{k}} = 2^n\text{ ?}$$
+
+    \textbf{Answer:} $\forall x, y \in \mathbb{R}, n\in\mathbb{N}\colon (x+y)^n = \sum_{k=0}^n {\binom{n}{k}x^k y^{n-k}}$ where $x^0 = 1, 0^0 = 1, 0! = 1$
+    
+    With $x = y = 1\colon 2^n = \sum_{k=0}^n {\binom{n}{k}1^k 1^{n-k}} = \sum_{k=0}^n {\binom{n}{k}}$
+    
+
+    \item Was ist eine \textit{rekursiv} definierte Folge? Gib Beispiele an.
+
+    \textbf{Answer:} A sequence $(x_n) \in \mathbb{R}$ is defined recursively if there is a $k \in \mathbb{N}$, a function $f\colon \mathbb{R}^k \to \mathbb{R}$ and initial elements $x_1, x_2, \dots, x_k$ such that $x_{n+1} = f(x_n, x_{n-1}, \dots, x_{n - k + 1})\phantom{0}(\forall n > k)$. A recursively defined sequence is well defined. This definition is equivalent to the one given in the lecture with $k=1$.
+    
+    With $k = 2$, $x_1 = 1, x_2 = 2$ and $f\colon \RR^2 \to \RR$ with $f(a, b) = a + b$ consider the $x_{n+1} = f(x_n, x_{n-1})$ sequence, known as the Fibonacci-sequence.
+
+    \item Was sind \textit{endliche}, \textit{abzählbare} bzw. \textit{überabzählbare} Mengen? Gib Beispiele an.
+
+    \textbf{Answer:}
+
+    \item Zeige, dass $\NN \times \NN$ abzählbar ist.
+
+    \textbf{Answer:}
+
+    \item Sei $A \subseteq \RR$. Was ist eine \textit{obere Schranke} für $A$? Wann heißt $A$ nach oben beschränkt?
+
+    \textbf{Answer:}
+
+    \item Sei $A \subseteq \RR$. Wie sind \textit{Supremum} und \textit{Infimum} von $A$ definiert? Wann besitzt $A$ ein Supremum, wann ein Maximum?
+
+    \textbf{Answer:}
+
+    \item Sei $B = \left\{1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \dots\right\}$. Bestimme $\inf B$ und $\sup B$.
+
+    \textbf{Answer:}
+
+    \item Gib ein Beispiel einer Menge reeller Zahlen an, die ein Supremum aber kein Maximum besitzt.
+
+    \textbf{Answer:}
+
+    \item Was ist ein \textit{Dedekindscher Schnitt}?
+
+    \textbf{Answer:}
+
+    \item Wie lautet das \textit{Vollständigkeitsaxiom} der reellen Zahlen?
+
+    \textbf{Answer:}
+
+    \item Definiere die \textit{komplexen Zahlen} als Paare reeller Zahlen mit geeigneten Additions- und Multiplikationsregeln.
+
+    \textbf{Answer:}
+
+    \item Was ist der \textit{Betrag} einer komplexen Zahl $z \in \CC$?
+
+    \textbf{Answer:}
+
+    \item Was ist die zu $z$ \textit{komplex konjugierte} Zahl $\overline{z}$ ?
+
+    \textbf{Answer:}
+
+    \item Wie hängen $z$ und $\overline{z}$ mit $\abs{z}$ zusammen?
+
+    \textbf{Answer:}
+
+    \item Wie lautet der \textit{Fundamentalsatz der Algebra}?
+
+    \textbf{Answer:}
+
+    \item Wie hängen komplexe Zahlen $z = x + iy \in \CC$ mit Drehstreckungen in $\RR$ zusammen?
+
+    \textbf{Answer:}
+
+    \item Was sind Quaternionen?
+
+    \textbf{Answer:}
+
+
+\end{enumerate}
+
+\end{document}
