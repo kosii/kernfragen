@@ -1,10 +1,13 @@
 Feel free to make a [pull request](https://github.com/kosii/kernfragen/pulls) for any improvements, bugfixes, typos, etc 
 
+# ⚠️ Disclaimer ⚠️
+These answers were not verified by anyone, they are not by any means the official answers to the questions and consequently they should only be used at one's own risk. They were made for my own use and to compare results with others. I'd discourage anyone using them for their exams, but if anyone still decides to do so, they should do it in accordance with the exam regulation.
+
 # Subjects
 ## Zahlen
 (todo)
 ## Folgen
-[folgen.pdf](2-Folgen/folgen.pdf) (in progress)
+[folgen.pdf](2-Folgen/folgen.pdf) (done)
 ## Reihen
 [reihen.pdf](2-Reihen/reihen.pdf) (done)
 ## Stetigkeit
