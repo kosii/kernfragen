@@ -4,7 +4,7 @@ Feel free to make a [pull request](https://github.com/kosii/kernfragen/pulls) fo
 ## Zahlen
 (todo)
 ## Folgen
-(todo)
+[folgen.pdf](2-Folgen/folgen.pdf) (in progress)
 ## Reihen
 [reihen.pdf](2-Reihen/reihen.pdf) (done)
 ## Stetigkeit

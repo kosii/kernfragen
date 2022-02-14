@@ -1,0 +1,132 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{}
+
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sumn}[4]{\sum_{#1=#2}^{#3}{#4}}
+\newcommand{\RR}[0]{\mathbb{R}}
+\newcommand{\CC}[0]{\mathbb{C}}
+\newcommand{\QQ}[0]{\mathbb{Q}}
+\newcommand{\ZZ}[0]{\mathbb{Z}}
+\newcommand{\NN}[0]{\mathbb{N}}
+\newcommand{\KK}[0]{\mathbb{K}}
+\newcommand{\smallo}[0]{{\scriptstyle \mathcal{O}}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\newcommand{\slim}[2]{\lim_{#1\to\infty}{#2}}
+
+\setlength{\topmargin}{-.5in} \setlength{\textheight}{9.25in}
+\setlength{\oddsidemargin}{0in} \setlength{\textwidth}{6.8in}
+
+
+\begin{document}
+
+\noindent{\bf Kernfragen - Folgen\hfill Balázs Kossovics \hfill WS21-22 Analysis I.}
+
+
+\medskip\hrule
+\begin{enumerate}
+    \item \label{label:limit} Wann nennt man eine Folge $x_n$ reeller Zahlen konvergent und wann uneigentlich konvergent?
+    
+    \textbf{Answer:} The $(x_n) \in \RR$ sequence converges to $l \in \RR$ if $\forall \epsilon >0~\exists N \in \NN\colon \forall n > N\colon \abs{x_n - l} < \epsilon$. If such $l$ exists, then it's unique. 
+    
+    If there is no such $l \in \RR$ but $\forall X \in \RR~\exists N \in NN\colon \forall n > N\colon x_n > X$ then we say that $(x_n)$ tends to infinity, and we denote it with $\lim_{x\to\infty} x_n = +\infty$. If $-x_n$ tends to $+\infty$, then we say that $x_n$ tends to negative infinity, and we denote it with $\lim_{n\to\infty}x_n = -\infty$
+
+    \item Wie ist der Grenzwert einer Folge definiert?
+    
+    \textbf{Answer:} If a sequence converges, then its limit is the uniquely defined $l$ in Question $\ref{label:limit}$.
+    \item Was sind Supremum und Infimum der Folgen $(1 + \frac{1}{n})^n$ und $(1 + \frac{1}{n} )^{n+1}$ ?
+    
+    \textbf{Answer: TODO}
+    \item Wie sind Häufungswerte einer Folge $x_n$ komplexer Zahlen definiert?
+    
+    \textbf{Answer:} 
+    Let $(x_n) \in \RR$ (or $(x_n) \in \CC$). We call $\zeta \in \RR$ (or $\zeta \in \CC$) a limit point of the $(x_n)$ sequence if exists $k_n\colon\NN \to \NN$ index sequence with $k_n \ge n$ such that $\lim_{n\to\infty}x_{k_n} = \zeta$
+
+    \item Was sind die Häufungswerte der Folge $(-1)^n + \frac{1}{n}$?
+    
+    % Question 5
+    \textbf{Answer:} Let $x_n = (-1)^n + \frac{1}{n}$, now $\limsup_{n\to\infty} = 1$ and $\liminf_{n\to\infty} = -1$, thus the sequence has at least two limit points. Since $\forall \epsilon > 0~\exists N \in \NN\colon$ either $\abs{x_n - 1} < \epsilon$ or $\abs{x_n - (-1)} < \epsilon$, the sequence cannot have any other limit points.
+
+    \item Was sind Limes superior und Limes inferior einer reellwertigen Folge? Wann existieren sie? Wann stimmen Limes superior und Limes inferior überein?
+    
+    \textbf{Answer:} Consider an arbitrary $(x_n) \in \RR$ sequence. The
+    \begin{itemize}
+        \item Limit superior: $\limsup_{n\to\infty} x_n = \lim_{n\to\infty} \sup_{k \ge n}  \{x_k\}$
+        \item Limit inferior: $\liminf_{n\to\infty} x_n = \lim_{n\to\infty} \inf_{k \ge n}  \{x_k\}$
+    \end{itemize}
+    For any bounded sequence its $\limsup$ and $\liminf$ exist. The $\limsup$ and $\liminf$ of a sequence are equal if and only if the sequence converges, and in this case $$\lim_{n\to\infty} x_n = \limsup_{n\to\infty} x_n = \liminf_{n\to\infty} x_n$$
+
+    \item Konstruiere eine reelle Folge, die jede reelle Zahl aus Häufungswert hat.
+    
+    \textbf{Answer:} Consider the following enumeration of the rationals: $0, \frac{1}{1}, \frac{1}{2}, \frac{2}{1}, \frac{1}{3}, \frac{2}{3}, \frac{3}{1}, \frac{1}{4}, \frac{2}{3}, \frac{3}{2}, \frac{4}{1}, \frac{1}{5}, \frac{2}{4}, \dots$
+    and the $\phi\colon \NN^2 \to \NN$ bijection given by $\phi(p, q) = \frac{(p + q -1)(p + q - 2)}{2} + p$
+    
+    Define the following sequence: $x_0 = 0, x_1 = \frac{1}{1}$ and $\forall n > 1\colon x_n = \frac{p}{q}$ such that $\phi(p, q) = n$. The so defined sequence will correspond to the above enumeration and thus every non-negative rational will occur in $x_n$ eventually, and since $\QQ$ is dense in $\RR$, every non-negative real will be a limit point of $x_n$. From $x_n$ we can construct a new sequence with $x_0, x_1, -x_1, x_2, -x_2, x_3, -x_3, \dots$ that will have every real as a limit point.
+
+    %Question 8
+    \item Wann heißt eine Menge $A \subseteq B$ dicht in $B$? Gilt Dichtheit für $\ZZ \subseteq \QQ$, $\QQ \subseteq \RR$, $\RR \setminus \QQ \subseteq \RR$, $\QQ + i\QQ \subseteq \CC$, $\QQ + i(\RR\setminus\QQ) \subseteq \CC$? Warum?
+
+    \textbf{Answer:} $A$ is dense in $B$ if $\forall b \in B~\exists (a_n)\colon \NN \to A\colon \lim_{n\to\infty} a_n = b$ 
+    
+    Or equivalently: $\forall b \in B~\forall \epsilon > 0~\exists a \in A\colon \abs{a -b} < \epsilon$ 
+    
+    Or equivalently: every point of $B$ is a limit point of $A$.
+    \begin{itemize}
+        \item $\ZZ \subseteq \QQ$: no, there is no sequence in $\ZZ$ that converges to $-1/12$
+        \item $\QQ \subseteq \RR$: yes, $\forall r\in \RR~\exists(x_n)\in \QQ\colon \lim_{n\to\infty}x_n = r$, for example with $x_n = \frac{\floor{r n}}{n} \in \QQ$ 
+        \item $\RR \setminus \QQ \subseteq \RR$: yes, $\forall r\in\RR~\exists(x_n) \in (\RR \setminus \QQ)\colon \lim_{n\to\infty} x_n = r$, for example with $x_n = \frac{\floor{n \sqrt{2} r}}{n \sqrt{2}} \in \RR \setminus \QQ$ (because a rational divided by an irrational is always irrational)
+        \item $\QQ + i\QQ \subseteq \CC$ yes, because $\QQ$ is dense an $\RR$, thus $\forall a + ib \in \CC (a, b \in RR)~\exists (x_n), (y_n) \in \QQ\colon \lim_{n\to\infty} x_n = a, \lim_{n\to\infty} y_n = b$ and thus $\lim_{n\to\infty} x_n + i y_n = a + b i = z$ (explanation: a sequence $(z_n) = (a_n + i b_n) \in \CC~(a_n, b_n \in \RR)$ convergent if and only if $a_n$ and $b_n$ both converges, and in this case $\lim_{n\to\infty} z_n = \lim_{n\to\infty} a_n + i\lim_{n\to\infty}b_n$).
+        \item $\QQ + i(\RR\setminus\QQ) \subseteq \CC$ yes, because $\QQ$ and $\RR \setminus \QQ$ are both dense in $\RR$, so the previous point hold, just with $(b_n) \in \RR\setminus\QQ$
+    \end{itemize}
+    \item Was besagt das Konvergenzkriterium von Cauchy? Warum gilt es?
+    
+    \textbf{Answer:} Consider an $(x_n) \in \RR$ sequence. $x_n$ is convergent if and only if $\forall \epsilon > 0~\exists N \in \NN\colon \forall n, m > N\colon \abs{x_n - x_m} < \epsilon$. Because $\RR$ is complete (the Cauchy criterum doesn't hold in $\QQ$ for example).
+
+    \item Welche monotonen Folgen besitzen einen Grenzwert?
+    
+    \textbf{Answer:} Bounded monoton sequences.
+
+    \item Welche dieser Folgen konvergieren für $n \to \infty$? Was sind ggf. ihre Grenzwerte, einschließlich $\pm \infty$?
+
+    \hspace*{\fill}
+    $\frac{n^2}{3n - 2}, \hfill \frac{3n^2 - 2}{2n^2+3},\hfill \frac{2^n}{n!} \hfill \sqrt[n]{n} \hfill q^{1/n}~(\text{für reelle }q > 0), \hfill \sqrt{n+1} - \sqrt{n}\hfill$
+    \hspace*{\fill}
+    
+    \textbf{Answer:}
+    \begin{enumerate}
+        \item $\lim_{n\to\infty}\frac{n^2}{3n - 2} = \lim_{n\to\infty}\frac{n}{3 - 2/n} = +\infty$
+        \item $\lim_{n\to\infty}\frac{3n^2 - 2}{2n^2+3} = \lim_{n\to\infty}\frac{3 - 2/n^2}{2+3/n^2} = 3/2$
+        \item $\lim_{n\to\infty}\frac{2^n}{n!} = \lim_{n\to\infty}\prod_{k=1}^n{\frac{2}{i}} = \frac{4}{3} \lim_{n\to\infty}\prod_{k=4}^n{\frac{2}{k}} < \frac{4}{3} \lim_{n\to\infty}{\left(\frac{1}{2}\right)}^{n-3} = 0 $
+        \item Consider first $q>1$. Let $h_n = q^{1/n} - 1 > 0$, thus $(1+h_n)^n = q~(\forall n \in \NN)$. From Bernoulli's inequality $q \ge 1 + n h_n>1~(\forall n\in\NN)$, from which it follows that $h_n \to 0~(n\to\infty)$. Consequently $q^{1/n} \to 1$. Now consider $0 < q < 1$: from the previous $(1/q)^{1/n} \to 1~(n \to \infty)$, thus from the algebraic properties of sequences we get $q^{1/n} \to 1$ as well.
+        \item $\lim_{n\to\infty} \sqrt{n+1} - \sqrt{n} = \lim_{n\to\infty} \frac{( \sqrt{n+1} - \sqrt{n})( \sqrt{n+1} + \sqrt{n})}{ \sqrt{n+1} + \sqrt{n}} = \lim_{n\to\infty}\frac{n+1 - n}{\sqrt{n+1} + \sqrt{n}} \\= \slim{n} {\frac{1}{\sqrt{n+1} + \sqrt{n}}} = 0$
+    \end{enumerate}
+
+    %Question 12
+    \item Wie lautet der Satz von Bolzano-Weierstraß?
+    
+    \textbf{Answer:} Every bounded sequence in $\RR$ or $\CC$ has a limit point. Conversely: every convergent sequence in $\RR$ or $\CC$ is bounded. 
+
+    %Question 13
+    \item Wieviele Häufungswerte kann eine beschränkte, reellwertige Folge mindestens/höchstens besitzen?
+    
+    \textbf{Answer:} A convergent sequence has exactly one limit point (independently of being bounded or not). Any non convergent bounded sequence has at least 2 limit points: its limit superior and limit inferior. Consider now a sequence that enumerates all the rationals between $0$ and $1$. The rationals are countable, thus such sequence exists, and since $\QQ$ is dense in $\RR$, every real number in the $[0, 1]$ interval is a limit point of such a sequence
+
+    \item Wie kann man den Kreisumfang durch Approximation mit regulären $2^n$-Ecken bestimmen?
+    
+    \textbf{Answer:}
+    \item Gib zwei Definitionen der Eulerschen Zahl $e$. Warum stimmen beide Definitionen überein?
+    
+    \textbf{Answer:} Consider sequences $e_n = \sumn{k}{0}{n}{\frac{1}{k!}}$ and $\hat{e}_n = \left(1 + \frac{1}{n}\right)^n$. Then $e = \slim{n}{e_n} = \slim{n}{\hat{e}_n}$
+    
+    \textbf{TODO: WHY?}
+    \item Wie lauten die Abschätzungen für $n!$ von Stirling?
+    
+    \textbf{Answer:} $n^n/e^{n-1} \le n! \le n^{n+1}/e^{n-1}$ (proof: Lecture 13)
+\end{enumerate}
+\end{document} 
