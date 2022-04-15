@@ -25,7 +25,7 @@
 
 \item Wann heißt eine Funktion $f$ in einem Punkt $x_0$ stetig? Welche äquivalente Definitionen der Stetigkeit gibt es (wenigstens drei verschiedene)?
 
-$f$ is continuous in $x_0$ whenever one of the following equivalent conditions holds
+\textbf{Answer:} $f$ is continuous in $x_0$ whenever one of the following equivalent conditions holds
 \begin{itemize}
     \item $\forall (x_n) \in D\colon \lim_{n\to\infty}{x_n} = x \Rightarrow f(\lim_{n\to\infty}{x_n}) = f(x) = \lim_{n\to\infty}{f(x_n)}$
     \item $\forall \epsilon > 0\colon \exists \delta > 0\colon \forall x \in D, | x - x_0| < \delta\colon |f(x) - f(x_0)| < \epsilon$
@@ -34,20 +34,21 @@ $f$ is continuous in $x_0$ whenever one of the following equivalent conditions h
 
 \item Wann heißt eine Funktion $f$ auf einer Menge $D \subseteq \mathbb{R}$ bzw. $D \subseteq \mathbb{C}$ stetig?
 
-$f$ is continuous on the set $D$ whenever $f$ is continuous at all points $a \in D$
+\textbf{Answer:} $f$ is continuous on the set $D$ whenever $f$ is continuous at all points $a \in D$
 
 \item Sei $U = \{a_1, a_2, \dots, a_N \} \subset \mathbb{R}$ eine endliche Menge reeller Zahlen. Gib eine Funktion
 $f\colon \mathbb{R} \to \mathbb{R}$ an, die auf $D = \mathbb{R} \setminus U$ stetig, auf $U$ aber unstetig ist.
 
-$f(x) = \begin{cases}
+\textbf{Answer:} $f(x) = \begin{cases}
     1& x \in U\\
     0&\text{otherwise}
 \end{cases}$
 
-Since any convergent $(x_n) \in \mathbb{R}$ will only contain at most finitely many element from $U$, and consequently if $x = \lim_{n \to \infty} x_n$, then $f(x) = f(\lim_{n \to \infty} x_n) = \lim_{n \to \infty} f(x_n) = \lim_{n \to \infty} 1 = 1 \Leftrightarrow x \notin U$
+Since any convergent $(x_n) \in \mathbb{R}$ of distinct elements will only contain at most finitely many element from $U$, consequently with $x = \lim_{n \to \infty} x_n$ it holds that $\lim_{n \to \infty} f(x_n) = \lim_{n \to \infty} 0 = 0$, thus $f(x) = \lim_{n \to \infty} f(x_n) \Leftrightarrow x \in D$, and thus $f$ is continuous exactly on $D$.
 
 \item Gib eine Fuktion $f\colon \mathbb{R} \to \mathbb{R}$ an, die nirgends stetig ist.
 
+\textbf{Answer:}
 $f(x) = \begin{cases}
     1&x\in \mathbb{Q}\\
     0&\text{otherwise}
@@ -55,12 +56,12 @@ $f(x) = \begin{cases}
 
 \item Wie lautet der Zwischenwertsatz?
 
-Consider any $D = [a, b] \subset R$ interval, and let $f\colon D \to \mathbb{R}$ be continuous. Then $f$ takes on any value in $[f(a), f(b)] \cup [f(b), f(a)]$
+\textbf{Answer:} Consider any $D = [a, b] \subset R$ interval, and let $f\colon D \to \mathbb{R}$ be continuous. Then $f$ takes on any value in $[f(a), f(b)] \cup [f(b), f(a)]$
 
 % question 6
 \item Warum hat jede durch eine stetige Funktion $g\colon [0,1] \to [0,1]$ gegebene Iteration $x_{n+1} = g(x_n)$ (mindestens) einen Fixpunkt?
 
-Consider $f(x) = g(x) - x$, $f(0) = g(0) - 0 \ge 0, f(1) = f(1) - 1 \le 0$. Thus from the intermediate value theorem $\exists c\in[0, 1]\colon f(c) = g(c) - c = 0 \Leftrightarrow g(c) = c$. If a so defined $(x_n) \in [0,1]$ converges, then it'll converge to the fixpoint:
+\textbf{Answer:} Consider $f(x) = g(x) - x$, $f(0) = g(0) - 0 \ge 0, f(1) = f(1) - 1 \le 0$. Thus from the intermediate value theorem $\exists c\in[0, 1]\colon f(c) = g(c) - c = 0 \Leftrightarrow g(c) = c$. If a so defined $(x_n) \in [0,1]$ converges, then it'll converge to the fixpoint:
 $$f(\lim_{n\to\infty} x_n) = \lim_{n\to\infty} f(x_n) = \lim_{n\to\infty} x_{n+1}$$
 
 But the convergence is not guaranteed, consider $g(x) = 1-x$ and $x_0 = 0$, which is divergent.
@@ -83,17 +84,17 @@ If $D$ is closed and bounded, and $f$ is continuous on $D$, then $f$ is also uni
 \end{center}
 Hierbei bezeichnet die Gauß-Klammer, $\lceil x \rceil$, die größte ganze Zahl, die kleiner oder gleich $x$ ist.
 
-\textbf{Answer:} 
+\textbf{Answer:}
 \begin{enumerate}
     \item $|x|$ is continuous and furthermore is absolute continuous: consider $\epsilon > 0$ and some $x, y \in \mathbb{R}\colon |x - y| < \epsilon$ then $\epsilon > |x - y| > |x| - |y|$ and $\epsilon > |y - x| > |y| - |x|$ and thus $||x| - |y|| < \epsilon$. So $|f(x) - f(y)| = ||x| - |y|| < \epsilon$ and consequently it's absolute continuous.
     \item $\operatorname{exp}(x)$ is continuous, since it's defined by a powerseries with convergence radius $\rho = \infty$. A powerseries is continuous at every point inside it's convergence radius. It's not absolutely continuous: suppose indirectly that it was: $\forall \epsilon > 0\colon \exists \delta_\epsilon >0\colon \forall x, y \in \mathbb{R}: \abs{x - y} < \delta_\epsilon\colon \abs{f(x) - f(y)} < \epsilon$, or $\abs{e^x - e^y} < \epsilon$. This must hold in particular for $y = x + \delta_\epsilon/2\phantom{0}(\forall x \in \mathbb{R})$, and due to the strict monotonity of $e^x$ it also holds that $0 < e^{x+\delta/2} - e^x < \epsilon$ or equivalently $0 < e^x(e^{\delta/2} - 1) < \epsilon$. But $\lim_{x\to\infty} e^x(e^{\delta/2} - 1) = +\infty$, contradicion.
-    
-    \item $x^2$ is continuous, since $x$ is continuous, and since the multiple of two continuous function is continuous, thus so is $x^2$. On the other hand it's not uniformly continuous: suppose it was, that is $\forall \epsilon > 0\colon \exists \delta_\epsilon > 0\colon x, y \in \mathbb{R}\colon \abs{x - y} < \delta_\epsilon\Rightarrow\abs{x^2 - y^2} < \epsilon$. Consider now some $x > \delta_\epsilon > 0$ and $y = x + \delta_\epsilon/2$, the condition of uniform continuity must hold for these $x, y$ as well: 
+
+    \item $x^2$ is continuous, since $x$ is continuous, and since the multiple of two continuous function is continuous, thus so is $x^2$. On the other hand it's not uniformly continuous: suppose it was, that is $\forall \epsilon > 0\colon \exists \delta_\epsilon > 0\colon x, y \in \mathbb{R}\colon \abs{x - y} < \delta_\epsilon\Rightarrow\abs{x^2 - y^2} < \epsilon$. Consider now some $x > \delta_\epsilon > 0$ and $y = x + \delta_\epsilon/2$, the condition of uniform continuity must hold for these $x, y$ as well:
         $$0 < (x+\delta_\epsilon/2)^2 - x^2 < \epsilon$$
     or
         \begin{equation}\label{eq:1}0 < x\delta_\epsilon + \delta_\epsilon^2/4 < \epsilon\end{equation}
     But since $\lim_{x\to\infty}x\delta_\epsilon + \delta_\epsilon^2/4 = \infty$, $\eqref{eq:1}$ cannot hold for every $x\in\mathbb{R}$.
-    \item 
+    \item
     $\sin$ is defined by a powerseries with a radius of convergence $\rho = \infty$ thus it's continuous on $\mathbb{R}$. Consider now $\sin$ on the closed and bounded interval $[0, 4\pi]$ ($4\pi$ was chosen here intentionally, so $\forall x, y \in \mathbb{R}$ at least one of  $x-2k\pi, y-2k\pi \in [0, 4\pi]$ or $x-4k\pi, y-4k\pi \in [0, 4\pi]$ will hold for some corresponding $k\in\mathbb{Z}$), where it's now uniformly continuous, thus $\forall \epsilon > 0\colon \exists \delta > 0\colon \forall x, y \in [0, 4\pi]\colon \abs{x - y} < \delta \Rightarrow \abs{\sin{x} - \sin{y}} < \epsilon$. $\sin$ is furthermore periodic with a period of $2\pi$, thus $\forall x, y \in \mathbb{R}\colon \abs{x-y} < \delta \Rightarrow \abs{\sin{x} - \sin{y}} < \epsilon$ will also hold.
     \item $x^3 + 1$ and $x^4-1$ are continuous on $\mathbb{R}$, so $f$ is continuous exactly when $x^4-1 \neq 0$, thus $f$ is continuous on $\mathbb{R}\setminus\left\{1\right\}$. On the other hand $\lim_{h\to1^-}f(1+h) = -\infty$ and $\lim_{h\to1^+}f(1+h) = +\infty$, so there will be $x < 1 < y$ arbitrarily close to each other such that $\abs{f(x) - f(y)}$ is arbitrarily large.
     \item $f(x) = x\phantom{0}(\forall x \in [0, 1))$ and $f$ has a periodicity of $1$, thus $\lim_{x\to1-} = 1$ but $\lim_{x\to1+} = 0$ thus $f$ is continuous on $\mathbb{R} \setminus \mathbb{Z}$. On the other hand $f$ is not uniformly continuous, because we can make arbitrarily close $3/4 < x < 1 < y < 5/4$ but $\abs{f(x) - f(y)} > 1/2$.
@@ -137,9 +138,9 @@ A normed vectorspace is complete, if every Cauchy-sequence is convergent (both p
 
 \item Wie ist die Supremums-Norm für beschränkte, stetige Funktionen $f\colon D \to \mathbb{R}, D \subseteq \mathbb{R}$, definiert? Warum ist sie tatsächlich eine Norm?
 
-\textbf{Answer:} $\norm{f}_{sup} = \sup\left\{|f(x)|\colon x \in D\right\}$. 
+\textbf{Answer:} $\norm{f}_{sup} = \sup\left\{|f(x)|\colon x \in D\right\}$.
 
-The above defined $\norm{.}_{sup}$ function satisfies the norm properties: 
+The above defined $\norm{.}_{sup}$ function satisfies the norm properties:
 
 $\forall f, g: D \to \mathbb{R}, \forall \lambda\in\mathbb{R}$:
 \begin{itemize}
@@ -152,7 +153,7 @@ $\forall f, g: D \to \mathbb{R}, \forall \lambda\in\mathbb{R}$:
 
 \textbf{Answer:} The $\norm{.}_{\sup}$ is indeed a norm, as proved in the previous point. Now we only have to prove, that $\mathcal{BC}(D,\mathbb{R})$ is complete, that is: any $(f_n) \in\mathcal{BC}(D,\mathbb{R})$ Cauchy-sequence converges.
 
-For $x\in D$ fixed: $$\abs{f_n(x) - f_m(x)} = \abs{(f_n - f_m)(x)} \le \sup\left\{\abs{(f_n -f_m)(x)}\colon x \in D\right\} = \norm{f_n - f_m}$$ Since $f_n$ is a Cauchy-sequence in norm, 
+For $x\in D$ fixed: $$\abs{f_n(x) - f_m(x)} = \abs{(f_n - f_m)(x)} \le \sup\left\{\abs{(f_n -f_m)(x)}\colon x \in D\right\} = \norm{f_n - f_m}$$ Since $f_n$ is a Cauchy-sequence in norm,
 $$\forall \epsilon > 0\colon\exists N \in \mathbb{N}\colon n, m > N\colon \norm{f_n - f_m} < \epsilon$$
 thus for such $n, m\colon \abs{f_n(x) - f_m(x)} < \epsilon$, thus $f_n$ converges pointwise.
 
@@ -160,7 +161,7 @@ Let $f(x) = \lim_{n\to\infty}f_n(x)$ be defined as the pointwise limit of $f_n$.
 
 Since $f_n$ is a Cauchy sequence, $\norm{f_n - f_m} < \epsilon$ holds for large enough $n,m$. It'll also hold for any $x\in D$ in particular that $\abs{f_n(x) - f_m(x)} < \epsilon$, and by taking $m$ to the limit we get $\abs{f_n(x) - f(x)} \le \epsilon$, so $\norm{f_n - f} \le \epsilon$ will hold as well, and thus $\lim_{n\to\infty}\norm{f_n - f} = 0$.
 
-As for the continuity, we have to prove that $\forall a \in D\colon\forall \epsilon > 0\colon\exists\delta > 0\colon \abs{x - a} < \delta \Rightarrow \abs{f(x) - f(a)} < \epsilon$. 
+As for the continuity, we have to prove that $\forall a \in D\colon\forall \epsilon > 0\colon\exists\delta > 0\colon \abs{x - a} < \delta \Rightarrow \abs{f(x) - f(a)} < \epsilon$.
 
 
 $$\abs{f(x) - f(a)} \le \abs{f(x) - f_n(x)} + \abs{f_n(x) - f_n(a)} + \abs{f_n(a) - f(a)} < 3\epsilon$$
@@ -196,4 +197,4 @@ Since it's the inverse of a continuous function, it's continuous everywhere.
 
 \end{enumerate}
 
-\end{document} 
+\end{document}
