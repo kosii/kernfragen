@@ -1,0 +1,170 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{bbm}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{}
+
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sumn}[4]{\sum_{#1=#2}^{#3}{#4}}
+\newcommand{\RR}[0]{\mathbb{R}}
+\newcommand{\CC}[0]{\mathbb{C}}
+\newcommand{\QQ}[0]{\mathbb{Q}}
+\newcommand{\ZZ}[0]{\mathbb{Z}}
+\newcommand{\NN}[0]{\mathbb{N}}
+\newcommand{\KK}[0]{\mathbb{K}}
+\newcommand{\smallo}[0]{{\scriptstyle \mathcal{O}}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\newcommand{\slim}[2]{\lim_{#1\to\infty}{#2}}
+\renewcommand{\Re}[0]{\operatorname{Re}}
+\renewcommand{\Im}[0]{\operatorname{Im}}
+
+\setlength{\topmargin}{-.5in} \setlength{\textheight}{9.25in}
+\setlength{\oddsidemargin}{0in} \setlength{\textwidth}{6.8in}
+
+
+\begin{document}
+
+\noindent{\bf Kernfragen - Integration\hfill Balázs Kossovics \hfill 2022 SS - Analysis II.}
+
+
+\medskip\hrule
+\begin{enumerate}
+    \item Was ist ein normierter Raum? Wann sagt man, dass ein normierter Raum Banach ist?
+
+    \textbf{Answer:} Let $V$ a $\mathbb{K}$ vector space ($\mathbb{K} = \mathbb{R}$ or $\mathbb{C}$) and $\norm{.}\colon V \to \mathbb{R}$. The pair $(V, \norm{.})$ called a normed vectorspace if $\norm{.}$ fulfills the following properties:
+    \begin{enumerate}
+        \item $\forall v \in V\colon \norm{v} \ge 0$ and $\norm{v} = 0 \Leftrightarrow v = 0_V$
+        \item $\forall v \in V, \lambda \in \mathbb{K}\colon \norm{\lambda v} = \abs{\lambda} \norm{v}$
+        \item $\forall u, v \in V\colon \norm{u + v} \le \norm{u} + \norm{v}$
+    \end{enumerate}
+    We call furthermore $(V, \norm{.})$ normed space a Banach space, if it's complete, that is: every Cauchy sequence has a limit in $V$.
+
+    \item Wann sagt man, dass eine Funktion zwischen zwei normierten Räumen stetig ist?
+
+    \textbf{Answer:} Condider $(U, \norm{.}_U)$ and $(V, \norm{.}_V)$ normed spaces, $A \subset U$ and a function $f\colon A \to V$. $f$ is continuous in $a \in A$, if $\forall \varepsilon > 0\colon \exists \delta > 0\colon \forall x\in A\colon \norm{x - a}_U < \delta \Rightarrow \norm{f(x) - f(a)}_V < \varepsilon$. $f$ is continuous on $A$, if it's continuous in every point of $A$.
+
+    \item Seien $X$ und $Z$ normierte Räume. Was ist die Operatornorm $\norm{L}$ einer linearen Abbildung $L\colon X \to Z$? Was kann man über $\norm{L}$ sagen, wenn $L$ stetig ist?
+
+    \textbf{Answer:} $\norm{L} = \sup_{\norm{x}_X = 1} \norm{L x}_Z = \sup_{0\neq x \in X}\frac{\norm{L x}_Z}{\norm{x}_X}$. Linear operators are continuous if and only if they are bounded.
+
+    \item Was ist eine Regelfunktion? Welche äquivalenten Charakteriesierungen gibt es (wenigstens 2)?
+
+    \textbf{Answer:}
+    Let $V$ be a Banach space ($\CC$ or $\RR$ included). The set $\mathcal{R}([a, b], V)$ of regulated functions is the closure of the set $\mathcal{T}([a, b], V)$ of step functions with regards to the set $B([a, b], V)$ of bounded functions under the $\norm{.}_{\sup}$ norm. Equivalently: \begin{enumerate}
+    \item $f \in B([a, b], V)$ is a regulated function $\Leftrightarrow \forall c \in [a, b]\colon \exists \lim_{x\to c^+} f(x), \lim_{x\to c^-} f(x)$
+    \item $f \in B([a, b], V)$ is a regulated function $\Leftrightarrow \exists (f_n) \in \mathcal{T}([a, b], V)$ uniformly convergent sequence of stepfunctions such that $\lim_{n \to \infty} f_n = f$ (in $B([a, b], V)$)
+    \end{enumerate}
+
+    \item Gib je zwei Beispiele an für
+    \begin{enumerate}
+        \item Regelfunktionen und
+        \item Funktionen, die keine Regelfunktionen sind.
+    \end{enumerate}
+
+    \textbf{Answer:}
+    \begin{enumerate}
+        \item Regelfunktionen:\begin{enumerate}
+            \item $f: [0, 1] \to \mathbb{R}, x \mapsto 1$
+            \item $f: [-1, 1] \to \mathbb{R}, x \mapsto \begin{cases}
+                x^2&x\neq0\\
+                1&x=0
+            \end{cases}$
+        \end{enumerate}
+
+        \item Keine Regelfunktionen:\begin{enumerate}
+            \item $\mathbbm{1}_\QQ\colon [0, 1] \to \RR, x \mapsto \begin{cases}
+                1&x\in\QQ\\
+                0&x\notin\QQ
+            \end{cases}$
+            \item $f\colon [0, 1]\to \RR, x \mapsto \begin{cases}
+                \sin{\frac{1}{x}}&x\neq 0\\
+                0&x = 0
+            \end{cases}$
+        \end{enumerate}
+    \end{enumerate}
+    \item Wie ist das Integral einer Regelfunktion definiert?
+
+    \textbf{Answer:} Let $V$ be a Banach space over $\KK = \RR$ or $\CC$. Consider any $f \in \mathcal{R}([a, b], V)$ regulated function, and $f_n \in \mathcal{T}([a, b], V)$ sequence of step functions, that converge uniformly to $f$. Let furthermore $P_n = \left\{p_0, \dots, p_{k_n}\right\}$ be such a partition of $[a,b]$ for which $f_n\bigm|_{[p_i, p_{i+1}]} = c_i \in V$ constant (with the potential exception of the endpoints). Let the $\int_a^b: \mathcal{T}([a, b], V) \to V$ linear operator be defined as $\int_a^b f_n = \sum_{i=0}^{k_n} c_i (p_{i+1} - p_i)$. Since $\mathcal{T}([a, b], V)$ is a subspace of $\mathcal{R}([a, b], V)$, there exists a unique continuous continuation $\overline{\int_a^b}\colon \mathcal{R}([a, b], V) \to V$ of the linear operator $\int_a^b$ such that their values stays the same on $\mathcal{T}([a, b], V)$. Since $\overline{\int_a^b}$ is continuous, it "commutes" with the limit. Let thus $\int_a^b f:=\overline{\int_a^b}f = \overline{\int_a^b} \lim_{n\to \infty} f_n = \lim_{n\to\infty} \int_a^b f_n$
+
+    \item Wie hängen Integration und Differentiation zusammen?
+
+    \textbf{Answer:} Let $V$ be a Banach space over $\KK = \RR$ or $\CC$, and $f\colon [a, b] \to V$ function. Let furthermore $F(x) = \int_a^x f$. If $f$ is continuous in $c \in [a, b]$, then $F$ is differentiable in $c$, and $F^\prime(c) = f(c)$. Furthermore if $f$ is continuous, and $F$ is such a function, that $F^\prime = f$, then $\int_a^b f = F(b) - F(a)$, and we call $F$ the primitive function of $f$.
+
+    \item Welchen elementaren Funktionen entsprechen folgende unbestimmte Integrale?
+
+    \hspace*{\fill}
+    $\int{\sin{t}\,dt} \hfill \int{\frac{dt}{t}} \hfill \int{\sqrt[n]{t+1}} \hfill \int{\frac{1}{1+t^2}\,dt} \hfill \int{t^\alpha \,dt}~(\alpha \neq -1)$
+    \hspace*{\fill}
+
+
+    \textbf{Answer:}
+    \begin{itemize}
+        \item $\int{\sin{t}\,dt} = \cos{t}$
+        \item $\int{\frac{dt}{t}} = \log{t}$
+        \item $\int{\sqrt[n]{t+1}} = \frac{n}{n+1} (t+1)^{1 + \frac{1}{n}}$
+        \item $\int{\frac{1}{1+t^2}\,dt} = \arctan{t}$
+        \item $\int{t^\alpha \,dt} = \frac{1}{\alpha + 1} t^{\alpha + 1}~(\alpha \neq 1)$
+    \end{itemize}
+    \item Wie lauten die Regeln für partielle Integration und Substitution? Gib außerdem jeweils ein nichttriviales Beispiel an.
+
+    \textbf{Answer: TODO Check, Example}
+
+    \textit{Partial Integration}: Consider $f, g \in C^1([a, b], \KK)$ with $\KK = \RR$ or $\CC$. Then $\int f^\prime g = f g - \int f g^\prime$
+
+    \textit{Substitution}: Consider $f, g \in C([a, b], \KK)$ with $\KK = \RR$ or $\CC$. Then $\int_{g(a)}^{g(b)} f(t)\,dt = \int_a^b f(g(t)) g^\prime(t) \,dt$
+
+    \item Wie integriert man rationale Funktionen? Welche elementaren Integrale muss man dazu kennen?
+
+    \textbf{Answer:} Consider $p, q \in \KK\left[x\right]$ polynomials over $\KK$ with $\KK = \RR$ or $\CC$.
+    \item Was sagt das Riemann-Lebesgue Lemma? Skizziere einen Beweis für das Lemma.
+
+    \textbf{Answer:}
+    \item Wann dürfen Regelintegral und Grenzwert einer Funktionenfolge vertauscht werden?
+
+    \textbf{Answer:} Consider $f_n \in \mathcal{R}([a, b], V)$ with $V$ Banach space. If $f_n$ converge uniformly to some $f\in \mathcal{R}([a, b], V)$, then $\int_a^b f = \lim_{n \to \infty} \int_a^b f_n$
+
+    \item Wie ist das Riemann-Integral definiert?
+
+    \textbf{Answer:} Consider the interval $[a, b]$, a function $f\colon [a, b] \to \KK$ (with $\KK = \RR$ or $\CC$), and for any partition $P = \left\{a = p_0 < p_1 < \dots < p_n = b\right\}$ of $[a, b]$ let $L(f, P) = \sum_{i = 1}^n \inf_{x \in (p_{i-1}, p_i)}f(x) (p_i - p_{i-1})$ and $U(f, P) = \sum_{i = 1}^n \sup_{x \in (p_{i-1}, p_i)}f(x) (p_i - p_{i-1})$. Let furthermore $U^*(f) = \inf_{P} U(f, P)$ and $L^*(f) = \sup_{P} L(f, P)$. If $U^*(f) = L^*(f)$, then we say that $f$ is Riemann integrable, and $\int_a^b f = U^*(f) = L^*(f)$.
+
+    \item Was ist eine Lebesgue-Nullmenge?
+
+    \textbf{Answer:} $A \subset \RR$ is a null set, if $\forall \epsilon > 0$ there is an at most countable collection of open intervals $I = \left\{I_i\right\}_{i \in \NN}$ such that $A \in \cup_{I_i \in I} I_i$ and $\sum_{I_i \in I} \abs{I_i} < \epsilon$
+
+    \item Wie ist das Lebesgue-Integral definiert?
+
+
+    \textbf{Answer:}
+
+    \item Gib je ein Beispiel für eine Funktion an, die
+    \begin{enumerate}
+        \item Riemann integrierbar ist, aber ist keine Regelfunktion.
+        \item Lebesgue integrierbar ist, aber nicht Riemann integrierbar.
+    \end{enumerate}
+
+    \textbf{Answer:}
+    \begin{enumerate}
+        \item $f\colon [0, 1] \to \RR, x \mapsto \begin{cases}
+            \sin{\frac{1}{x}}&x \in (0, 1)\\
+            0&x=0
+        \end{cases}$
+        \item The Dirichlet function
+    \end{enumerate}
+
+    \item Was sagt der Satz von Beppo Levi über monotone Folgen Lebesgue-integrierbarer Funktionen?
+
+    \textbf{Answer:}
+    \item Was sagt der Satz zur majorisierten Konvergenz über die Vertauschbarkeit von Lebesgue-Integral und Grenzwert einer Funktionenfolge?
+
+    \textbf{Answer:}
+    \item Wie lautet die Hölder-Ungleichung für integrierbare Funktionen?
+
+    \textbf{Answer:}
+\end{enumerate}
+
+\end{document}
