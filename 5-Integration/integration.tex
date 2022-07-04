@@ -55,7 +55,7 @@
     \item Was ist eine Regelfunktion? Welche äquivalenten Charakteriesierungen gibt es (wenigstens 2)?
 
     \textbf{Answer:}
-    Let $V$ be a Banach space ($\CC$ or $\RR$ included). The set $\mathcal{R}([a, b], V)$ of regulated functions is the closure of the set $\mathcal{T}([a, b], V)$ of step functions with regards to the set $B([a, b], V)$ of bounded functions under the $\norm{.}_{\sup}$ norm. Equivalently: \begin{enumerate}
+    Let $V$ be a Banach space (including $\CC$ or $\RR$). The set $\mathcal{R}([a, b], V)$ of regulated functions is the closure of the set $\mathcal{T}([a, b], V)$ of step functions with regards to the set $B([a, b], V)$ of bounded functions under the $\norm{.}_{\sup}$ norm. Equivalently: \begin{enumerate}
     \item $f \in B([a, b], V)$ is a regulated function $\Leftrightarrow \forall c \in [a, b]\colon \exists \lim_{x\to c^+} f(x), \lim_{x\to c^-} f(x)$
     \item $f \in B([a, b], V)$ is a regulated function $\Leftrightarrow \exists (f_n) \in \mathcal{T}([a, b], V)$ uniformly convergent sequence of stepfunctions such that $\lim_{n \to \infty} f_n = f$ (in $B([a, b], V)$)
     \end{enumerate}
@@ -112,18 +112,29 @@
     \end{itemize}
     \item Wie lauten die Regeln für partielle Integration und Substitution? Gib außerdem jeweils ein nichttriviales Beispiel an.
 
-    \textbf{Answer: TODO Check, Example}
+    \textbf{Answer:}
 
-    \textit{Partial Integration}: Consider $f, g \in C^1([a, b], \KK)$ with $\KK = \RR$ or $\CC$. Then $\int f^\prime g = f g - \int f g^\prime$
+    \textit{Partial Integration}: Consider $f, g \in C^1([a, b], \KK)$ with $\KK = \RR$ or $\CC$. Then $\int_a^b f^\prime(t) g(t)\,dt = f(t) g(t)\bigm|_a^b - \int_a^b f(t) g^\prime(t)\,dt$
 
-    \textit{Substitution}: Consider $f, g \in C([a, b], \KK)$ with $\KK = \RR$ or $\CC$. Then $\int_{g(a)}^{g(b)} f(t)\,dt = \int_a^b f(g(t)) g^\prime(t) \,dt$
+    Example: $\int \log{x} \,dx = x \log{x} - \int x \frac{1}{x} \,dx = x \log{x} - x$
+
+    \textit{Substitution}: Consider $[a, b] \subset I_1, I_2$ intervals, $Z$ Banach space, and $f: I_2 \to Z$ continuous, and $g\colon I_1 \to I_2$ continuously differentiable. Then $\int_{g(a)}^{g(b)} f(t)\,dt = \int_a^b f(g(t)) g^\prime(t) \,dt$
+
+    Example: Consider $\int_a^b \tan{x} \,dx$ and let $f(x) = \frac{1}{x}, g(x) = \cos{x}$. Then $\int_a^b \tan{x} \,dx = \int_a^b \tan{x}\,dx = \int_a^b \frac{\sin{x}}{\cos{x}}\,dx = \int_a^b f(g(x)) g^\prime(x) \,dx = \int_{g(a)}^{f(a)} f(x) \,dx = \int_{\cos(a)}^{\cos(b)} \frac{1}{x}\,dx = \log{x}\bigm|_{\cos(a)}^{\cos(b)} = \log(\cos(b)) - \log(\cos(a))$
 
     \item Wie integriert man rationale Funktionen? Welche elementaren Integrale muss man dazu kennen?
 
-    \textbf{Answer:} Consider $p, q \in \KK\left[x\right]$ polynomials over $\KK$ with $\KK = \RR$ or $\CC$.
+    \textbf{Answer: TODO} Consider $p, q \in \KK\left[x\right]$ polynomials over $\KK$ with $\KK = \RR$ or $\CC$.
+
+    %11
     \item Was sagt das Riemann-Lebesgue Lemma? Skizziere einen Beweis für das Lemma.
 
-    \textbf{Answer:}
+    \textbf{Answer:} Let $f\colon [a, b] \to \RR$ continuously differentiable. Then $\lim_{\abs{\omega}\to\infty} \int_a^b f(t) \sin(\omega t) \,dt = 0$.
+    \textit{Proof:} $$\begin{aligned}
+        \abs{\int_a^b f(t) \sin{(\omega t)}\,dt} &= \abs{-\frac{\cos{(\omega t)}}{\omega}f(t)\Bigm|_a^b + \frac{1}{\omega} \int_a^b \cos{(\omega t)} f^\prime(t)\,dt} \\
+        &< \abs{\frac{1}{\omega}} \left(\abs{\cos{(\omega b)} f(b)} + \abs{\cos{(\omega a)} f(a)} + \int_a^b \abs{\cos{(\omega t)} f^\prime(t)}\,dt \right)\\
+        &\stackrel{\cos\text{ bounded}}{<} \abs{\frac{1}{\omega}} \left(\abs{\cos{(\omega b)} f(b)} + \abs{\cos{(\omega a)} f(a)} + \int_a^b \abs{f^\prime(t)}\,dt \right) \stackrel{\abs{\omega} \to \infty}{\to} 0
+    \end{aligned}$$
     \item Wann dürfen Regelintegral und Grenzwert einer Funktionenfolge vertauscht werden?
 
     \textbf{Answer:} Consider $f_n \in \mathcal{R}([a, b], V)$ with $V$ Banach space. If $f_n$ converge uniformly to some $f\in \mathcal{R}([a, b], V)$, then $\int_a^b f = \lim_{n \to \infty} \int_a^b f_n$
@@ -165,6 +176,110 @@
     \item Wie lautet die Hölder-Ungleichung für integrierbare Funktionen?
 
     \textbf{Answer:}
+
+    \item Wie lautet der Schrankensatz? Warum gilt der Mittelwertsatz (der Differentialrechnung) nicht in höheren Dimensionen?
+
+    \textbf{Answer:}
+
+    Let $Z$ Banach space and $f \in C^1([a, b], Z)$. Then $\exists \zeta \in (a, b)\colon \norm{f(b) - f(a)} \le \norm{f^\prime(\zeta)}(b-a)$.
+    The mean value theorem of $f(b) - f(a) = f^\prime(\zeta)(b-a)$ does not hold in general. Consider $Z = \RR^3$ and $f(t) := \left(\begin{array}[]{c}
+        \cos{t}\\\sin{t}\\\varepsilon t
+    \end{array}\right)$ with some $\varepsilon > 0$. Then $f^\prime(t) =\left(\begin{array}[]{c}
+        -\sin{t}\\\cos{t}\\\varepsilon
+    \end{array}\right)$. Now if we consider the $[0, 2\pi]$ interval, then $f(2\pi k) - f(0) = 2\pi \left(\begin{array}[]{c}
+        0\\0\\\varepsilon
+    \end{array}\right) \neq 2\pi f^\prime(\zeta)~(\forall \zeta \in [0, 2\pi])$
+
+    \item Wie lautet die Integraldarstellung von Lagrange für das Restglied der Taylorentwicklung?
+
+    \textbf{Answer:} Let $I = (a, b) \subset \RR$ open interval, $n \in \NN_0, Z$ Banach space and $f \in C^{n+1}(I, Z)$. If $x_0 \in (a, b)$, then $\forall x \in (a, b)\colon f(x) = \sum_{k=0}^n \frac{1}{k!}f^{(k)}(x_0) (x - x_0)^k + \frac{1}{n!} \int_{x_0}^x (x-t)^n f^{(n+1)}(t)\,dt$
+    \item Wie lautet die Trapezregel?
+
+    \textbf{Answer:} Consider $f \in C^2([0, 1], \mathbb{R})$. Then $\exists \zeta \in (0, 1)\colon \int_0^1 f = \frac{1}{2}(f(0) + f(1))- \frac{1}{12}f^{\prime\prime}(\zeta)$
+
+    \item Wie lassen sich Integrale dank der Trapezregel approximieren?
+
+    \textbf{Answer:} Let $f \in C^2([a, b], \RR), C := \max_{x\in[a, b]}\abs{f^{\prime\prime}}, n \in \NN, h := \frac{b-a}{n}$. Then it holds that $$\abs{\int_a^b f - \left(\frac{1}{2}f(a_0) + \sum_{k=1}^{n-1}f(a_k) + \frac{1}{2}f(a_n)\right)h}\le \frac{1}{12}C(b-a)h^2$$
+    \item Was sind uneigentliche Integrale?
+
+    \textbf{Answer:} Let $-\infty \le a < b \le +\infty$ and $f\colon(a, b) \to \RR$ integrable over every finite $[\alpha, \beta] \subset (a, b)$ interval. Consider furthermore $(a_n), (b_n) \in \RR$ respectively monotone decreasing and increasing sequences such that $a < a_n$ and $b_n < b~(\forall n \in \NN)$ and suppose furthermore that $\lim_{n\to\infty}a_n = a$ and $\lim_{n\to\infty}b_n = b$. If for every such sequence the limit $\lim_{n\to\infty}\int_{a_n}^{b_n} f$ exists and has the same value, then let $\int_a^b f = \lim_{n\to\infty}\int_{a_n}^{b_n} f$ and call it the improper integral of $f$ over $(a, b)$.
+
+    \item Für welche reellen Exponenten $\alpha$ konvergiert das uneigentliche Integral $\int_0^1t^\alpha\,dt$, für welche das uneigentliche Integral $\int_1^\infty t^\alpha \,dt$?
+
+    \textbf{Answer:}
+    \begin{itemize}
+        \item $\int_0^1t^\alpha\,dt = \frac{1}{\alpha+1}~(-1 < \alpha \in \RR)$
+        \item $\int_1^\infty t^\alpha \,dt = -\frac{1}{q+1}~(-1 > q \in \RR)$
+    \end{itemize}
+
+    \item Was bedeutet absolute Konvergenz uneigentlicher Integrale? Gib Beispiele
+    \begin{enumerate}
+        \item absolut konvergenter;
+        \item konvergenter, aber nicht absolut konvergenter;
+        \item nicht konvergenter
+    \end{enumerate} uneigentlicher Integrale.
+
+    \textbf{Answer:} Consider the improper integral $\int_a^b f$. If $\int_a^b\abs{f}$ converges, then so is $\int_a^b f$, and we call the improper integral absolulte convergent.
+
+    \begin{enumerate}
+        \item absolute convergent: $\int_0^1 \sin{\frac{1}{t}}\,dt$
+        \item convergent, but not absolutely: $\int_0^{+\infty}\frac{1}{t}\sin{t}\,dt$
+        \item not convergent: $\int_1^{+\infty} \frac{1}{t}\,dt$
+    \end{enumerate}
+
+
+    \item Sei $f: [0, \infty) \to (0, \infty)$ monoton fallend. Wie hängen $\sum_{k=1}^\infty f(k)$ und $\int_1^\infty f(t)\,dt$ zusammen?
+
+    \textbf{Answer:} $\sum_{k=1}^\infty f(k)$ converges if and only if $\int_1^\infty f(t)\,dt$ converges. Furthermore  $$\sum_{k=2}^\infty f(k) \le \int_1^\infty f(t)\,dt \le \sum_{k=1}^\infty f(k)$$
+    \item Welche der folgenden uneigentlichen Riemann-Integrale existieren? Welche konvergieren absolut?
+    \begin{itemize}
+        \item $\int_1^\infty \cos{t}\,dt$
+        \item $\int_1^\infty \cos{t^2}\,dt$
+        \item $\int_1^\infty \frac{\cos{t}}{t} \,dt$
+        \item $\int_1^\infty \frac{\cos^2{t}}{t} \,dt$
+        \item $\int_1^\infty \frac{\cos{t}}{t^2} \,dt$
+        \item $\int_1^\infty \frac{\cos^2{t}}{t^2} \,dt$
+    \end{itemize}
+
+    \textbf{Answer: TODO}
+    \item Warum konvergiert die Reihe der Riemannsche $\zeta$-Funktion $\zeta(s) := \sum_{k=1}^\infty \frac{1}{k^s}$ für $\Re{s} > 1$?
+
+    \textbf{Answer:} Let $q = \Re{s}$. Then $\sum_{k=1}^\infty \abs{\frac{1}{k^s}} = \sum_{k=1}^\infty \frac{1}{k^q}$ converges iif $\int_1^\infty \frac{1}{t^q}\,dt$ converges. But this improper integral exists exactly when $1 < q \in \RR$. Thus if $\Re{s} > 1$ then $\sum_{k=1}^\infty \frac{1}{k^s}$ is absolutely convergent, and thus also converges conditionally.
+
+    \item Wie ist die Gamma-Funktion definiert, und welche Funktionalgleichung erfüllt sie?
+
+    \textbf{Answer:} Let $\Gamma(\alpha) := \int_0^\infty t^{\alpha -1} e^{-t}\,dt~(\forall \alpha \in \CC, \Re\alpha > 0)$. Then $\Gamma(\alpha + 1) = \alpha \Gamma(\alpha)$ and since $\Gamma(1) = 1 = 0!$ it holds follows from a simple induction that $\Gamma(n+1) = n!~(\forall n \in \NN_0)$.
+    \item Wie lautet die Stirling-Formel zur Approximation von $n!$?
+
+    \textbf{Answer:}
+    \item Wie ist die Faltung $\varphi \star f$ von zwei Funktionen $\varphi, f: \RR \to \RR$ definiert?
+
+    \textbf{Answer:}
+    \item Was ist eine Dirac-Folge? Gib eine Definition und wenigstens ein Beispiel an.
+
+    \textbf{Answer:}
+    \item Sei $\varphi_n: \RR \to \RR$ eine Dirac-Folge und sei $f: \RR \to \RR$ stetig mit $f(x) = 0$ für $\abs{x} \ge 1$. Bestimme $\lim_{n\to\infty} (\varphi_n * f)$  für jedes $x \in \RR$.
+
+    \textbf{Answer:}
+    \item Wie lautet den Approximationssatz von Weierstrass?
+
+    \textbf{Answer:}
+    \item Welche Funktionen können durch Polynome gleichmäßig approximiert werden? Mit welcher Grundidee lassen sich approximierende Polynome zu einer gegebenen Funktion $f$ konstruieren?
+
+    \textbf{Answer:}
+    \item Was ist ein Hilbertraum? Gib zwei unendlich-dimensionale Beispiele.
+
+    \textbf{Answer:}
+    \item Was sind die Fourierkoeffizienten einer $2\pi$-periodischen Funktion $f: \RR \to \CC$ ? Wie lautet die Fourier-Reihe zu $f$ ?
+
+    \textbf{Answer:}
+    \item Beschreibe wie $2\pi$-periodische $f \in L^2$, die Fourier-Reihe $\hat{f}(t) := \sum_{k\in\ZZ}{c_k e^{ikt}}$, und Fourier-Koeffizienten $(c_k)_{k \in \ZZ} \in \ell^2$ miteinander zusammenhängen.
+
+    \textbf{Answer:}
+    \item Wie hängen Fourier-Reihen mit Obertönen in der Musik zusammen?
+
+    \textbf{Answer:}
+
 \end{enumerate}
 
 \end{document}
