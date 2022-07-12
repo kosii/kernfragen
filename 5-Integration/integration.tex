@@ -131,12 +131,23 @@
         \item Simplification: $\exists! r,h \in \RR\!\left[x\right]\colon p = h q + r$ with $\deg{r} < \deg{p}$. Thus $\int_a^b \frac{p}{q} = \int_a^b h  + \int_a^b \frac{r}{q}$ where we already know how to integrate $\int_a^b h$
         \item Factorization: $q$ can be written as a unique product of linear and quadratic polynomials: \\$q(t) = a\prod_j(t-a_j)^{m_j}\prod_k(t^2 + b_k t + c_k)^{n_k}~(a \neq 0, a_j, b_k, c_k \in \RR, m_j, n_k \in \NN)$
         \item Partial fractional decomposition: $\frac{r(t)}{q(t)}$ can always be written in the form of the following sum: $$\sum_j \sum_{m^\prime = 1}^{m_j} \frac{\alpha_{j,m^\prime}}{(t-a_j)^{m^\prime}} + \sum_k \sum_{n^\prime = 1}^{n_k} \frac{ t \beta_{k,n^\prime} + \gamma_{k,n^\prime}}{(t^2 + b_k t + c_k)^{n^\prime}} $$ which we can integrate per term
-        \item Integration of the previous terms:
+        \item Integral of the previous terms:
         \begin{itemize}
             \item $\int \frac{\alpha}{t-a} \,dt = \alpha \log{(t-a)}$
             \item $m\ge 2: \int \frac{\alpha}{(t-a)^m} \,dt = -\frac{\alpha}{m-1} \frac{1}{(t-a)^{m-1}}$
+            \item Complete the square in the denominator: $$\begin{aligned}
+            \int \frac{ t \beta + \gamma}{(t^2 + b t + c)^{n}} \,dt = \int \frac{ t \beta + \gamma}{((t+\frac{1}{2}b)^2 + c - \frac{b^2}{4})^{n}}\,dt \stackrel{k =c - \frac{b^2}{4}}{=} \int \frac{1}{k^n} \frac{ t \beta + \gamma}{((\frac{1}{\sqrt{k}}(t+\frac{1}{2}b))^2 + 1)^{n}} \,dt
+            \end{aligned}$$
+            By substituting $u = \frac{1}{\sqrt{k}}(t+\frac{1}{2}b)$ in the integral we'll get the linear combination of the following integrals:
+            \begin{itemize}
+                \item $\int \frac{1}{u^2 + 1}\,du = \arctan{u}$
+                \item $\int \frac{1}{(u^2 + 1)^n}\,du = \int \frac{1}{(u^2 + 1)^{n-1}} \,du - \int \frac{u^2}{(u^2 + 1)^n}\,du = \int \frac{1}{(u^2 + 1)^{n-1}} \,du - (-\frac{1}{2n-2}\frac{u}{(u^2 +1)^{n-1}} + \frac{1}{2n -2}\int\frac{1}{(u^2 +1)^{n-1}}\,du) = \frac{1}{2n-2}\frac{u}{(u^2 +1)^{n-1}} + \frac{2n-3}{2n-2}\int\frac{1}{(u^2 +1)^{n-1}}\,du$ (recursion for $n > 1$)
+                \item $\int \frac{u}{(u^2 + 1)^n}\,du \stackrel{w = u^2}{=} \int \frac{dw}{2(w + 1)^n}$
+            \end{itemize}
         \end{itemize}
     \end{enumerate}
+
+    Consider now a rational function of $\sin{t}$ and $\cos{t}$. With the substitution $\tau = \tan{\frac{t}{2}}$ we get $\sin{t} = \frac{2\tau}{1+ \tau^2}, \cos{t} = \frac{1-\tau^2}{1+\tau^2}$ and $d\tau = \frac{1}{2}(1+\tau^2)\,dt$, that is: a rational function in $\tau$, integrable as seen above.
 
     %11
     \item Was sagt das Riemann-Lebesgue Lemma? Skizziere einen Beweis für das Lemma.
