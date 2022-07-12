@@ -1,0 +1,189 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{bbm}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{}
+
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sumn}[4]{\sum_{#1=#2}^{#3}{#4}}
+\newcommand{\RR}[0]{\mathbb{R}}
+\newcommand{\CC}[0]{\mathbb{C}}
+\newcommand{\QQ}[0]{\mathbb{Q}}
+\newcommand{\ZZ}[0]{\mathbb{Z}}
+\newcommand{\NN}[0]{\mathbb{N}}
+\newcommand{\KK}[0]{\mathbb{K}}
+\newcommand{\smallo}[0]{{\scriptstyle \mathcal{O}}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\newcommand{\slim}[2]{\lim_{#1\to\infty}{#2}}
+\renewcommand{\Re}[0]{\operatorname{Re}}
+\renewcommand{\Im}[0]{\operatorname{Im}}
+\DeclareMathOperator{\Leb}{Leb}
+
+\setlength{\topmargin}{-.5in} \setlength{\textheight}{9.25in}
+\setlength{\oddsidemargin}{0in} \setlength{\textwidth}{6.8in}
+
+
+\begin{document}
+
+\noindent{\bf Kernfragen - Metrische Räume\hfill Balázs Kossovics \hfill 2022 SS - Analysis II.}
+
+
+\medskip\hrule
+\begin{enumerate}
+    %1
+    \item Was ist eine Metrik? Gib drei verschiedene Beispiele!
+
+    \textbf{Answer:} Consider $E$ arbitrary set. The function $d: E \times E \to \RR$ is a metric, if satisfies the following conditions:
+    \begin{itemize}
+        \item $\forall x, y \in E\colon d(x, y) \ge 0$ and $d(x, y) = 0 \Leftrightarrow x = y$
+        \item $\forall x, y \in E\colon d(x, y) = d(y, x)$
+        \item $\forall x, y, z \in E\colon d(x, z) \le d(x, y) + d(y, z)$
+    \end{itemize}
+    \item Wie sind offene Teilmengen eines metrischen Raumes definiert, wie abgeschlossene Teilmengen?
+
+    \textbf{Answer:} Consider $(E, d)$ metric space, and let $x \in E$. $\forall \varepsilon > 0$ let's define $B_\varepsilon(x) := \left\{ y \in E \bigm | d(x, y) < \varepsilon\right\}$, the open ball of radius $\varepsilon$ centered around $x$. The $A \subset E$ set is open, if $\forall x \in A\colon \exists \varepsilon > 0\colon B_\varepsilon(x) \subset A$. The $B \subset E$ set is closed, if its complement $E \setminus B$ is open.
+    \item Sind $\left\{\begin{tabular}{c}
+        endliche\\
+        abzählbare\\
+        beliebige\\
+    \end{tabular}\right\}$ $\left\{\begin{tabular}{c}
+    Durchschnitte\\
+    Vereinigungen
+    \end{tabular}\right\}$ $\left\{\begin{tabular}{c}
+        offener\\
+        abgeschlossener
+    \end{tabular}\right\}$ Mengen wieder offen bzw. abgeschlossen?
+
+    \textbf{Answer:} Arbitrary union of open sets is open. Finite intersection of open sets is open. Arbitrary intersection of closed sets is closed. Finite union of closed sets is closed.
+
+    \item Wie sind Abschluss, Inneres und Rand einer Teilmenge eines metrischen Raumes definiert?
+
+    \textbf{Answer:} Consider $(E, d)$ metric space, and let $A \subset E$.
+
+    The closure of $A$ is $\overline{A} = \left\{x \in E \bigm| \forall \varepsilon > 0 \colon B_\varepsilon(x) \cap A \neq \emptyset \right\}$
+
+    The inner of $A$ is $\mathring{A} = \left\{x \in A \bigm| \exists \varepsilon > 0\colon B_\varepsilon(x) \subset A \right\}$
+
+    The boundary of $A$ is $\partial A = \overline{A} \setminus \mathring{A}$
+    \item Was sind Abschluss, Inneres und Rand folgender Teilmengen der reellen Zahlen (mit deren Standardmetrik)?
+
+
+    \hspace*{\fill}
+    $\ZZ \hfill \QQ \hfill \cup_{k\in\NN}\left(\frac{1}{k+1}, \frac{1}{k}\right)$
+    \hspace*{\fill}
+
+    \textbf{Answer:}
+    \item Wann ist eine Teilmenge eines metrischen Raumes dicht?
+
+    \textbf{Answer:}
+    \item Wann ist ein metrischer Raum zusammenhängend?
+
+    \textbf{Answer:}
+    \item Wie sind Zusammenhangskomponenten eines metrischen Raumes definiert? Wann heißt ein metrischer Raum total unzusammenhängend?
+
+    \textbf{Answer:}
+    \item Sind $\left\{\begin{tabular}{c}
+    \text{endliche}\\
+    \text{abzählbare}\\
+    \text{beliebige}
+    \end{tabular}\right\}$ $\left\{\begin{tabular}{c}
+    \text{Durchschnitte}\\
+    \text{Vereinigungen}
+    \end{tabular}\right\}$ zusammenhängender Mengen wieder zusammenhängend? Gib gegebenfalls ein Gegenbeispiel!
+
+    \textbf{Answer:}
+    \item Sind $\left\{\begin{tabular}{c}
+        \text{endliche}\\
+        \text{abzählbare}\\
+        \text{beliebige}
+    \end{tabular}\right\}$ $\left\{\begin{tabular}{c}
+        \text{Durchschnitte}\\
+        \text{Vereinigungen}
+    \end{tabular}\right\}$ kompakter Mengen wieder kompakt? Gib gegebenfalls ein Gegenbeispiel!
+
+    \textbf{Answer:}
+    \item Warum ist in einem metrischen Raum jede konvergente Folge eine Cauchy-Folge?(Beweise!)
+
+    \textbf{Answer:}
+    \item Wann heißt ein metrischer Raum vollständig?
+
+    \textbf{Answer:}
+    \item Was sind generische Mengen?
+
+    \textbf{Answer:}
+    \item Wie lautet der Satz von Baire?
+
+    \textbf{Answer:}
+    \item Wann heißt ein metrischer Raum perfekt?
+
+    \textbf{Answer:}
+    \item Zeige, dass jeder nichtleere, vollständige, perfekte metrische Raum überabzählbar ist.
+
+    \textbf{Answer:}
+    \item Was versteht man unter einer Cantor-Menge? Gib ein Beispiel an!
+
+    \textbf{Answer:}
+    \item Wann heißt eine Folge in einem metrischen Raum konvergent? Wann heißt sie Cauchy-Folge?
+
+    \textbf{Answer:}
+    \item Wann heißt eine Abbildung zwischen metrischen Räumen stetig? Gib vier verschiedene (aber natürlich äquivalente) Definitionen!
+
+    \textbf{Answer:}
+    \item Sind unter einer stetigen Abbildung $f: E \to E^\prime$ zwischen metrischen Räumen die $\left\{\begin{tabular}{c}
+        \text{Bilder}\\
+        \text{Urbilder}
+    \end{tabular}\right\}$ $\left\{\begin{tabular}{c}
+    \text{offener}\\
+    \text{abgeschlossener}\\
+    \text{vollstängiger}\\
+    \text{zusammenhängender}\\
+    \text{kompakter}
+    \end{tabular}\right\}$ Teilmengen wieder $\left\{\begin{tabular}{c}
+        \text{offener}\\
+        \text{abgeschlossener}\\
+        \text{vollstängiger}\\
+        \text{zusammenhängender}\\
+        \text{kompakter}
+        \end{tabular}\right\}$?
+    Gib gegebenfalls ein Gegenbeispiel!
+
+    \textbf{Answer:}
+    \item Wann heißen zwei Metriken äquivalent?
+
+    \textbf{Answer:}
+    \item Wann heißen zwei Normen äquivalent?
+
+    \textbf{Answer:}
+    \item Sei $E$ ein metrischer Raum. Formuliere und beweise den Zwischenwertsatz für stetige Abbildungen $f\colon E \to \RR$
+
+    \textbf{Answer:}
+    \item Gib drei verschiedene (aber natürlich äquivalente) Definitionen von kompakten metrischen Räumen! Gib außerdem je ein Beispiel eines kompakten und eines nicht kompakten Raumes!
+
+    \textbf{Answer:}
+    \item Sei E ein metrischer Raum. Wann heißt eine Teilmenge $A \subset E$ relativ kompakt?
+
+    \textbf{Answer:}
+    \item Wie lassen sich die kompakten Teilmengen des $\RR^n$
+    charakterisieren?
+
+    \textbf{Answer:}
+    \item Wie lautet der Satz von Arzela-Ascoli?
+
+    \textbf{Answer:}
+    \item Wann sagt man, dass eine Abbildung Lipschitz-stetig ist? Wann ist eine Lipschitzstetige Abbildung eine Kontraktion?
+
+    \textbf{Answer:}
+    \item Wie lautet der Banachsche Fixpunktsatz?
+
+    \textbf{Answer:}
+    \item Sei $E$ ein metrischer Raum und $f \colon E \to E$ stetig. Wann sagt man, dass $\emptyset \neq A \subset E$ selbstähnlich ist? Was ist ein \textit{iterated function system}?
+
+    \textbf{Answer:}
+\end{enumerate}
+
+\end{document}

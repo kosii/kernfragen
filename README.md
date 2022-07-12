@@ -8,7 +8,8 @@ Feel free to make a [pull request](https://github.com/kosii/kernfragen/pulls) fo
 - [differentiation.pdf](4-Differentiation/differentiation.pdf) (done)
 
 # Analysis II.
-- [integration.pdf](5-Integration/integration.pdf) (WIP)
+- [integration.pdf](5-Integration/integration.pdf) (done, except 40)
+- [metric_spaces.pdf](6-Metrische_Raume/metric_spaces.pdf) (WIP)
 # Errata
 - Stetigkeit 3: the answer was pretty bad (and contained error)
 - Stetigkeit 8: my answer was bad (not completely bad, but I assumed unnecessarily strong conditions)
