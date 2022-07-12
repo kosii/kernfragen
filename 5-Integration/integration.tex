@@ -22,6 +22,7 @@
 \newcommand{\slim}[2]{\lim_{#1\to\infty}{#2}}
 \renewcommand{\Re}[0]{\operatorname{Re}}
 \renewcommand{\Im}[0]{\operatorname{Im}}
+\DeclareMathOperator{\Leb}{Leb}
 
 \setlength{\topmargin}{-.5in} \setlength{\textheight}{9.25in}
 \setlength{\oddsidemargin}{0in} \setlength{\textwidth}{6.8in}
@@ -124,7 +125,18 @@
 
     \item Wie integriert man rationale Funktionen? Welche elementaren Integrale muss man dazu kennen?
 
-    \textbf{Answer: TODO} Consider $p, q \in \KK\left[x\right]$ polynomials over $\KK$ with $\KK = \RR$ or $\CC$.
+    \textbf{Answer: TODO} Consider $p, q \in \RR\!\left[x\right]$ polynomials and the rational function $\frac{p(x)}{q(x)}$
+
+    \begin{enumerate}
+        \item Simplification: $\exists! r,h \in \RR\!\left[x\right]\colon p = h q + r$ with $\deg{r} < \deg{p}$. Thus $\int_a^b \frac{p}{q} = \int_a^b h  + \int_a^b \frac{r}{q}$ where we already know how to integrate $\int_a^b h$
+        \item Factorization: $q$ can be written as a unique product of linear and quadratic polynomials: \\$q(t) = a\prod_j(t-a_j)^{m_j}\prod_k(t^2 + b_k t + c_k)^{n_k}~(a \neq 0, a_j, b_k, c_k \in \RR, m_j, n_k \in \NN)$
+        \item Partial fractional decomposition: $\frac{r(t)}{q(t)}$ can always be written in the form of the following sum: $$\sum_j \sum_{m^\prime = 1}^{m_j} \frac{\alpha_{j,m^\prime}}{(t-a_j)^{m^\prime}} + \sum_k \sum_{n^\prime = 1}^{n_k} \frac{ t \beta_{k,n^\prime} + \gamma_{k,n^\prime}}{(t^2 + b_k t + c_k)^{n^\prime}} $$ which we can integrate per term
+        \item Integration of the previous terms:
+        \begin{itemize}
+            \item $\int \frac{\alpha}{t-a} \,dt = \alpha \log{(t-a)}$
+            \item $m\ge 2: \int \frac{\alpha}{(t-a)^m} \,dt = -\frac{\alpha}{m-1} \frac{1}{(t-a)^{m-1}}$
+        \end{itemize}
+    \end{enumerate}
 
     %11
     \item Was sagt das Riemann-Lebesgue Lemma? Skizziere einen Beweis für das Lemma.
@@ -149,8 +161,13 @@
 
     \item Wie ist das Lebesgue-Integral definiert?
 
+    \textbf{Answer:} Consider $$H^u = \left\{\varphi \bigm| \exists (f_n) \in \mathcal{T}([a, b], \RR \cup \left\{\pm\infty\right\})\colon f_n(x) \le f_{n+1}(x)~(\forall n \in \NN) \land \lim_{n\to\infty}f_n(x) = \varphi(x)~(\text{a.e}) \right\} $$ and $$H^o = \left\{\varphi \bigm| \exists (f_n) \in \mathcal{T}([a, b], \RR \cup \left\{\pm\infty\right\})\colon f_n(x) \ge f_{n+1}(x)~(\forall n \in \NN) \land \lim_{n\to\infty}f_n(x) = \varphi(x)~(\text{a.e}) \right\} $$
 
-    \textbf{Answer:}
+    $\forall \varphi \in H^u$ consider the $(f_n) \in \mathcal{T}([a, b], \RR \cup \left\{\pm\infty\right\})$ sequence that converges from below to $\varphi$ almost everywhere. Let $\int_a^b \varphi := \lim_{n\to\infty}\int_a^b f_n \in \RR \cup \left\{\pm\infty\right\}$ the so called $H^u$ integral of $\varphi$. The definition of $H^o$ integral of $\varphi$ is analogue.
+
+    Define furthermore the upper Lebesgue-integral as $L^*\!\!\!\int_a^b f := \inf\left\{\int_a^b \varphi \bigm| \varphi \in H^u\colon \varphi \ge f\right\}$ and the lower Lebesgue-integral as $L_*\!\!\!\int_a^b f := \inf\left\{\int_a^b \varphi \bigm| \varphi \in H^u\colon \varphi \ge f\right\}$
+
+    When $L^*\!\!\!\int_a^b f = L_*\!\!\!\int_a^b f$ and they are finite, then $f$ is Lebesgue-integrable and $\int_a^b f = L^*\!\!\!\int_a^b f = L_*\!\!\!\int_a^b f \in \RR$. Let $\Leb_{[a, b]} := \left\{f\colon[a, b]\to \RR \bigm| f\text{ Lebesgue-integrable}\right\}$
 
     \item Gib je ein Beispiel für eine Funktion an, die
     \begin{enumerate}
@@ -169,13 +186,17 @@
 
     \item Was sagt der Satz von Beppo Levi über monotone Folgen Lebesgue-integrierbarer Funktionen?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Suppose that $(f_n) \in \Leb_{[a, b]}$, $f_n(x)$ non-decreasing and converges to $f(x)$ a.e. and the $\left\{\int_a^b f_n~(n\in\NN)\right\}$ set is bounded. Then $f \in \Leb_{[a, b]}$ and $\int_a^b \lim_{n \to \infty} f_n = \int_a^b f = \lim_{n\to\infty}\int_a^b f_n$.
+
+    The analogue holds for a sequence $(f_n) \in \Leb_{[a, b]}$ that converges pointwise non-increasingly to $f$ a.e.
+
     \item Was sagt der Satz zur majorisierten Konvergenz über die Vertauschbarkeit von Lebesgue-Integral und Grenzwert einer Funktionenfolge?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Let $g \in \Leb$ and $(f_n): \NN \to \Leb$ such that $\lim_{n\to\infty}f_n(x) = f(x)$ for almost all $x$, and $\abs{f_n} \le g~(\forall n \in \NN)$ almost everywhere. Then $\lim_{n \to \infty} \int_a^b f_n$ exists, $f \in \Leb$ and $$ \int_a^b \lim_{n\to\infty}f_n = \int_a^b f = \lim_{n \to \infty} \int_a^b f_n$$
+
     \item Wie lautet die Hölder-Ungleichung für integrierbare Funktionen?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Let $1 < p, q < \infty$ with  $\frac{1}{q} + \frac{1}{p} = 1$ and $f \in \mathcal{L}^p, g \in \mathcal{L}^q$. Then $\int_a^b f g \le \norm{f}_p \norm{g}_q$
 
     \item Wie lautet der Schrankensatz? Warum gilt der Mittelwertsatz (der Differentialrechnung) nicht in höheren Dimensionen?
 
@@ -209,7 +230,7 @@
     \textbf{Answer:}
     \begin{itemize}
         \item $\int_0^1t^\alpha\,dt = \frac{1}{\alpha+1}~(-1 < \alpha \in \RR)$
-        \item $\int_1^\infty t^\alpha \,dt = -\frac{1}{q+1}~(-1 > q \in \RR)$
+        \item $\int_1^\infty t^\alpha \,dt = -\frac{1}{\alpha+1}~(-1 > \alpha \in \RR)$
     \end{itemize}
 
     \item Was bedeutet absolute Konvergenz uneigentlicher Integrale? Gib Beispiele
@@ -232,16 +253,38 @@
 
     \textbf{Answer:} $\sum_{k=1}^\infty f(k)$ converges if and only if $\int_1^\infty f(t)\,dt$ converges. Furthermore  $$\sum_{k=2}^\infty f(k) \le \int_1^\infty f(t)\,dt \le \sum_{k=1}^\infty f(k)$$
     \item Welche der folgenden uneigentlichen Riemann-Integrale existieren? Welche konvergieren absolut?
-    \begin{itemize}
+    \begin{enumerate}
         \item $\int_1^\infty \cos{t}\,dt$
-        \item $\int_1^\infty \cos{t^2}\,dt$
+        \item $\int_1^\infty \cos{(t^2)}\,dt$
         \item $\int_1^\infty \frac{\cos{t}}{t} \,dt$
-        \item $\int_1^\infty \frac{\cos^2{t}}{t} \,dt$
+        \item $\int_1^\infty \frac{\cos{(t^2)}}{t} \,dt$
         \item $\int_1^\infty \frac{\cos{t}}{t^2} \,dt$
-        \item $\int_1^\infty \frac{\cos^2{t}}{t^2} \,dt$
-    \end{itemize}
+        \item $\int_1^\infty \frac{\cos{(t^2)}}{t^2} \,dt$
+    \end{enumerate}
 
-    \textbf{Answer: TODO}
+    \textbf{Answer:} $\textit{Proposition}$: $\int_1^\infty \frac{\cos{t}}{t^\alpha}\,dt \begin{cases}
+        \text{diverges}&\alpha = 0\\
+        \text{converges, but not absolutely}&\alpha > 0\\
+        \text{converges absolutely}&\alpha > 1
+    \end{cases}$
+
+    $\textit{Proof}$:
+    \begin{itemize}
+        \item Consider first $\alpha = 0$. On one hand $\limsup_{x\to\infty}\int_1^x \frac{\cos{t}}{t^0}\,dt = \limsup_{x\to\infty}\int_1^x \cos{t}\,dt = \int_1^{\pi/2} \cos{t}\,dt + \limsup_{x \to \infty}\int_{\pi/2}^x \cos{t}\,dt = \int_1^{\pi/2} \cos{t}\,dt + 1$. On the other hand $\liminf_{x\to\infty}\int_1^x \frac{\cos{t}}{t^0}\,dt = \int_1^{\pi/2} \cos{t}\,dt + \liminf_{x \to \infty}\int_{\pi/2}^x \cos{t}\,dt = \int_1^{\pi/2} \cos{t}\,dt - 1$, thus $\int_1^\infty \cos{t}\,dt$ cannot exist.
+        \item Let now $\alpha > 1$ : $\int_1^\infty\abs{\frac{\cos{t}}{t^\alpha}}\,dt \le \int_1^\infty\abs{\frac{1}{t^\alpha}}\,dt = \int_1^\infty\frac{1}{t^\alpha}\,dt = \frac{1}{\alpha - 1}$, thus absolute convergent.
+        \item Let now $\alpha \in (0, 1)$: $\int_1^{n\pi}\abs{\frac{\cos{t}}{t^\alpha}}\,dt = \int_1^{\pi}\abs{\frac{\cos{t}}{t^\alpha}}\,dt + \int_{\pi}^{n\pi}\abs{\frac{\cos{t}}{t^\alpha}}\,dt \ge \sum_{k=1}^{n-1} \int_{k\pi}^{(k+1)\pi}\abs{\frac{\cos{t}}{t^\alpha}}\,dt \ge \sum_{k=1}^{n-1} \frac{1}{((k+1)\pi)^\alpha} \int_{k\pi}^{(k+1)\pi}\abs{\cos{t}}\,dt = \sum_{k=1}^{n-1} \frac{2}{((k+1)\pi)^\alpha} > \frac{2}{\pi^\alpha} \sum_{k=1}^{n-1} \frac{1}{(k+1)\alpha} > \frac{2}{\pi^\alpha} \sum_{k=1}^{n-1} \frac{1}{(k+1)} \stackrel{n\to \infty}{\to} \infty$, thus it's \textbf{not} absolutely convergent. On the other hand $\int_1^x \frac{\cos{t}}{t^\alpha}\,dt = -\frac{\sin{t}}{t^\alpha}\bigm|_1^x + \int_1^x \frac{\sin{t}}{t^{\alpha +1 }}\,dt$ converges, since $\lim_{x\to\infty} \frac{\sin{t}}{t^\alpha}\bigm|_1^x = \sin{1}$ and $\lim_{x\to\infty}\int_1^x \frac{\sin{t}}{t^{\alpha +1 }}\,dt$ converges, since $\alpha +1 > 1$.
+    \end{itemize}
+    \textit{Note}: The same result holds for $\int_1^\infty \frac{\sin{t}}{t^\alpha} \,dt$ regarding the parameter $\alpha$ and the proof is identical.$\blacksquare$
+
+    Using the previous we get:
+    \begin{enumerate}
+        \item Diverges
+        \item $\lim_{x\to\infty} \int_1^x \cos{(t^2)}\,dt \stackrel{u = t^2}{=} \lim_{x\to\infty} \int_1^{x^2}\frac{1}{2}\frac{\cos{u} }{u^{1/2}} \,du$ converges, but not absolutely
+        \item Converges, but not absolutely
+        \item $\lim_{x\to\infty} \int_1^x \frac{\cos{(t^2)}}{t} \stackrel{u = t^2}{=}\lim_{x\to\infty}  \frac{1}{2}\int_1^{x^2} \frac{\cos{u}}{u}\,du$ converges, but not absolutely
+        \item Converges absolutely
+        \item $\lim_{x\to\infty} \int_1^x \frac{\cos{(t^2)}}{t^2} \stackrel{u = t^2}{=}\lim_{x\to\infty}  \frac{1}{2}\int_1^{x^2} \frac{\cos{u}}{u^{3/2}}\,du$ converges absolutely
+    \end{enumerate}
     \item Warum konvergiert die Reihe der Riemannsche $\zeta$-Funktion $\zeta(s) := \sum_{k=1}^\infty \frac{1}{k^s}$ für $\Re{s} > 1$?
 
     \textbf{Answer:} Let $q = \Re{s}$. Then $\sum_{k=1}^\infty \abs{\frac{1}{k^s}} = \sum_{k=1}^\infty \frac{1}{k^q}$ converges iif $\int_1^\infty \frac{1}{t^q}\,dt$ converges. But this improper integral exists exactly when $1 < q \in \RR$. Thus if $\Re{s} > 1$ then $\sum_{k=1}^\infty \frac{1}{k^s}$ is absolutely convergent, and thus also converges conditionally.
@@ -249,36 +292,67 @@
     \item Wie ist die Gamma-Funktion definiert, und welche Funktionalgleichung erfüllt sie?
 
     \textbf{Answer:} Let $\Gamma(\alpha) := \int_0^\infty t^{\alpha -1} e^{-t}\,dt~(\forall \alpha \in \CC, \Re\alpha > 0)$. Then $\Gamma(\alpha + 1) = \alpha \Gamma(\alpha)$ and since $\Gamma(1) = 1 = 0!$ it holds follows from a simple induction that $\Gamma(n+1) = n!~(\forall n \in \NN_0)$.
+
     \item Wie lautet die Stirling-Formel zur Approximation von $n!$?
 
-    \textbf{Answer:}
+    \textbf{Answer:} For $n \to \infty$ it holds, that $\sqrt{2\pi n} \frac{n^n}{e^n}
+    \sim n!$
     \item Wie ist die Faltung $\varphi \star f$ von zwei Funktionen $\varphi, f: \RR \to \RR$ definiert?
 
-    \textbf{Answer:}
+    \textbf{Answer:} $(\varphi \star f)(x) := \int_{-\infty}^\infty \varphi(x-t) f(t)\,dt~(\forall x \in \RR)$
     \item Was ist eine Dirac-Folge? Gib eine Definition und wenigstens ein Beispiel an.
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider the $\varphi_n : \RR \to [0, \infty)$ sequence of functions. It's called Dirac sequence, if it satisfies the following conditions:
+    \begin{itemize}
+        \item $\varphi_n$ is integrable $(\forall n \in \NN)$
+        \item $\int_{-\infty}^\infty \varphi_n = 1$
+        \item $\forall \varepsilon, \delta > 0 \colon \exists N \in \NN\colon \forall n > N\colon \int_{\abs{x} \ge \delta} \varphi_n(t)\,dt \le \epsilon$
+    \end{itemize}
+
+    Examples:
+    \begin{itemize}
+        \item \textbf{TODO}
+    \end{itemize}
+
     \item Sei $\varphi_n: \RR \to \RR$ eine Dirac-Folge und sei $f: \RR \to \RR$ stetig mit $f(x) = 0$ für $\abs{x} \ge 1$. Bestimme $\lim_{n\to\infty} (\varphi_n * f)$  für jedes $x \in \RR$.
 
-    \textbf{Answer:}
+    \textbf{Answer:} $f$ must be bounded, and let $B \in \RR_+$ such that $\abs{f} \le B$. Consider $x \in [-1, 1]$ and $\forall \varepsilon > 0$ let $\delta > 0$ such that $\delta < B$ and $\forall t\in (x - \delta, x + \delta)\colon \abs{f(t) - f(x)} < \varepsilon$. Let furthermore $N \in \NN\colon \forall n > N\colon \int_{\abs{t}\ge \delta} \varphi_n \le \varepsilon$. Now
+    $$\begin{aligned}
+        &\abs{f(x) - (\varphi_n \star f)(x)} = \abs{f(x) - \int_{-\infty}^\infty \varphi(x-t)f(t)\,dt} = \abs{f(x) \underbrace{\int_{-\infty}^\infty \varphi(x-t)\,dt}_{=1} - \int_{-\infty}^\infty \varphi(x-t)f(t)\,dt} \\
+        &= \abs{\int_{-\infty}^\infty \varphi_n(x-t)(f(x) - f(t))\,dt} \\
+        &\le \abs{\int_{-\infty}^{x-\delta} \varphi_n(x-t)(f(x) - f(t))\,dt} + \abs{\int_{x-\delta}^{x+\delta} \varphi_n(x-t)(f(x) - f(t))\,dt} + \abs{\int_{x+\delta}^{\infty} \varphi_n(x-t)(f(x) - f(t))\,dt}\\
+        &\le \int_{-\infty}^{x-\delta} \abs{\varphi_n(x-t)(f(x) - f(t))}\,dt + \int_{x-\delta}^{x+\delta} \abs{\varphi_n(x-t)(f(x) - f(t))}\,dt + \int_{x+\delta}^{\infty} \abs{\varphi_n(x-t)(f(x) - f(t))}\,dt\\
+        &\le \int_{-\infty}^{x-\delta} \varphi_n(x-t)2B\,dt + \int_{x-\delta}^{x+\delta} \abs{\varphi_n(x-t)(f(x) - f(t))}\,dt + \int_{x+\delta}^{\infty} \varphi_n(x-t)2B\,dt\\
+        &\le \frac{2B\varepsilon}{2} + \int_{x-\delta}^{x+\delta} \varphi_n(x-t) \varepsilon\,dt +  \frac{2B\varepsilon}{2} < 2B\varepsilon + 2\delta \varepsilon < 4 B \varepsilon
+    \end{aligned}$$
+    Thus $\lim_{n \to \infty} (\varphi_n \star f)(x) = f(x)$. Furthermore the approximation does not depend on the choice of $x$ (since $f$ is uniformly continuous), $\lim_{n\to\infty} \varphi_n \star f = f$ (in $\norm{.}_{\operatorname{sup}}$).
     \item Wie lautet den Approximationssatz von Weierstrass?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $(\mathcal{C}([a, b], \RR), \norm{.})$, the normed vectorspace of continuous functions on the $[a, b]$ closed interval with the supremum norm. Then the $\mathcal{P} \subset \mathcal{C}([a, b], \RR)$ subspace of the polynomials is dense in $\mathcal{BC}([a, b], \RR)$ under the supremum norm.
+
     \item Welche Funktionen können durch Polynome gleichmäßig approximiert werden? Mit welcher Grundidee lassen sich approximierende Polynome zu einer gegebenen Funktion $f$ konstruieren?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Every continuous function defined on a closed interval can be approximated uniformly with polynomials. Suppose without loss of generality, that we want to approximate the $f: [0, 1] \to \RR$ function, for which it holds that $f(0) = f(1) = 0$. Extend this function to the reals by letting $f(x) = 0~(\forall x \notin [0, 1])$. Since the approximation in 34. does not depend on the choice of $x$ (since a continuous function on a closed interval is also uniformly continuous), the convolution of $f$ with a Dirac-sequence is a uniform approximation of $f$. If we chose the Landau-kernel as our Dirac-sequence, then in particular the resulting function $(\varphi_n \star f)(x)$ will be a polynomial in $x$, thus we found a uniformly approximating polynomial sequence.
+
+    If the function $f$ was originally defined on the $[a, b]$ interval, then let $\tilde{f}\colon[0, 1] \to \RR, \tilde{f}(x) = f(a + x(b-a))$. If furthermore $f(0) = f(1) = 0$ doesn't hold, then let $\tilde{f}(x) = f(x) - f(1) - (f(1) - f(0))x.$
+
     \item Was ist ein Hilbertraum? Gib zwei unendlich-dimensionale Beispiele.
 
-    \textbf{Answer:}
+    \textbf{Answer:} The $H$ vectorspace over $\KK=\RR\text{ or }\CC$ is a Hilbert space, if $H$ is an inner product space, and furthermore it's a complete metric space with regards to the metric induced by the scalar product: $d(x, y) := \norm{x - y} := \sqrt{\langle x, y \rangle}$
+
+    The $L^2 = {{\mathcal{L}}^2}/_\sim$ space with $\langle f, g \rangle = \int_a^b \overline{f} g$, where $\mathcal{L}^2 = \left\{f\colon [a, b] \to \KK \Bigm| \abs{f}^2 \in \Leb\right\}$ and $f \sim g \Leftrightarrow f = g$ almost everywhere.
+
+    The $\ell^2 = \left\{c \colon \ZZ \to \KK \bigm| \norm{c} < \infty \right\}$ space with the norm induced through the $\langle c, c^\prime\rangle = \sum_{k=-\infty}^\infty \overline{c_k} c_k^\prime$ scalar product.
+
     \item Was sind die Fourierkoeffizienten einer $2\pi$-periodischen Funktion $f: \RR \to \CC$ ? Wie lautet die Fourier-Reihe zu $f$ ?
 
-    \textbf{Answer:}
+    \textbf{Answer:} $c_k = \frac{1}{2\pi} \int_0^{2\pi} e^{-ikt} f(t) \,dt$ and $\tilde{f}(t) = \sum_{k=-\infty}^\infty c_k e^{ikt}$
     \item Beschreibe wie $2\pi$-periodische $f \in L^2$, die Fourier-Reihe $\hat{f}(t) := \sum_{k\in\ZZ}{c_k e^{ikt}}$, und Fourier-Koeffizienten $(c_k)_{k \in \ZZ} \in \ell^2$ miteinander zusammenhängen.
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $\varphi: \ell^2 \to L^2$ function with $\varphi\left((c_k)_{k \in \ZZ}\right) = \sum_{k\in\ZZ}{c_k e^{ikt}}$. $\ell^2$ and $L^2$ are isometrically isomorphic through the $\varphi$ bijection and furthermore $\lim_{n\to\infty}\sum_{k=-n}^n {c_k e^{ikt}} = f$ in the $\norm{.}_{L^2}$ norm.
     \item Wie hängen Fourier-Reihen mit Obertönen in der Musik zusammen?
 
-    \textbf{Answer:}
+    \textbf{Answer: TODO}
 
 \end{enumerate}
 

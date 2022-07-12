@@ -1,7 +1,4 @@
-Feel free to make a [pull request](https://github.com/kosii/kernfragen/pulls) for any improvements, bugfixes, typos, etc
-
-# ⚠️ Disclaimer ⚠️
-These answers were made for my own use and to compare results with others. They were not verified by anyone, and consequently they should only be used at one's own risk. I discourage everyone using them for their exams, but if anyone still decides to do so, they should do it in accordance with the exam regulation.
+Feel free to make a [pull request](https://github.com/kosii/kernfragen/pulls) for improvements, bugfixes, typos, etc
 
 # Analysis I.
 - [zahlen.pdf](1-Zahlen/zahlen.pdf) (done)
