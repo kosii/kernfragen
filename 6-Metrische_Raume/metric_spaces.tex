@@ -44,6 +44,16 @@
         \item $\forall x, y \in E\colon d(x, y) = d(y, x)$
         \item $\forall x, y, z \in E\colon d(x, z) \le d(x, y) + d(y, z)$
     \end{itemize}
+
+    Examples:
+    \begin{itemize}
+        \item Consider $E = \RR$ and $d(x, y) = \abs{x -y}$
+        \item Consider arbitrary set $E$. The discrete metric is defined as $d(x, y) = \begin{cases}
+            0&x=y\\
+            1&\text{otherwise}
+        \end{cases}$
+        \item Consider $\mathcal{BC}([0, 1], \RR)$ and $d(f, g) = \norm{f - g}_{sup}$
+    \end{itemize}
     \item Wie sind offene Teilmengen eines metrischen Raumes definiert, wie abgeschlossene Teilmengen?
 
     \textbf{Answer:} Consider $(E, d)$ metric space, and let $x \in E$. $\forall \varepsilon > 0$ let's define $B_\varepsilon(x) := \left\{ y \in E \bigm | d(x, y) < \varepsilon\right\}$, the open ball of radius $\varepsilon$ centered around $x$. The $A \subset E$ set is open, if $\forall x \in A\colon \exists \varepsilon > 0\colon B_\varepsilon(x) \subset A$. The $B \subset E$ set is closed, if its complement $E \setminus B$ is open.
@@ -81,7 +91,7 @@
 
     \textbf{Answer:}
     \begin{itemize}
-        \item $\overline{\ZZ} = \ZZ$ because $\ZZ$ is only consist of isolated points. $\mathring{\ZZ} = \emptyset$, since $\mathring{\ZZ} = \RR \setminus \overline{\RR \setminus \ZZ} = \RR \setminus \RR = \emptyset$. $\partial \ZZ = \overline{\ZZ} \setminus \mathring{\ZZ} = \ZZ$
+        \item $\overline{\ZZ} = \ZZ$ because $\ZZ$ only consists of isolated points. $\mathring{\ZZ} = \emptyset$, since $\mathring{\ZZ} = \RR \setminus \overline{\RR \setminus \ZZ} = \RR \setminus \RR = \emptyset$. $\partial \ZZ = \overline{\ZZ} \setminus \mathring{\ZZ} = \ZZ$
         \item $\QQ$ is dense in $\RR$, thus $\overline{\QQ} = \RR$. $\mathring{\QQ} = \RR \setminus \overline{\RR \setminus \QQ} = \RR \setminus \RR = \emptyset$, since the irrationals are also dense in $\RR$. $\partial\QQ = \overline{\QQ} \setminus \mathring{\QQ} = \RR$
         \item $A := \cup_{k\in\NN}\left(\frac{1}{k+1}, \frac{1}{k}\right) = (0, 1) \setminus \left\{\frac{1}{n} \bigm| n \in \NN\right\}$. $\overline{A} = [0, 1]$, $\mathring{A} = A$ since it's an union of open sets, thus it's also open and so the interior is itself. $\partial{A} = \overline{A} \setminus \mathring{A} = \left\{\frac{1}{n} \bigm| n \in \NN\right\} \cup \left\{0\right\}$
     \end{itemize}
@@ -189,8 +199,8 @@
 
     \textbf{Answer:}
     \begin{itemize}
-        \item Image of an open subset is not necessarily open. Let $E = \RR$ with the standard metric, $f\colon \RR \to \RR, x \mapsto 1$ the constant one function and consider $A \subset E$. $f(A) = \left\{1\right\}$ is closed.
-        \item Image of a closed subset is not necessarily closed. Consider $f\colon \RR \to \RR, x \mapsto \frac{1}{1-e^{-x}}$. $\RR \subset \RR$ is closed, but $f(\RR) = (0, 1)$ is open.
+        \item Image of an open subset is not necessarily open. Let $E = \RR$ with the standard metric, $f\colon \RR \to \RR, x \mapsto 1$ the constant one function and consider $A \subset E$ open. $f(A) = \left\{1\right\}$ is closed.
+        \item Image of a closed subset is not necessarily closed. Consider $f\colon \RR \to \RR, x \mapsto \frac{1}{1-e^{-x}}$. The subset $\RR \subseteq \RR$ is closed, but $f(\RR) = (0, 1)$ is open.
         \item Image of a complete subset is not necessarily complete. See previous example.
         \item Image of connected or compact sets are again connected or compact, respectively.
         \item Preimage of an open set is open.
