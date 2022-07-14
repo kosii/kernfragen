@@ -40,7 +40,7 @@
 
     \textbf{Answer:} Consider $E$ arbitrary set. The function $d: E \times E \to \RR$ is a metric, if satisfies the following conditions:
     \begin{itemize}
-        \item $\forall x, y \in E\colon d(x, y) \ge 0$ and $d(x, y) = 0 \Leftrightarrow x = y$
+        \item $\forall x, y \in E\colon d(x, y) = 0 \Leftrightarrow x = y$
         \item $\forall x, y \in E\colon d(x, y) = d(y, x)$
         \item $\forall x, y, z \in E\colon d(x, z) \le d(x, y) + d(y, z)$
     \end{itemize}
@@ -59,7 +59,9 @@
         abgeschlossener
     \end{tabular}\right\}$ Mengen wieder offen bzw. abgeschlossen?
 
-    \textbf{Answer:} Arbitrary union of open sets is open. Finite intersection of open sets is open. Arbitrary intersection of closed sets is closed. Finite union of closed sets is closed.
+    \textbf{Answer:} Arbitrary union of open sets is open. Finite intersection of open sets is open. Arbitrary intersection of open sets is in general not open: consider $\RR$ with the standard metric, then $\cap_{n \in \NN} (-\frac{1}{n}, \frac{1}{n}) = \left\{0\right\}$ closed.
+
+    Arbitrary intersection of closed sets is closed. Finite union of closed sets is closed. Arbitrary union of closed sets is in general not closed: consider $\RR$ with the standard metric, then $\cup_{n \in \NN}\left[\frac{1}{n}, 1-\frac{1}{n}\right] = (0, 1)$ open.
 
     \item Wie sind Abschluss, Inneres und Rand einer Teilmenge eines metrischen Raumes definiert?
 
@@ -78,15 +80,23 @@
     \hspace*{\fill}
 
     \textbf{Answer:}
+    \begin{itemize}
+        \item $\overline{\ZZ} = \ZZ$ because $\ZZ$ is only consist of isolated points. $\mathring{\ZZ} = \emptyset$, since $\mathring{\ZZ} = \RR \setminus \overline{\RR \setminus \ZZ} = \RR \setminus \RR = \emptyset$. $\partial \ZZ = \overline{\ZZ} \setminus \mathring{\ZZ} = \ZZ$
+        \item $\QQ$ is dense in $\RR$, thus $\overline{\QQ} = \RR$. $\mathring{\QQ} = \RR \setminus \overline{\RR \setminus \QQ} = \RR \setminus \RR = \emptyset$, since the irrationals are also dense in $\RR$. $\partial\QQ = \overline{\QQ} \setminus \mathring{\QQ} = \RR$
+        \item $A := \cup_{k\in\NN}\left(\frac{1}{k+1}, \frac{1}{k}\right) = (0, 1) \setminus \left\{\frac{1}{n} \bigm| n \in \NN\right\}$. $\overline{A} = [0, 1]$, $\mathring{A} = A$ since it's an union of open sets, thus it's also open and so the interior is itself. $\partial{A} = \overline{A} \setminus \mathring{A} = \left\{\frac{1}{n} \bigm| n \in \NN\right\} \cup \left\{0\right\}$
+    \end{itemize}
+
     \item Wann ist eine Teilmenge eines metrischen Raumes dicht?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $(E, d)$ metric space and $A \subset E$. $A$ is dense in $E$, if $\overline{A} = E$.
+
     \item Wann ist ein metrischer Raum zusammenhängend?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $(E, d)$ metric space. It's connected, if $\forall A, B \subset E\colon A, B$ open, $A \cup B = E, A \cap B = \emptyset \Rightarrow$ either $A = \emptyset$ or $B = \emptyset$
     \item Wie sind Zusammenhangskomponenten eines metrischen Raumes definiert? Wann heißt ein metrischer Raum total unzusammenhängend?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $(E, d)$ metric space. For some $x\in E$ we define the connected component of the point $x$ as the union of all $C\subset E$ connected sets, that contain $x$. We denote the connected component of $x$ with $\mathcal{C}(x)$. $(E, d)$ is totally disconnected, if $\forall x\in E\colon \mathcal{C}(x) = \left\{x\right\}$
+
     \item Sind $\left\{\begin{tabular}{c}
     \text{endliche}\\
     \text{abzählbare}\\
@@ -96,7 +106,10 @@
     \text{Vereinigungen}
     \end{tabular}\right\}$ zusammenhängender Mengen wieder zusammenhängend? Gib gegebenfalls ein Gegenbeispiel!
 
-    \textbf{Answer:}
+    \textbf{Answer:} Union of connected sets is in general not connected: consider $\RR$ with the standard metric, and $[0, 1]$, $[2, 3]$ connected sets. $[0, 1] \cup [2, 3]$ is disconnected. Arbitrary union of connected sets $U_i$ is connected, as long as $\cap_i U_i \neq \emptyset$.
+
+    Intersection of connected sets is not necessarily connected (think in $\RR^2$ about a $C$ and a $I$ shaped open set, intersecting each other only at the ends of the $C$, creating two disconnected sets).
+
     \item Sind $\left\{\begin{tabular}{c}
         \text{endliche}\\
         \text{abzählbare}\\
@@ -106,34 +119,52 @@
         \text{Vereinigungen}
     \end{tabular}\right\}$ kompakter Mengen wieder kompakt? Gib gegebenfalls ein Gegenbeispiel!
 
-    \textbf{Answer:}
-    \item Warum ist in einem metrischen Raum jede konvergente Folge eine Cauchy-Folge?(Beweise!)
+    \textbf{Answer: TODO}
 
-    \textbf{Answer:}
+    \item Warum ist in einem metrischen Raum jede konvergente Folge eine Cauchy-Folge? (Beweise!)
+
+    \textbf{Answer:} Consider $(E, d)$ metric space, and an $(x_n) \in E$ convergent sequence. Let $\lim_{n \to \infty} x_n = x \in E$. Since $x_n$ converges, $\forall \varepsilon > 0\colon \exists N \in \NN\colon \forall n > N\colon d(x_n, x) < \frac{\varepsilon}{2}$. Now $\forall n, m > N\colon d(x_n, x_m) \le d(x_n, x) + d(x, x_m) = d(x_n, x) + d(x_m, x) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} < \varepsilon$, thus $(x_n)$ is a Cauchy sequence.
+
     \item Wann heißt ein metrischer Raum vollständig?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $(E, d)$ metric space. $E$ is complete, if every Cauchy sequence converges.
+
     \item Was sind generische Mengen?
 
-    \textbf{Answer:}
+    \textbf{Answer: TODO}
     \item Wie lautet der Satz von Baire?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $(E, d)$ complete metric space and countable many $U_i \subset E~(i \in \mathbb{N})$ open and dense sets. Then $\cap_{i \in \NN} U_i$ is dense in $E$.
+
     \item Wann heißt ein metrischer Raum perfekt?
 
-    \textbf{Answer:}
+    \textbf{Answer:} $(E, d)$ is perfect, if it doesn't contain isolated points. Or equivalently: $\forall x \in E\colon x \in \overline{E \setminus \left\{x\right\}}$
+
     \item Zeige, dass jeder nichtleere, vollständige, perfekte metrische Raum überabzählbar ist.
 
-    \textbf{Answer:}
+    \textbf{Answer: TODO}
     \item Was versteht man unter einer Cantor-Menge? Gib ein Beispiel an!
 
-    \textbf{Answer:}
+    \textbf{Answer:} Let $\emptyset \neq C \subset [0, 1]$. We call $C$ a Cantor set, if $C$ is complete, totally disconnected and perfect.
+
     \item Wann heißt eine Folge in einem metrischen Raum konvergent? Wann heißt sie Cauchy-Folge?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $(E, d)$ metric space, and $(x_n) \in E$ sequence. The $(x_n)$ sequence is convergent, if $\exists x\in E\colon \forall \varepsilon > 0\exists N \in \NN\colon \forall n > N\colon d(x, d_n) < \varepsilon$. We call $x$ the limit of the $(x_n)$ sequence and we say that $(x_n)$ converges agains $x$.
+
+    The $(x_n) \in E$ sequence is a Cauchy sequence, if $\forall \varepsilon > 0\colon \exists N \in \NN\colon \forall m, n > N\colon d(x_n, x_m) < \varepsilon$.
+
     \item Wann heißt eine Abbildung zwischen metrischen Räumen stetig? Gib vier verschiedene (aber natürlich äquivalente) Definitionen!
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $(E_1, d_1)$ and $(E_2, d_2)$ metric spaces. The $f\colon E_1 \to E_2$ function is continuous in $a \in E_1$ if $\forall \varepsilon > 0\colon \exists \delta > 0\colon \forall x \in E_1\colon d_1(a, x) < \delta\colon d_2(f(a), f(x)) < \varepsilon$.
+
+    The $f\colon E_1 \to E_2$ is continuous if and only if one of the following equivalent characterisation holds (and if one holds, then all the other hold as well):
+    \begin{enumerate}
+        \item $f$ is continuous in $\forall a \in E_1$
+        \item $\forall A \in E\colon f(\overline{A}) \subset \overline{f(A)}$
+        \item $\forall A \subset E_2$ closed: $f^{-1}(A)$ is closed
+        \item $\forall A \subset E_2$ open: $f^{-1}(A)$ is open
+    \end{enumerate}
+
     \item Sind unter einer stetigen Abbildung $f: E \to E^\prime$ zwischen metrischen Räumen die $\left\{\begin{tabular}{c}
         \text{Bilder}\\
         \text{Urbilder}
@@ -152,7 +183,7 @@
         \end{tabular}\right\}$?
     Gib gegebenfalls ein Gegenbeispiel!
 
-    \textbf{Answer:}
+    \textbf{Answer: TODO}
     \item Wann heißen zwei Metriken äquivalent?
 
     \textbf{Answer:}
