@@ -10,6 +10,7 @@ Feel free to make a [pull request](https://github.com/kosii/kernfragen/pulls) fo
 # Analysis II.
 - [integration.pdf](5-Integration/integration.pdf) (done, except 40)
 - [metric_spaces.pdf](6-Metrische_Raume/metric_spaces.pdf) (done)
+
 # Errata
 - Stetigkeit 3: the answer was pretty bad (and contained error)
 - Stetigkeit 8: my answer was bad (not completely bad, but I assumed unnecessarily strong conditions)
