@@ -119,7 +119,9 @@
         \text{Vereinigungen}
     \end{tabular}\right\}$ kompakter Mengen wieder kompakt? Gib gegebenfalls ein Gegenbeispiel!
 
-    \textbf{Answer: TODO}
+    \textbf{Answer:} Finite union of compact sets is compact. Arbitrary union of compact sets is in general not compact: $\cup_{n\in\NN}[n, n+1] = \NN$ is not totally bounded, thus also not compact.
+
+    Arbitrary intersection of compact sets is compact.
 
     \item Warum ist in einem metrischen Raum jede konvergente Folge eine Cauchy-Folge? (Beweise!)
 
@@ -131,7 +133,8 @@
 
     \item Was sind generische Mengen?
 
-    \textbf{Answer: TODO}
+    \textbf{Answer:} Consider $(E, d)$ complete metric space and countable many $U_i \subset E~(i \in \mathbb{N})$ open and dense sets. Then $M = \cap_{i \in \NN} U_i$ is dense in $E$. Any $G \supset M$ is called generic, residual or of  Baire second category.
+
     \item Wie lautet der Satz von Baire?
 
     \textbf{Answer:} Consider $(E, d)$ complete metric space and countable many $U_i \subset E~(i \in \mathbb{N})$ open and dense sets. Then $\cap_{i \in \NN} U_i$ is dense in $E$.
@@ -142,7 +145,8 @@
 
     \item Zeige, dass jeder nichtleere, vollständige, perfekte metrische Raum überabzählbar ist.
 
-    \textbf{Answer: TODO}
+    \textbf{Answer:} Consider $E$ not empty, complete and perfect metric space. Suppose indirectly, that it's countable: let $(x_n)\colon \NN \to E$ bijection. Let furthermore $A_n = E \setminus \left\{x_n\right\}$. Since $E$ is perfect, every $A_n$ is dense in $E$. Since $\left\{x_n\right\}$ is closed, $A_n$ is open. From Baire's theorem $\cap_{n\in\NN}A_n = \emptyset$ should be dense in $E$, contradiction.
+
     \item Was versteht man unter einer Cantor-Menge? Gib ein Beispiel an!
 
     \textbf{Answer:} Let $\emptyset \neq C \subset [0, 1]$. We call $C$ a Cantor set, if $C$ is complete, totally disconnected and perfect.
@@ -160,7 +164,7 @@
     The $f\colon E_1 \to E_2$ is continuous if and only if one of the following equivalent characterisation holds (and if one holds, then all the other hold as well):
     \begin{enumerate}
         \item $f$ is continuous in $\forall a \in E_1$
-        \item $\forall A \in E\colon f(\overline{A}) \subset \overline{f(A)}$
+        \item $\forall A \subset E_1\colon f(\overline{A}) \subset \overline{f(A)}$
         \item $\forall A \subset E_2$ closed: $f^{-1}(A)$ is closed
         \item $\forall A \subset E_2$ open: $f^{-1}(A)$ is open
     \end{enumerate}
@@ -177,44 +181,85 @@
     \end{tabular}\right\}$ Teilmengen wieder $\left\{\begin{tabular}{c}
         \text{offener}\\
         \text{abgeschlossener}\\
-        \text{vollstängiger}\\
+        \text{vollstäntiger}\\
         \text{zusammenhängender}\\
         \text{kompakter}
         \end{tabular}\right\}$?
     Gib gegebenfalls ein Gegenbeispiel!
 
-    \textbf{Answer: TODO}
+    \textbf{Answer:}
+    \begin{itemize}
+        \item Image of an open subset is not necessarily open. Let $E = \RR$ with the standard metric, $f\colon \RR \to \RR, x \mapsto 1$ the constant one function and consider $A \subset E$. $f(A) = \left\{1\right\}$ is closed.
+        \item Image of a closed subset is not necessarily closed. Consider $f\colon \RR \to \RR, x \mapsto \frac{1}{1-e^{-x}}$. $\RR \subset \RR$ is closed, but $f(\RR) = (0, 1)$ is open.
+        \item Image of a complete subset is not necessarily complete. See previous example.
+        \item Image of connected or compact sets are again connected or compact, respectively.
+        \item Preimage of an open set is open.
+        \item Preimage of a closed set is closed.
+        \item Preimage of a complete set is not necessarily complete. Consider $(0, 1)$ metric space, let $f\colon (0, 1) \to \RR$ be the constant $1$ function. The preimage of the complete set $\{1\}$ is $(0, 1)$, which is not complete.
+        \item Preimage of connected sets is not necessarily complete. Consider the $(0, 1) \cup (2, 3)$ metric space, and the constant $1$ function defined on this space. The preimage of the connected $\{1\}$ set is disconnected.
+        \item Preimage of compact sets is not necessarily compact. Consider the $\RR$ metric space, and the constant $1$ function. The preimage of the compact $\{1\}$ set is not bounded, thus also not compact.
+    \end{itemize}
     \item Wann heißen zwei Metriken äquivalent?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $(E_1, d_1)$ and $(E_2, d_2)$ metric spaces. The $f\colon E_1 \to E_2$ function is a homeomorphism, if $f$ is bijective, and both $f$ and $f^{-1}$ are continuous. We say, that $E_1$ and $E_2$ metric spaces are equivalent, if the $id: E_1 \to E_2, x \mapsto x$ function is a homeomorphism.
+
     \item Wann heißen zwei Normen äquivalent?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $V$ vectorspace with two different $\norm{.}_1$ and $\norm{.}_2$. We say, that they are equivalent, if $\exists c, C \in \RR^+$, such that $\forall v \in V\colon c \norm{v}_2 < \norm{v}_1 < C \norm{v}_2$
+
     \item Sei $E$ ein metrischer Raum. Formuliere und beweise den Zwischenwertsatz für stetige Abbildungen $f\colon E \to \RR$
 
-    \textbf{Answer:}
+    \textbf{Answer:} Let $E$ connected, $f\colon E \to \RR$ continuous and $a, b \in E$. Then $f$ takes on every value between $f(a)$ and $f(b)$. \textit{Proof:} $E$ is connected, thus so is $f(E)$. In $\RR$ connected sets are exactly the intervals, thus it'll take on any value between $f(a)$ and $f(b)$.
+
     \item Gib drei verschiedene (aber natürlich äquivalente) Definitionen von kompakten metrischen Räumen! Gib außerdem je ein Beispiel eines kompakten und eines nicht kompakten Raumes!
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $(E, d)$ metric space. The following statements are equivalent characterisation of the compactness of $E$:
+    \begin{itemize}
+        \item Every open cover of $E$ has a finite subcover.
+        \item Every sequence in $E$ has a convergent subsequence.
+        \item $E$ is complete and totally bounded.
+    \end{itemize}
+
+    The $[0, 1]$ set is compact in $\RR$, but the $(0, 1)$ set is not.
+
     \item Sei E ein metrischer Raum. Wann heißt eine Teilmenge $A \subset E$ relativ kompakt?
 
-    \textbf{Answer:}
+    \textbf{Answer:} $A$ is relative compact, if $\overline{A}$ is compact.
+
     \item Wie lassen sich die kompakten Teilmengen des $\RR^n$
     charakterisieren?
 
-    \textbf{Answer:}
+    \textbf{Answer:} In $\RR^n$ the subset $K \subset \RR^n$ is bounded if and only if it's totally bounded.Thus closed and bounded subsets $K \subset \RR^n$ are compact.
+
     \item Wie lautet der Satz von Arzela-Ascoli?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $(E_1, d_1), (E_2, d_2)$ metric spaces and $\mathcal{F} := \left\{f \colon E_1 \to E_2 \bigm| f\text{ continuous}\right\}$. We say, that the set $\mathcal{F}$ is equicontinuous, if $\forall a\in E_1\colon \forall \varepsilon > 0\colon \exists \delta > 0\colon \forall a\in E_1\colon \abs{x - a} < \delta\colon \abs{f(x) - f(a)} < \varepsilon~(\forall f \in \mathcal{F})$. That is: $\delta$ only depends on $a \in E_1$ and $\epsilon > 0$, but not on $f \in \mathcal{F}$.
+
+    Consider now $(E, d)$ compact metric space, and $(F, \norm{.})$ Banach space. The $\mathcal{F} \subset \mathcal{BC}^0(E, F)$ set is relative compact, if and only if both of the following statement hold:
+    \begin{itemize}
+        \item $\mathcal{F}$ is equicontinuous
+        \item $\forall x \in E: \left\{f(x) \bigm| f \in \mathcal{F}\right\}$ is relative compact
+    \end{itemize}
+
     \item Wann sagt man, dass eine Abbildung Lipschitz-stetig ist? Wann ist eine Lipschitzstetige Abbildung eine Kontraktion?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $(E_1, d_1)$ and $(E_2, d_2)$ metric spaces. $f\colon E_1 \to E_2$ is Lipschitz continuous, if $\exists L > 0\colon \forall x, y\in E_1\colon d_2(f(x), f(y)) < L d_2(x, y)$. If $L < 1$, then we call $f$ a contraction.
+
     \item Wie lautet der Banachsche Fixpunktsatz?
 
-    \textbf{Answer:}
-    \item Sei $E$ ein metrischer Raum und $f \colon E \to E$ stetig. Wann sagt man, dass $\emptyset \neq A \subset E$ selbstähnlich ist? Was ist ein \textit{iterated function system}?
+    \textbf{Answer:} Consider $(E, d)$ complete metric space and $f\colon E \to E$ contraction with Lipschitz constant $L < 1$. Then
+    \begin{itemize}
+        \item $f$ has exactly one fixed point $x_\star \in E\colon f(x_\star) = x_\star$
+        \item $\forall x_0 \in E$ converges the $x_{n+1} = f(x_n)~(\forall n \in \NN)$ against $x_\star$
+        \item the following error estimates hold:
+        \begin{itemize}
+            \item $d(x_n, x_\star) \le L^n d(x_0, x_\star)$
+            \item $d(x_n, x_\star) \le \frac{L^n}{1-L}d(x_0, x_1)$
+        \end{itemize}
+    \end{itemize}
+    \item Sei $E$ ein metrischer Raum und $f_i \colon E \to E$ stetig. Wann sagt man, dass $\emptyset \neq A \subset E$ selbstähnlich ist? Was ist ein \textit{iterated function system}?
 
-    \textbf{Answer:}
+    \textbf{Answer:} Consider $f_i \colon E \to E$ stetig ($i = 1,\dots,m \ge 2$). $A$ is self similar, if $A = \cup_{i=1}^m f_i(A)$. If $E$ is a complete metric space and $f_i$'s are contractions ($\forall i = 1,\dots,m \ge 2$), then $\exists ! A \subset E$ compact, such that $A = \cup_{i=1}^m f_i(A)$ and we call such a set of functions and iterated function system.
 \end{enumerate}
 
 \end{document}
