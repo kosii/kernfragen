@@ -12,6 +12,7 @@ Feel free to make a [pull request](https://github.com/kosii/kernfragen/pulls) fo
 - [metric_spaces.pdf](6-Metrische_Raume/metric_spaces.pdf) (done)
 
 # Errata
+- Integration 28: in the proof the alpha was in the denominator, instead of the exponent of the denominator (2022/07/16)
 - Stetigkeit 3: the answer was pretty bad (and contained error)
 - Stetigkeit 8: my answer was bad (not completely bad, but I assumed unnecessarily strong conditions)
 - Stetigkeit 19.1: typo and adding some more explanation (2022/02/12)
