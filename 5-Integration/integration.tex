@@ -125,7 +125,7 @@
 
     \item Wie integriert man rationale Funktionen? Welche elementaren Integrale muss man dazu kennen?
 
-    \textbf{Answer: TODO} Consider $p, q \in \RR\!\left[x\right]$ polynomials and the rational function $\frac{p(x)}{q(x)}$
+    \textbf{Answer:} Consider $p, q \in \RR\!\left[x\right]$ polynomials and the rational function $\frac{p(x)}{q(x)}$
 
     \begin{enumerate}
         \item Simplification: $\exists! r,h \in \RR\!\left[x\right]\colon p = h q + r$ with $\deg{r} < \deg{p}$. Thus $\int_a^b \frac{p}{q} = \int_a^b h  + \int_a^b \frac{r}{q}$ where we already know how to integrate $\int_a^b h$
@@ -283,7 +283,7 @@
     \begin{itemize}
         \item Consider first $\alpha = 0$. On one hand $\limsup_{x\to\infty}\int_1^x \frac{\cos{t}}{t^0}\,dt = \limsup_{x\to\infty}\int_1^x \cos{t}\,dt = \int_1^{\pi/2} \cos{t}\,dt + \limsup_{x \to \infty}\int_{\pi/2}^x \cos{t}\,dt = \int_1^{\pi/2} \cos{t}\,dt + 1$. On the other hand $\liminf_{x\to\infty}\int_1^x \frac{\cos{t}}{t^0}\,dt = \int_1^{\pi/2} \cos{t}\,dt + \liminf_{x \to \infty}\int_{\pi/2}^x \cos{t}\,dt = \int_1^{\pi/2} \cos{t}\,dt - 1$, thus $\int_1^\infty \cos{t}\,dt$ cannot exist.
         \item Let now $\alpha > 1$ : $\int_1^\infty\abs{\frac{\cos{t}}{t^\alpha}}\,dt \le \int_1^\infty\abs{\frac{1}{t^\alpha}}\,dt = \int_1^\infty\frac{1}{t^\alpha}\,dt = \frac{1}{\alpha - 1}$, thus absolute convergent.
-        \item Let now $\alpha \in (0, 1)$: $\int_1^{n\pi}\abs{\frac{\cos{t}}{t^\alpha}}\,dt = \int_1^{\pi}\abs{\frac{\cos{t}}{t^\alpha}}\,dt + \int_{\pi}^{n\pi}\abs{\frac{\cos{t}}{t^\alpha}}\,dt \ge \sum_{k=1}^{n-1} \int_{k\pi}^{(k+1)\pi}\abs{\frac{\cos{t}}{t^\alpha}}\,dt \ge \sum_{k=1}^{n-1} \frac{1}{((k+1)\pi)^\alpha} \int_{k\pi}^{(k+1)\pi}\abs{\cos{t}}\,dt = \sum_{k=1}^{n-1} \frac{2}{((k+1)\pi)^\alpha} > \frac{2}{\pi^\alpha} \sum_{k=1}^{n-1} \frac{1}{(k+1)^\alpha} > \frac{2}{\pi^\alpha} \sum_{k=1}^{n-1} \frac{1}{(k+1)} \stackrel{n\to \infty}{\to} \infty$, thus it's \textbf{not} absolutely convergent. On the other hand $\int_1^x \frac{\cos{t}}{t^\alpha}\,dt = -\frac{\sin{t}}{t^\alpha}\bigm|_1^x + \int_1^x \frac{\sin{t}}{t^{\alpha +1 }}\,dt$ converges, since $\lim_{x\to\infty} \frac{\sin{t}}{t^\alpha}\bigm|_1^x = \sin{1}$ and $\lim_{x\to\infty}\int_1^x \frac{\sin{t}}{t^{\alpha +1 }}\,dt$ converges, since $\alpha +1 > 1$.
+        \item Let now $\alpha \in (0, 1)$: $\int_1^{n\pi}\abs{\frac{\cos{t}}{t^\alpha}}\,dt = \int_1^{\pi}\abs{\frac{\cos{t}}{t^\alpha}}\,dt + \int_{\pi}^{n\pi}\abs{\frac{\cos{t}}{t^\alpha}}\,dt \ge \sum_{k=1}^{n-1} \int_{k\pi}^{(k+1)\pi}\abs{\frac{\cos{t}}{t^\alpha}}\,dt \ge \sum_{k=1}^{n-1} \frac{1}{((k+1)\pi)^\alpha} \int_{k\pi}^{(k+1)\pi}\abs{\cos{t}}\,dt = \sum_{k=1}^{n-1} \frac{2}{((k+1)\pi)^\alpha} = \frac{2}{\pi^\alpha} \sum_{k=1}^{n-1} \frac{1}{(k+1)^\alpha} > \frac{2}{\pi^\alpha} \sum_{k=1}^{n-1} \frac{1}{(k+1)} \stackrel{n\to \infty}{\to} \infty$, thus it's \textbf{not} absolutely convergent. On the other hand $\int_1^x \frac{\cos{t}}{t^\alpha}\,dt = -\frac{\sin{t}}{t^\alpha}\bigm|_1^x + \int_1^x \frac{\sin{t}}{t^{\alpha +1 }}\,dt$ converges, since $\lim_{x\to\infty} \frac{\sin{t}}{t^\alpha}\bigm|_1^x = \sin{1}$ and $\lim_{x\to\infty}\int_1^x \frac{\sin{t}}{t^{\alpha +1 }}\,dt$ converges, since $\alpha +1 > 1$.
     \end{itemize}
     \textit{Note}: The same result holds for $\int_1^\infty \frac{\sin{t}}{t^\alpha} \,dt$ regarding the parameter $\alpha$ and the proof is identical.$\blacksquare$
 
@@ -322,7 +322,10 @@
 
     Examples:
     \begin{itemize}
-        \item \textbf{TODO}
+        \item Landau kernel: Let $\varphi_n(t) = \frac{1}{c_n} (1 - t^2)_+^n = \begin{cases}
+            \frac{1}{c_n} (1 - t^2)^n&t \in [-1, 1]\\
+            0&\text{otherwise}
+        \end{cases}$ \\with $c_n~=~\int_{-1}^1(1-t^2)^n\,dt$
     \end{itemize}
 
     \item Sei $\varphi_n: \RR \to \RR$ eine Dirac-Folge und sei $f: \RR \to \RR$ stetig mit $f(x) = 0$ für $\abs{x} \ge 1$. Bestimme $\lim_{n\to\infty} (\varphi_n * f)$  für jedes $x \in \RR$.
@@ -363,7 +366,7 @@
     \textbf{Answer:} Consider $\varphi: \ell^2 \to L^2$ function with $\varphi\left((c_k)_{k \in \ZZ}\right) = \sum_{k\in\ZZ}{c_k e^{ikt}}$. $\ell^2$ and $L^2$ are isometrically isomorphic through the $\varphi$ bijection and furthermore $\lim_{n\to\infty}\sum_{k=-n}^n {c_k e^{ikt}} = f$ in the $\norm{.}_{L^2}$ norm.
     \item Wie hängen Fourier-Reihen mit Obertönen in der Musik zusammen?
 
-    \textbf{Answer: TODO}
+    \textbf{Answer:} Consider a periodic waveform $f$, with minimal period $p \in \RR^+$. We say, that the fundamental frequency is $\frac{1}{p}$. Consider now $f(t) = \sumn{k}{1}{\infty}{f_k} = \sumn{k}{1}{\infty}{c_k \sin(k(t + \varphi_k))}$, the amplitude-phase form of the Fourier series. We call $f_1 = c_1 \sin(t + \varphi_1)$ the fundamental, and $f_k~(k > 1)$ the overtones. The amplitude of the overtones determine the timbre.
 
 \end{enumerate}
 

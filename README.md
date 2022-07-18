@@ -8,7 +8,7 @@ Feel free to make a [pull request](https://github.com/kosii/kernfragen/pulls) fo
 - [differentiation.pdf](4-Differentiation/differentiation.pdf) (done)
 
 # Analysis II.
-- [integration.pdf](5-Integration/integration.pdf) (done, except 40)
+- [integration.pdf](5-Integration/integration.pdf) (done)
 - [metric_spaces.pdf](6-Metrische_Raume/metric_spaces.pdf) (done)
 
 # Errata
